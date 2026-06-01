@@ -1,1 +1,1921 @@
-...
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Project Meaning — The State Instrument</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=JetBrains+Mono:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f3efe5; --paper-2:#ece5d7; --panel:#f7f3ea;
+    --ink:#16130d; --ink-soft:#574f44; --ink-faint:#8b8275;
+    --rule:rgba(22,19,13,.18); --rule-soft:rgba(22,19,13,.085);
+    --red:#a8302b; --red-2:#c0413a; --red-soft:rgba(168,48,43,.09);
+    --sage:#5d7a55; --sage-soft:rgba(93,122,85,.12);
+    --amber:#9b6a1d; --amber-soft:rgba(155,106,29,.12); --gold:#8a7320;
+    --shadow:0 24px 60px rgba(40,33,20,.14);
+    --serif:'Cormorant Garamond',Georgia,serif;
+    --display:'Cinzel',serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--serif); color:var(--ink); line-height:1.5; font-size:18px;
+    background:
+      radial-gradient(1px 1px at 9% 13%,rgba(22,19,13,.5),transparent),
+      radial-gradient(1px 1px at 82% 9%,rgba(22,19,13,.32),transparent),
+      radial-gradient(1px 1px at 41% 71%,rgba(22,19,13,.4),transparent),
+      radial-gradient(1px 1px at 93% 77%,rgba(22,19,13,.42),transparent),
+      radial-gradient(1px 1px at 22% 90%,rgba(22,19,13,.3),transparent),
+      radial-gradient(1px 1px at 67% 33%,rgba(22,19,13,.22),transparent),
+      radial-gradient(1px 1px at 56% 5%,rgba(22,19,13,.28),transparent),
+      radial-gradient(ellipse 120% 80% at 50% -10%, var(--paper-2), var(--paper) 60%);
+    background-attachment:fixed; min-height:100vh;
+  }
+  body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:1;
+    background:radial-gradient(ellipse at center,transparent 42%,rgba(70,58,38,.14) 100%);}
+  ::selection{background:rgba(168,48,43,.18)}
+  .wrap{position:relative;z-index:2;width:min(1280px,calc(100vw - 30px));margin:0 auto;padding:40px 0 96px;}
+
+  .plate{background:linear-gradient(180deg,var(--panel),#f2ecdf);border:1px solid var(--rule);box-shadow:var(--shadow);position:relative;}
+  .plate:after{content:"";position:absolute;inset:7px;border:1px solid var(--rule-soft);pointer-events:none;}
+  .num{font-family:var(--mono);font-weight:300;color:var(--red);letter-spacing:.05em;}
+
+  .masthead{padding:46px 48px 40px;overflow:hidden}
+  .crest-row{display:flex;justify-content:space-between;align-items:flex-start;gap:24px;flex-wrap:wrap}
+  .crest{font-family:var(--display);font-weight:500;font-size:13px;letter-spacing:.42em;text-transform:uppercase;color:var(--ink);}
+  .stage-tag{font-family:var(--mono);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--ink-faint);text-align:right;line-height:2;}
+  .stage-tag b{color:var(--red);font-weight:500}
+  h1{font-family:var(--display);font-weight:600;font-size:clamp(2.1rem,5vw,4.1rem);line-height:1.02;letter-spacing:-.005em;margin:26px 0 4px;max-width:18ch;}
+  .subtitle{font-family:var(--serif);font-style:italic;font-weight:400;font-size:clamp(1.15rem,2.4vw,1.55rem);color:var(--ink-soft);letter-spacing:.01em;margin-bottom:22px;}
+  .lede{font-size:1.16rem;color:var(--ink-soft);max-width:74ch;line-height:1.62;}
+  .lede b{color:var(--ink);font-weight:600}
+  .doctrine{margin-top:26px;padding:20px 24px;border-left:2px solid var(--red);background:var(--red-soft);max-width:80ch;}
+  .doctrine p{font-style:italic;font-size:1.12rem;color:var(--ink);line-height:1.55}
+  .doctrine .src{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-faint);margin-top:10px;font-style:normal;}
+
+  .primer{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:22px}
+  .primer>div{padding:26px 28px}
+  .primer>div:first-child{border-right:1px solid var(--rule-soft)}
+  .primer h3{font-family:var(--display);font-weight:500;font-size:1.18rem;letter-spacing:.02em;margin:10px 0 8px;}
+  .primer p{font-size:1.04rem;color:var(--ink-soft);line-height:1.55}
+  .primer .mini{font-family:var(--mono);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--red)}
+  .limits{margin-top:18px;padding:16px 22px;border:1px dashed var(--rule);font-size:.98rem;color:var(--ink-soft);line-height:1.5;background:rgba(255,255,255,.25);}
+  .limits b{color:var(--ink)}
+
+  .work{display:grid;grid-template-columns:minmax(0,1fr) 416px;gap:22px;margin-top:22px;align-items:start}
+  .scenarios{display:grid;gap:20px}
+  .card{padding:30px 30px 26px}
+  .card-head{display:flex;justify-content:space-between;gap:18px;align-items:baseline;margin-bottom:4px}
+  .card-head .num{font-size:11px}
+  .card h2{font-family:var(--display);font-weight:600;font-size:1.5rem;letter-spacing:-.01em;margin-top:6px;}
+  .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap;border:1px solid var(--rule-soft);padding:6px 10px;border-radius:2px;}
+  .scene{font-style:italic;color:var(--ink-soft);font-size:1.1rem;line-height:1.56;margin:14px 0 22px;padding-left:16px;border-left:2px solid var(--rule);}
+  .sliders{display:grid;gap:24px}
+  .slider .top{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-bottom:9px}
+  .slider label{font-size:1.07rem;color:var(--ink);font-weight:500;line-height:1.35}
+  .slider .val{font-family:var(--mono);font-weight:400;font-size:.95rem;color:var(--red);font-variant-numeric:tabular-nums}
+  input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:2px;background:var(--rule);cursor:pointer;outline:none;margin:8px 0 7px;}
+  input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:17px;height:17px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.25);transition:transform .12s ease,border-color .12s ease;margin-top:-1px;}
+  input[type=range]::-webkit-slider-thumb:hover{transform:scale(1.16);border-color:var(--red)}
+  input[type=range]::-moz-range-thumb{width:17px;height:17px;border-radius:50%;background:var(--paper);border:1.5px solid var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.25);cursor:pointer;}
+  input[type=range].bipolar{background:linear-gradient(90deg,rgba(93,122,85,.4),var(--rule) 50%,rgba(168,48,43,.45));height:3px;}
+  .ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .ends .mid{color:var(--sage)}
+  .now-card{background:linear-gradient(180deg,#f7f1e3,#efe7d6)}
+  .now-card .scene{border-color:var(--red)}
+
+  .readout{position:sticky;top:18px;display:grid;gap:18px}
+  .ro{padding:26px 26px 24px}
+  .ro h3{font-family:var(--display);font-weight:500;font-size:1.05rem;letter-spacing:.06em;display:flex;justify-content:space-between;align-items:center;}
+  .ro h3 .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.26em;color:var(--ink-faint);font-weight:400}
+  .dial-wrap{display:flex;flex-direction:column;align-items:center;margin-top:14px}
+  .dial{position:relative;width:200px;height:200px}
+  .dial canvas{width:200px;height:200px;display:block}
+  .dial-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  .dial-num{font-family:var(--display);font-weight:700;font-size:3.4rem;line-height:.9;color:var(--ink)}
+  .dial-unit{font-family:var(--mono);font-size:8.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-faint);margin-top:7px}
+  .band{font-family:var(--display);font-weight:600;font-size:1.32rem;text-align:center;margin:16px 0 4px;letter-spacing:-.01em}
+  .band-note{text-align:center;font-style:italic;color:var(--ink-soft);font-size:1.04rem;line-height:1.5}
+  .multiply{margin-top:16px;padding:13px 16px;border:1px solid var(--rule);background:rgba(255,255,255,.34);font-size:1rem;line-height:1.5;color:var(--ink);text-align:center;}
+  .multiply b{color:var(--red);font-weight:600;font-family:var(--mono);font-size:1.02rem}
+  .gauge{margin-top:18px}
+  .gauge-track{position:relative;height:30px;border-radius:3px;overflow:hidden;border:1px solid var(--rule);background:linear-gradient(90deg,#8597a6 0%,#9fa9a5 22%,var(--sage) 36%,var(--sage) 60%,#b08a5a 74%,var(--red-2) 100%);}
+  .gauge-needle{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);box-shadow:0 0 0 1px rgba(255,255,255,.6);transition:left .28s cubic-bezier(.4,0,.2,1);}
+  .gauge-needle:after{content:"";position:absolute;top:-5px;left:-4px;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--ink);}
+  .gauge-ends{display:flex;justify-content:space-between;margin-top:7px;font-family:var(--mono);font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+  .gauge-zone{text-align:center;font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;margin-top:9px}
+  .viz{padding:22px 22px 18px}
+  .viz canvas{width:100%;height:auto;display:block}
+  .viz .cap{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);text-align:center;margin-top:6px}
+  .bars{display:grid;gap:11px;margin-top:14px}
+  .bar .bi{display:flex;justify-content:space-between;font-size:.95rem;color:var(--ink);margin-bottom:4px}
+  .bar .bi .n{font-family:var(--mono);font-size:.85rem;color:var(--ink-faint);font-variant-numeric:tabular-nums}
+  .bar .tr{height:5px;background:rgba(22,19,13,.1);border-radius:99px;overflow:hidden}
+  .bar .fl{height:100%;width:0;border-radius:99px;transition:width .3s ease,background .3s ease}
+
+  .interp{margin-top:22px;display:grid;gap:22px}
+  .bias{padding:34px 36px}
+  .bias .head{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:6px}
+  .bias h2{font-family:var(--display);font-weight:600;font-size:1.9rem;letter-spacing:-.01em}
+  .bias .intensity{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+  .bias-lead{font-size:1.18rem;line-height:1.6;color:var(--ink);margin:12px 0 8px;max-width:88ch}
+  .bias-lead b{color:var(--red)}
+  .ss-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;margin-top:22px;border:1px solid var(--rule)}
+  .ss{padding:20px 22px;border-right:1px solid var(--rule-soft)}
+  .ss:last-child{border-right:0}
+  .ss .t{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;text-transform:uppercase;margin-bottom:10px}
+  .ss.signal .t{color:var(--sage)} .ss.story .t{color:var(--red)} .ss.philo .t{color:var(--amber)}
+  .ss p{font-size:1.04rem;line-height:1.55;color:var(--ink-soft)}
+  .ss p b{color:var(--ink);font-weight:600;font-style:italic}
+  .trap{padding:26px 30px;border-left:3px solid var(--red)}
+  .trap.ok{border-left-color:var(--sage)} .trap.mid{border-left-color:var(--amber)}
+  .trap .t{font-family:var(--display);font-weight:600;font-size:1.32rem;margin-bottom:8px}
+  .trap p{font-size:1.1rem;line-height:1.56;color:var(--ink-soft);max-width:90ch}
+  .trap p b{color:var(--ink)}
+  .three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px}
+  @media(max-width:1080px){.three{grid-template-columns:1fr}}
+  .col{padding:26px 26px 22px}
+  .col>.h{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+  .col>.h .dot{width:8px;height:8px;border-radius:50%}
+  .col>.h .ttl{font-family:var(--display);font-weight:500;font-size:1.18rem;letter-spacing:.01em}
+  .col.good .dot{background:var(--sage)} .col.risk .dot{background:var(--red)} .col.act .dot{background:var(--amber)}
+  .item{padding:14px 0;border-top:1px solid var(--rule-soft)}
+  .item:first-of-type{border-top:0}
+  .item b{display:block;font-size:1.07rem;color:var(--ink);font-weight:600;margin-bottom:5px}
+  .item span{display:block;font-size:1.02rem;color:var(--ink-soft);line-height:1.52}
+  .empty{font-style:italic;color:var(--ink-faint);font-size:1.02rem}
+  .chain{padding:34px 36px}
+  .chain h2{font-family:var(--display);font-weight:600;font-size:1.7rem;margin-bottom:4px}
+  .chain .sub{font-style:italic;color:var(--ink-soft);font-size:1.1rem;margin-bottom:24px;max-width:84ch}
+  .links{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--rule)}
+  @media(max-width:860px){.links{grid-template-columns:1fr}}
+  .link{padding:22px 20px;border-right:1px solid var(--rule-soft);position:relative}
+  .link:last-child{border-right:0}
+  .link .step{font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);margin-bottom:9px}
+  .link .lt{font-family:var(--display);font-weight:600;font-size:1.18rem;margin-bottom:8px}
+  .link p{font-size:1.0rem;line-height:1.5;color:var(--ink-soft)}
+  .link .arrow{position:absolute;right:-9px;top:50%;transform:translateY(-50%);color:var(--red);font-size:18px;z-index:3;background:var(--panel);padding:2px 0}
+  @media(max-width:860px){.link .arrow{display:none}}
+  .surf{margin-top:22px;padding:18px 22px;background:var(--sage-soft);border:1px solid rgba(93,122,85,.25)}
+  .surf b{color:var(--ink);font-weight:600}
+  .surf p{font-size:1.06rem;line-height:1.56;color:var(--ink-soft)}
+  .calib{padding:26px 30px;background:rgba(255,255,255,.28)}
+  .calib h3{font-family:var(--display);font-weight:500;font-size:1.18rem;margin-bottom:14px;display:flex;gap:10px;align-items:baseline}
+  .calib h3 .num{font-size:11px}
+  .calib ul{list-style:none;display:grid;gap:12px}
+  .calib li{padding-left:20px;position:relative;font-size:1.04rem;color:var(--ink-soft);line-height:1.52}
+  .calib li:before{content:"—";position:absolute;left:0;color:var(--red)}
+  .calib li b{color:var(--ink)}
+  .ledger{padding:30px 32px}
+  .ledger h2{font-family:var(--display);font-weight:600;font-size:1.5rem;margin-bottom:6px}
+  .ledger .sub{font-style:italic;color:var(--ink-soft);margin-bottom:18px;font-size:1.06rem}
+  textarea{width:100%;min-height:120px;resize:vertical;font-family:var(--serif);font-size:1.08rem;color:var(--ink);background:rgba(255,255,255,.4);border:1px solid var(--rule);padding:16px 18px;line-height:1.5;outline:none;}
+  textarea:focus{border-color:var(--red)}
+  textarea::placeholder{color:var(--ink-faint);font-style:italic}
+  .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px}
+  .btn{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;background:transparent;border:1px solid var(--ink);color:var(--ink);padding:12px 18px;cursor:pointer;transition:all .18s ease;border-radius:2px;}
+  .btn:hover{background:var(--ink);color:var(--paper)}
+  .btn.primary{background:var(--red);border-color:var(--red);color:#fff}
+  .btn.primary:hover{background:var(--ink);border-color:var(--ink)}
+  .btn.ghost{border-color:var(--rule);color:var(--ink-soft)}
+  .btn.ghost:hover{background:rgba(22,19,13,.07);color:var(--ink)}
+  pre{display:none;white-space:pre-wrap;word-break:break-word;font-family:var(--mono);font-size:11px;line-height:1.55;color:var(--ink);background:rgba(22,19,13,.05);border:1px solid var(--rule);padding:16px;margin-top:16px;max-height:300px;overflow:auto;border-radius:2px;}
+  .log{margin-top:20px;display:grid;gap:10px}
+  .log .row{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;padding:12px 14px;border:1px solid var(--rule-soft);background:rgba(255,255,255,.25);font-size:1rem}
+  .log .row .tc{font-family:var(--display);font-weight:700;font-size:1.4rem;color:var(--ink)}
+  .log .row .meta{color:var(--ink-soft);line-height:1.35}
+  .log .row .meta b{color:var(--ink);font-weight:600}
+  .log .row .when{font-family:var(--mono);font-size:9px;letter-spacing:.1em;color:var(--ink-faint);text-align:right}
+  .closing{margin-top:30px;padding:30px 36px;text-align:center}
+  .closing p{font-family:var(--serif);font-style:italic;font-size:1.22rem;color:var(--ink);max-width:70ch;margin:0 auto;line-height:1.55}
+  .closing .fine{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin-top:18px;line-height:1.9;font-style:normal}
+  .reveal{opacity:0;transform:translateY(14px);animation:rise .9s cubic-bezier(.2,.7,.3,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(max-width:1000px){
+    .work{grid-template-columns:1fr}
+    .readout{position:static}
+    .primer{grid-template-columns:1fr}
+    .primer>div:first-child{border-right:0;border-bottom:1px solid var(--rule-soft)}
+    .ss-grid{grid-template-columns:1fr}
+    .ss{border-right:0;border-bottom:1px solid var(--rule-soft)}
+    .masthead{padding:34px 26px 30px}
+  }
+  /* mode bar */
+  .modebar{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:16px 24px;margin-top:22px}
+  .mb-label{font-family:var(--mono);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--red)}
+  .mb-tabs{display:flex;border:1px solid var(--rule);border-radius:2px;overflow:hidden}
+  .mb-tab{font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;background:transparent;border:0;border-right:1px solid var(--rule-soft);color:var(--ink-soft);padding:11px 16px;cursor:pointer;transition:all .16s}
+  .mb-tab:last-child{border-right:0}
+  .mb-tab:hover{background:rgba(22,19,13,.05);color:var(--ink)}
+  .mb-tab.active{background:var(--ink);color:var(--paper)}
+  .mb-note{font-style:italic;color:var(--ink-faint);font-size:.98rem}
+  @media(max-width:1000px){.mb-note{display:none}}
+  /* archetype band under the dial */
+  .archetype{margin-top:16px;text-align:center;padding-top:14px;border-top:1px solid var(--rule-soft)}
+  .arch-name{display:block;font-family:var(--display);font-weight:600;font-size:1.3rem;letter-spacing:.01em;color:var(--ink)}
+  .arch-line{display:block;font-style:italic;color:var(--ink-soft);font-size:1rem;margin-top:5px;line-height:1.45}
+  /* readings read out */
+  .readouts{padding:34px 36px}
+  .readouts h2{font-family:var(--display);font-weight:600;font-size:1.7rem;margin-bottom:4px}
+  .readouts .sub{font-style:italic;color:var(--ink-soft);font-size:1.1rem;margin-bottom:24px;max-width:86ch}
+  .reading-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:820px){.reading-cards{grid-template-columns:1fr}}
+  .rcard{border:1px solid var(--rule);padding:18px 20px;background:rgba(255,255,255,.26)}
+  .rcard.low{border-left:3px solid var(--red)} .rcard.mid{border-left:3px solid var(--amber)} .rcard.high{border-left:3px solid var(--sage)}
+  .rc-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:9px}
+  .rc-name{font-family:var(--display);font-weight:600;font-size:1.16rem}
+  .rc-score{font-family:var(--display);font-weight:700;font-size:1.5rem;color:var(--ink);font-variant-numeric:tabular-nums}
+  .rc-score i{font-family:var(--mono);font-style:normal;font-weight:400;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-left:4px}
+  .rc-mini{height:4px;background:rgba(22,19,13,.1);border-radius:99px;overflow:hidden;margin-bottom:14px}
+  .rc-fl{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--red),var(--amber),var(--sage));transition:width .3s ease}
+  .rc-row{display:grid;grid-template-columns:92px 1fr;gap:12px;padding:8px 0;border-top:1px solid var(--rule-soft)}
+  .rc-row:first-of-type{border-top:0}
+  .rc-tag{font-family:var(--mono);font-size:8.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--sage);padding-top:3px;line-height:1.5}
+  .rc-tag.warn{color:var(--red)} .rc-tag.act{color:var(--amber)}
+  .rc-row p{font-size:1.0rem;line-height:1.48;color:var(--ink-soft)}
+  @media(max-width:820px){.rc-row{grid-template-columns:1fr;gap:3px}}
+  /* action gate */
+  .gate{padding:34px 36px}
+  .gate h2{font-family:var(--display);font-weight:600;font-size:1.7rem;margin-bottom:4px}
+  .gate .sub{font-style:italic;color:var(--ink-soft);font-size:1.1rem;margin-bottom:22px;max-width:86ch}
+  .gate-row{display:grid;grid-template-columns:90px 1fr;gap:16px;align-items:start;padding:15px 0;border-top:1px solid var(--rule-soft)}
+  .gate-row:first-child{border-top:0}
+  .verdict{font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;text-align:center;padding:7px 0;border-radius:2px;font-weight:500}
+  .gate-row.go .verdict{background:var(--sage-soft);color:var(--sage);border:1px solid rgba(93,122,85,.4)}
+  .gate-row.caution .verdict{background:var(--amber-soft);color:var(--amber);border:1px solid rgba(155,106,29,.4)}
+  .gate-row.hold .verdict{background:var(--red-soft);color:var(--red);border:1px solid rgba(168,48,43,.4)}
+  .g-label{font-family:var(--display);font-weight:600;font-size:1.12rem;color:var(--ink);grid-column:2;line-height:1.2}
+  .g-reason{grid-column:2;font-size:1.0rem;color:var(--ink-soft);line-height:1.46;font-style:italic;margin-top:3px}
+  @media(max-width:560px){.gate-row{grid-template-columns:74px 1fr;gap:10px}}
+  /* delta nudge */
+  .delta{margin-top:16px;font-size:1.02rem;color:var(--ink-soft);line-height:1.5}
+  .delta b{color:var(--ink)}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}*{transition:none!important}}
+  /* emotion chips */
+  .emo-wrap{margin-top:22px;padding-top:18px;border-top:1px solid var(--rule-soft)}
+  .emo-q{font-family:var(--mono);font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:12px}
+  .emo-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .emo-chip{font-family:var(--serif);font-size:1.02rem;padding:7px 14px;border:1px solid var(--rule);border-radius:99px;background:rgba(255,255,255,.3);color:var(--ink-soft);cursor:pointer;transition:all .15s}
+  .emo-chip:hover{border-color:var(--ink);color:var(--ink)}
+  .emo-chip.shadow.on{background:var(--red);border-color:var(--red);color:#fff}
+  .emo-chip.light.on{background:var(--sage);border-color:var(--sage);color:#fff}
+  /* whispers */
+  .whisper-wrap{padding:34px 36px}
+  .whisper-wrap h2{font-family:var(--display);font-weight:600;font-size:1.7rem;margin-bottom:4px}
+  .whisper-wrap .sub{font-style:italic;color:var(--ink-soft);font-size:1.1rem;margin-bottom:22px;max-width:88ch}
+  .whispers{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:820px){.whispers{grid-template-columns:1fr}}
+  .whisper{border:1px solid var(--rule);border-left:3px solid var(--ink-faint);padding:14px 18px;background:rgba(255,255,255,.26)}
+  .whisper.shadow{border-left-color:var(--red)} .whisper.light{border-left-color:var(--sage)}
+  .w-emo{font-family:var(--display);font-weight:600;font-size:1.14rem;color:var(--ink)}
+  .w-emo span{font-family:var(--serif);font-style:italic;font-weight:400;font-size:1rem;color:var(--ink-faint)}
+  .w-mean{font-size:1.05rem;color:var(--ink);margin:4px 0 10px;line-height:1.4}
+  .w-split{font-size:.97rem;color:var(--ink-soft);line-height:1.45;margin-top:4px}
+  .w-sig,.w-sto{font-family:var(--mono);font-size:8px;letter-spacing:.13em;text-transform:uppercase;padding:2px 6px;border-radius:2px;margin-right:6px;white-space:nowrap}
+  .w-sig{color:var(--sage);border:1px solid rgba(93,122,85,.4)} .w-sto{color:var(--red);border:1px solid rgba(168,48,43,.4)}
+  .emo-empty{font-style:italic;color:var(--ink-faint);font-size:1.04rem;line-height:1.5}
+  /* philosophy */
+  .phil{border:1px solid var(--rule);padding:22px 24px;margin-top:16px}
+  .phil.shadow{border-left:3px solid var(--red);background:var(--red-soft)}
+  .phil.light{border-left:3px solid var(--sage);background:var(--sage-soft)}
+  .phil-tag{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
+  .phil-name{font-family:var(--display);font-weight:700;font-size:1.7rem;letter-spacing:-.01em;color:var(--ink);text-transform:capitalize}
+  .phil-line{font-style:italic;font-size:1.15rem;color:var(--ink);margin:4px 0 12px}
+  .phil p{font-size:1.02rem;color:var(--ink-soft);line-height:1.55;max-width:92ch}
+  /* reading-card stage hint */
+  .rc-stage{margin-top:12px;padding-top:10px;border-top:1px dotted var(--rule);font-family:var(--mono);font-size:8.5px;letter-spacing:.05em;line-height:1.6;color:var(--ink-faint);text-transform:uppercase}
+  /* guided shift */
+  .shift{padding:34px 36px;text-align:center}
+  .shift h2{font-family:var(--display);font-weight:600;font-size:1.7rem;margin-bottom:6px}
+  .shift .sub{font-style:italic;color:var(--ink-soft);font-size:1.1rem;margin:0 auto 8px;max-width:82ch}
+  #shiftIntro{font-size:1.08rem;color:var(--ink);max-width:70ch;margin:14px auto 6px;line-height:1.5;min-height:1.3em}
+  #breath{width:132px;height:132px;border-radius:50%;background:radial-gradient(circle,rgba(168,48,43,.18),transparent 72%);border:1.5px solid var(--red);margin:20px auto 10px;transition:transform 4s ease-in-out;transform:scale(.42)}
+  #breathLabel{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--red);min-height:1.3em}
+  .shift-btns{margin-top:16px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+  /* climate */
+  .climate{margin-top:16px;font-size:1.02rem;color:var(--ink-soft);line-height:1.5;padding:14px 16px;border:1px dashed var(--rule);background:rgba(255,255,255,.22)}
+  .climate.climate-on{border-color:var(--amber);border-style:solid;background:var(--amber-soft)}
+  .climate b{color:var(--ink)}
+  .w-act{color:var(--amber);border:1px solid rgba(155,106,29,.4)}
+  .ctx-grid{display:grid;gap:14px}
+  .ctx{display:grid;gap:6px}
+  .ctx>span{font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft)}
+  .ctx select{font-family:var(--serif);font-size:1.06rem;color:var(--ink);background:rgba(255,255,255,.5);border:1px solid var(--rule);padding:11px 12px;border-radius:2px;outline:none;cursor:pointer}
+  .ctx select:focus{border-color:var(--red)}
+  .calibcard{padding:24px 26px}
+  .calibcard h3{font-family:var(--display);font-weight:500;font-size:1.05rem;letter-spacing:.06em;display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
+  .calibcard h3 .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.26em;color:var(--ink-faint);font-weight:400}
+  .ready-row{display:flex;align-items:baseline;gap:12px;margin-top:10px}
+  .ready-pct{font-family:var(--display);font-weight:700;font-size:2.6rem;line-height:.9;font-variant-numeric:tabular-nums}
+  .ready-for{font-style:italic;color:var(--ink-soft);font-size:1.02rem;line-height:1.3}
+  .ready-bar{height:7px;background:rgba(22,19,13,.1);border-radius:99px;margin:12px 0 4px;position:relative}
+  .ready-fl{height:100%;border-radius:99px;transition:width .3s ease,background .3s ease}
+  .ready-th{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--ink)}
+  .ready-th:after{content:"";position:absolute;top:-4px;left:-3px;border-left:4px solid transparent;border-right:4px solid transparent;border-top:5px solid var(--ink)}
+  .ready-verdict{display:inline-block;font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:6px 12px;border-radius:2px;margin-top:10px;font-weight:500}
+  .ready-verdict.go{background:var(--sage-soft);color:var(--sage);border:1px solid rgba(93,122,85,.4)}
+  .ready-verdict.caution{background:var(--amber-soft);color:var(--amber);border:1px solid rgba(155,106,29,.4)}
+  .ready-verdict.hold{background:var(--red-soft);color:var(--red);border:1px solid rgba(168,48,43,.4)}
+  .ready-line{font-size:1.02rem;color:var(--ink-soft);line-height:1.5;margin-top:10px}
+  .conf{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule-soft)}
+  .conf-top{display:flex;justify-content:space-between;align-items:baseline}
+  .conf-name{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+  .conf-val{font-family:var(--display);font-weight:700;font-size:1.3rem}
+  .conf-line{font-size:.98rem;color:var(--ink-soft);line-height:1.45;margin-top:6px;font-style:italic}
+  .time-note{margin-top:14px;font-size:1rem;color:var(--ink-soft);line-height:1.45}
+  .time-note b{color:var(--ink)}
+  .work-sheet{padding:30px 32px}
+  .work-sheet h2{font-family:var(--display);font-weight:600;font-size:1.7rem;margin-bottom:4px}
+  .work-sheet .sub{font-style:italic;color:var(--ink-soft);font-size:1.1rem;margin-bottom:20px;max-width:88ch}
+  .ws-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.ws-grid{grid-template-columns:1fr}}
+  .ws-field label{display:block;font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:7px}
+  .ws-field.raw label{color:var(--sage)} .ws-field.add label{color:var(--red)} .ws-field.sig label{color:var(--sage)} .ws-field.exa label{color:var(--amber)}
+  .ws-field textarea{min-height:74px;font-size:1.04rem}
+  .id-readout{margin-top:18px;padding:16px 18px;border:1px solid var(--rule);border-left:3px solid var(--sage)}
+  .id-readout.captured{border-left-color:var(--red);background:var(--red-soft)}
+  .id-readout .idt{font-family:var(--display);font-weight:600;font-size:1.2rem;margin-bottom:4px}
+  .id-readout p{font-size:1.02rem;color:var(--ink-soft);line-height:1.5}
+  .id-readout .hits{font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--red);margin-top:8px}
+  .id-slider{margin-top:16px}
+  .mini-card{padding:26px 30px}
+  .mini-card h3{font-family:var(--display);font-weight:600;font-size:1.35rem;margin-bottom:4px}
+  .mini-card .sub{font-style:italic;color:var(--ink-soft);font-size:1.06rem;margin-bottom:16px;max-width:88ch}
+  .mini-readout{margin-top:14px;padding:13px 16px;border:1px solid var(--rule);font-size:1.02rem;line-height:1.5;color:var(--ink-soft)}
+  .mini-readout.warn{border-left:3px solid var(--red);background:var(--red-soft)}
+  .mini-readout.ok{border-left:3px solid var(--sage);background:var(--sage-soft)}
+  .mini-readout b{color:var(--ink)}
+  .stest{margin-top:18px;padding-top:16px;border-top:1px solid var(--rule-soft)}
+  .stest-res{display:grid;gap:0;margin-top:14px;text-align:left}
+  .stest-row{display:grid;grid-template-columns:1fr auto;gap:12px;font-size:1.0rem;padding:8px 0;border-top:1px solid var(--rule-soft)}
+  .stest-row:first-child{border-top:0}
+  .stest-row .d{font-family:var(--mono);font-variant-numeric:tabular-nums;font-weight:500}
+  .stest-row .up{color:var(--sage)} .stest-row .down{color:var(--red)} .stest-row .flat{color:var(--ink-faint)}
+  .plast{margin-top:14px;padding:14px 16px;border:1px solid var(--rule);border-left:3px solid var(--amber);text-align:left;font-size:1.02rem;color:var(--ink-soft);line-height:1.5}
+  .plast b{color:var(--ink)}
+  .pattern{margin-top:14px;padding:14px 16px;border:1px solid var(--rule);border-left:3px solid var(--amber);background:var(--amber-soft)}
+  .pattern .pn{font-family:var(--display);font-weight:600;font-size:1.16rem;color:var(--ink)}
+  .pattern p{font-size:1.0rem;color:var(--ink-soft);line-height:1.5;margin-top:4px}
+  .pattern .rule{font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--red);margin-top:8px}
+</style>
+</head>
+<body>
+<main class="wrap">
+
+  <header class="plate masthead reveal">
+    <div class="crest-row">
+      <div class="crest">Project · Meaning</div>
+      <div class="stage-tag">Stage <b>Three</b><br>State Recognition<br>Meaning Differentiation</div>
+    </div>
+    <h1>How much should you trust the meaning you're making right now?</h1>
+    <div class="subtitle">Reading the eyes before the eyes.</div>
+    <p class="lede">Before you act, react, decide, send the message, chase the urge, quit the thing, or turn a passing mood into a verdict about yourself — this instrument estimates the <b>condition of the machine that is currently producing your sense of what's true.</b> It does not tell you what to think. It tells you how much weight your thinking can safely carry today.</p>
+
+    <div class="doctrine">
+      <p>&ldquo;Meaning sticks to state. State becomes the eyes before the eyes — the atmosphere through which perception is filtered before thought finishes forming itself. If you do not understand the machinery producing meaning, you will mistake its outputs for truth. You will call dysregulation reality.&rdquo;</p>
+      <div class="src">— Project Meaning, founding text</div>
+    </div>
+
+    <div class="primer">
+      <div>
+        <div class="mini">Tier One · The Level</div>
+        <h3>How activated is the body?</h3>
+        <p>Borrowed from clinical neuroscience: <em>arousal</em> (how charged or shut-down you are) is separate from the <em>content</em> of your mind. Too high and too low both distort. The trustworthy zone is settled-but-alert — your window. This is measured on its own dial, because a flooded mind and a foggy mind lie in opposite directions.</p>
+      </div>
+      <div>
+        <div class="mini">Tier Two · The Content</div>
+        <h3>How clear is the meaning-making?</h3>
+        <p>Eight readings of the same moment: can you read your body, feel without being run, notice an urge without obeying it, see a thought as a thought, hold more than one story, stay present, and act as the author of your next step. Together they set the <em>Trust Coefficient</em> — your dial of authority.</p>
+      </div>
+    </div>
+
+    <div class="limits"><b>What this is not.</b> Not a medical, neurological, or psychiatric test. Not for coma, brain injury, psychosis, mania, seizure risk, intoxication, or crisis. It is a mirror for ordinary waking life — a snapshot rated by the very mind it is assessing. If your safety or someone else's is at risk, set this down and reach a real person or emergency support.</div>
+  </header>
+
+  <div class="modebar plate reveal">
+    <span class="mb-label">Reading depth</span>
+    <div class="mb-tabs">
+      <button class="mb-tab active" data-mode="full">Full read · all situations</button>
+      <button class="mb-tab" data-mode="quick">Quick read · 90 seconds</button>
+    </div>
+    <span class="mb-note">Quick covers all eight readings with one question each. Full walks the seven situations.</span>
+  </div>
+
+  <section class="work">
+    <div class="scenarios" id="scenarios"></div>
+
+    <aside class="readout">
+      <section class="plate ro reveal">
+        <h3>The Trust Coefficient <span class="lbl">Authority Dial</span></h3>
+        <div class="dial-wrap">
+          <div class="dial">
+            <canvas id="dial" width="400" height="400"></canvas>
+            <div class="dial-center">
+              <div class="dial-num" id="trust">50</div>
+              <div class="dial-unit">/ 100 · authority</div>
+            </div>
+          </div>
+        </div>
+        <div class="band" id="band">Usable, unstable</div>
+        <div class="band-note" id="bandNote">Move the readings. The dial answers in real time.</div>
+        <div class="multiply" id="multiply"></div>
+        <div class="archetype" id="archetype"></div>
+        <div class="gauge">
+          <div class="gauge-track"><div class="gauge-needle" id="needle" style="left:50%"></div></div>
+          <div class="gauge-ends"><span>Foggy · shut-down</span><span>Settled</span><span>Flooded · wired</span></div>
+          <div class="gauge-zone" id="gaugeZone">— window —</div>
+        </div>
+      </section>
+
+      <section class="plate calibcard reveal">
+        <h3>Ready for this? <span class="lbl">State × task</span></h3>
+        <div class="ready-row"><span class="ready-pct" id="readyPct">50</span><span class="ready-for" id="readyFor">ready, in general</span></div>
+        <div class="ready-bar"><div class="ready-fl" id="readyFl"></div><div class="ready-th" id="readyTh" style="left:60%"></div></div>
+        <span class="ready-verdict caution" id="readyVerdict">Caution</span>
+        <div class="ready-line" id="readyLine"></div>
+        <div class="time-note" id="timeNote" style="display:none"></div>
+        <div class="conf"><div class="conf-top"><span class="conf-name">Reading confidence</span><span class="conf-val" id="confVal">100</span></div><div class="conf-line" id="confLine"></div></div>
+      </section>
+
+      <section class="plate viz reveal">
+        <canvas id="circumplex" width="760" height="760"></canvas>
+        <div class="cap">The meaning-field · arousal × tone</div>
+      </section>
+
+      <section class="plate viz reveal">
+        <canvas id="radar" width="760" height="700"></canvas>
+        <div class="cap">Eight readings of the moment</div>
+        <div class="bars" id="bars"></div>
+      </section>
+    </aside>
+  </section>
+
+  <section class="interp">
+
+    <div class="plate bias reveal">
+      <div class="head">
+        <div class="num">I.</div>
+        <h2 id="biasTitle">The bias in the room</h2>
+        <span class="intensity" id="biasIntensity"></span>
+      </div>
+      <p class="bias-lead" id="biasLead"></p>
+      <div class="ss-grid">
+        <div class="ss signal"><div class="t">Signal · likely true</div><p id="ssSignal"></p></div>
+        <div class="ss story"><div class="t">Story · hold loosely</div><p id="ssStory"></p></div>
+        <div class="ss philo"><div class="t">If you live here · the philosophy it hardens into</div><p id="ssPhilo"></p></div>
+      </div>
+    </div>
+
+    <div class="plate whisper-wrap reveal">
+      <h2>What your feelings are whispering</h2>
+      <div class="sub">Every feeling is a small claim about reality — the body weighting the world before thought finishes. Here is the specific meaning each one you named is biasing you toward, split into the part that may be a true signal and the part that is story to hold loosely.</div>
+      <div class="whispers" id="whispers"></div>
+      <div id="philosophy"></div>
+    </div>
+
+    <div class="plate mini-card reveal" id="projCard" style="display:none">
+      <h3>Are you arguing with the real person — or your version of them?</h3>
+      <div class="sub">A relational feeling is selected, so your mind may be running a simulation of the other person. Rate two things honestly.</div>
+      <div class="sliders">
+        <div class="slider"><div class="top"><label for="projCertainty">How sure are you that you know what they meant or intended?</label><span class="val" id="v_projCertainty">50</span></div>
+          <input type="range" id="projCertainty" min="0" max="100" value="50" /><div class="ends"><span>Not sure</span><span>Completely sure</span></div></div>
+        <div class="slider"><div class="top"><label for="projEvidence">How much hard evidence do you actually have for that?</label><span class="val" id="v_projEvidence">50</span></div>
+          <input type="range" id="projEvidence" min="0" max="100" value="50" /><div class="ends"><span>Almost none</span><span>Strong, direct</span></div></div>
+      </div>
+      <div class="mini-readout" id="projReadout"></div>
+    </div>
+
+    <div class="plate trap reveal" id="trapBox">
+      <div class="t" id="trapTitle"></div>
+      <p id="trapBody"></p>
+    </div>
+
+    <div class="plate work-sheet reveal">
+      <h2>Separate the facts from the story</h2>
+      <div class="sub">The most reliable move there is: write what actually happened, then what your mind is adding. Reality did something; your state interpreted it — don&rsquo;t confuse the two. Optional, but writing it beats thinking it.</div>
+      <div class="ws-grid">
+        <div class="ws-field raw"><label>Raw event — what happened, without interpretation?</label><textarea id="wsRaw" placeholder="Just the facts. What was said or done; what you can see or hear."></textarea></div>
+        <div class="ws-field add"><label>Added meaning — what is your mind making it mean?</label><textarea id="wsAdd" placeholder="The story, the conclusion, the verdict your mind jumps to."></textarea></div>
+        <div class="ws-field sig"><label>Useful signal — what part may be worth listening to?</label><textarea id="wsSig" placeholder="A real boundary, need, risk, or value underneath it."></textarea></div>
+        <div class="ws-field exa"><label>Possible exaggeration — what part is the state making too big?</label><textarea id="wsExa" placeholder="The all-or-nothing, always / never, whole-life part."></textarea></div>
+      </div>
+      <div class="id-slider">
+        <div class="slider"><div class="top"><label for="identitySl">Is this turning into an &lsquo;I am ___&rsquo; verdict about you?</label><span class="val" id="v_identitySl">30</span></div>
+          <input type="range" id="identitySl" min="0" max="100" value="30" /><div class="ends"><span>No — it&rsquo;s one event</span><span>Yes — it&rsquo;s becoming who I am</span></div></div>
+      </div>
+      <div class="id-readout" id="idReadout"></div>
+    </div>
+
+    <div class="plate readouts reveal">
+      <h2>The eight readings, read out</h2>
+      <div class="sub">For each reading: your score, what it means you <em>can</em> do right now, the limit to respect, and the adaptation. The lower the score, the more the limit and the adaptation matter.</div>
+      <div class="reading-cards" id="readingCards"></div>
+    </div>
+
+    <div class="plate mini-card reveal">
+      <h3>Is your environment helping or fighting you?</h3>
+      <div class="sub">In low states, willpower is the wrong tool — the room carries the behaviour. Rate your setup; it feeds the verdicts below.</div>
+      <div class="sliders">
+        <div class="slider"><div class="top"><label for="envCue">Is the trigger or cue out of sight, not right in front of you?</label><span class="val" id="v_envCue">50</span></div>
+          <input type="range" id="envCue" min="0" max="100" value="50" /><div class="ends"><span>Right here</span><span>Out of reach</span></div></div>
+        <div class="slider"><div class="top"><label for="envRoom">Is your space set up for the next good action?</label><span class="val" id="v_envRoom">50</span></div>
+          <input type="range" id="envRoom" min="0" max="100" value="50" /><div class="ends"><span>Working against me</span><span>Set up for it</span></div></div>
+        <div class="slider"><div class="top"><label for="envEasy">Can you make the good action easier in the next thirty seconds?</label><span class="val" id="v_envEasy">50</span></div>
+          <input type="range" id="envEasy" min="0" max="100" value="50" /><div class="ends"><span>No</span><span>Easily</span></div></div>
+      </div>
+      <div class="mini-readout" id="envReadout"></div>
+    </div>
+
+    <div class="plate gate reveal">
+      <h2>Before you act — is this a good moment to…</h2>
+      <div class="sub">A verdict, not an order. <b>Hold</b> means the state can't carry it yet; <b>Caution</b> means make it small, slow, or reversible; <b>Go</b> means you're clear enough — still sanity-check once.</div>
+      <div id="gate"></div>
+    </div>
+
+    <div class="plate chain reveal">
+      <h2>The chain interceptor</h2>
+      <div class="sub" id="chainSub">When an urge or a thought feels like an order, slow the four links that turn a body-signal into an action. You can step out at any link.</div>
+      <div class="links">
+        <div class="link">
+          <span class="arrow">→</span>
+          <div class="step">Link 01 · Sensation</div>
+          <div class="lt">What's in the body</div>
+          <p>Name it in plain physical words — where it is, what it feels like, how strong, 0–10. Pressure, heat, tightness, hollowness. Just the sensation, not yet the meaning.</p>
+        </div>
+        <div class="link">
+          <span class="arrow">→</span>
+          <div class="step">Link 02 · Salience</div>
+          <div class="lt">What grabs the attention</div>
+          <p>Notice what the charged body is dragging your focus toward — the person, the screen, the worst-case, the exit. Salience is the state choosing what looks important.</p>
+        </div>
+        <div class="link">
+          <span class="arrow">→</span>
+          <div class="step">Link 03 · Appraisal</div>
+          <div class="lt">The story you jump to</div>
+          <p>Say it as: <em>&ldquo;I'm having the thought that…&rdquo;</em> A thought held this way stops being a fact you must obey and becomes a mental event you can examine.</p>
+        </div>
+        <div class="link">
+          <div class="step">Link 04 · Action urge</div>
+          <div class="lt">What the body wants to do</div>
+          <p>Name the urge out loud and rate how believable it feels, 0–100. High believability is the state talking, not proof. You can feel the full pull and still not move.</p>
+        </div>
+      </div>
+      <div class="surf">
+        <p><b>Then surf it.</b> An urge is not a command; it is a wave. It builds, peaks, and falls on its own — usually inside minutes — whether or not you act. Watch it crest without feeding it. Each time you ride one out, the body learns the wave is survivable, and the next one arrives with less authority.</p>
+      </div>
+    </div>
+
+    <div class="plate shift reveal">
+      <h2>Shift the state — then read again</h2>
+      <div class="sub">Reading is half the work; the other half is changing the weather on purpose. This runs a short, state-matched breathing exercise. Do it, then take a fresh reading and watch the dial move — that before-and-after is the nervous system learning it can shift.</div>
+      <div id="breath"></div>
+      <div id="breathLabel">Ready</div>
+      <div id="shiftIntro"></div>
+      <div class="shift-btns">
+        <button class="btn primary" id="shiftBtn">Begin a 2-minute shift</button>
+        <button class="btn" id="shiftStopBtn" style="display:none">Stop</button>
+      </div>
+      <div class="stest">
+        <div class="sub" style="margin-bottom:10px">Want proof a state can move? Run a measured test: it saves a <b>Before</b> reading, you do the shift and update your sliders, then take an <b>After</b> reading and see exactly what changed — and how movable your state is.</div>
+        <div class="shift-btns">
+          <button class="btn" id="stestStart">Start shift test</button>
+          <button class="btn" id="stestAfter" style="display:none">Take After reading</button>
+        </div>
+        <div id="stestRes"></div>
+      </div>
+    </div>
+
+    <div class="plate calib reveal">
+      <h3><span class="num">II.</span> Where this reading is least reliable</h3>
+      <ul id="calib"></ul>
+    </div>
+
+    <div class="plate ledger reveal">
+      <h2>The ledger</h2>
+      <div class="sub">Optional. Name what set this state off, the loudest signal, and the action you chose. Then take a snapshot — comparing readings over time is where the real learning lives.</div>
+      <textarea id="notes" placeholder="What was happening before this state arrived? What was the loudest urge, feeling, or body-signal? Which story was it pushing as true? What did you decide to do — and at what link did you step out?"></textarea>
+      <div class="btns">
+        <button class="btn primary" id="snap">Take snapshot</button>
+        <button class="btn" id="export">Export reading</button>
+        <button class="btn ghost" id="copy">Copy text</button>
+        <button class="btn ghost" id="reset">Reset</button>
+      </div>
+      <pre id="out"></pre>
+      <div class="climate" id="climate"></div>
+      <div class="delta" id="baseline"></div>
+      <div id="patterns"></div>
+      <div class="delta" id="delta"></div>
+      <div class="log" id="log"></div>
+    </div>
+
+  </section>
+
+  <footer class="plate closing reveal">
+    <p>A state can hand you real information without being handed the authority to run your life. Read it. Discount it by what it costs you. Then choose.</p>
+    <div class="fine">Project Meaning · Stage Three · State Recognition &amp; Meaning Differentiation<br>A reflective instrument, not a diagnosis · Self-report · This moment only</div>
+  </footer>
+
+</main>
+<script>
+/* ============================================================
+   PROJECT MEANING — STAGE THREE · THE STATE INSTRUMENT
+   Level (arousal) is measured apart from Content (8 qualities).
+   The Trust Coefficient = content quality, discounted by how far
+   the body sits from its window.
+   ============================================================ */
+
+const DIMS = {
+  body:      { label:"Body clarity",       weight:1.0,  color:"#5d7a55" },
+  feeling:   { label:"Feeling regulation", weight:1.1,  color:"#6b8a86" },
+  impulse:   { label:"Impulse distance",   weight:1.2,  color:"#a8302b" },
+  defusion:  { label:"Thought defusion",   weight:1.2,  color:"#8a5a86" },
+  story:     { label:"Story flexibility",  weight:1.18, color:"#9b6a1d" },
+  attention: { label:"Present attention",  weight:1.0,  color:"#4f6d8a" },
+  agency:    { label:"Sense of agency",    weight:1.12, color:"#6a6a3a" },
+  steadiness:{ label:"Steadiness",         weight:1.08, color:"#7a5a3a" }
+};
+const DIM_KEYS = Object.keys(DIMS);
+
+const SCENARIOS = [
+  { n:"01", title:"An urge arrives", tag:"craving · anger · impulse",
+    scene:"You badly want to do something now — eat, message, spend, argue, quit, scroll, use, chase comfort. It feels urgent and important because the body is charged.",
+    items:[
+      { id:"u_pause",  label:"I can put a gap between the pull and the move", lo:"I act on it fast", hi:"I can wait it out", s:{impulse:1.3, agency:.5} },
+      { id:"u_signal", label:"I can treat the urge as a passing body-signal, not a deep truth", lo:"the urge feels like wisdom", hi:"it's just a wave", s:{impulse:.9, defusion:.7, story:.5} },
+      { id:"u_cost",   label:"I can picture what obeying it actually costs me", lo:"the cost feels far away", hi:"the cost is vivid", s:{story:.7, agency:.6} },
+      { id:"u_swap",   label:"I can reach a cleaner action instead", lo:"no other option", hi:"clear substitute", s:{agency:1.0, impulse:.5} }
+    ]},
+  { n:"02", title:"The flat fog", tag:"low energy · emptiness",
+    scene:"The mind feels dull, heavy, or empty. Life looks worse than usual, and there's a pull to draw some large conclusion about yourself, your future, or someone else from inside the fog.",
+    items:[
+      { id:"f_charged",label:"My body feels too shut-down to trust big conclusions right now", lo:"running on empty", hi:"awake enough", s:{steadiness:1.2, body:.5} },
+      { id:"f_needs",  label:"Food, sleep, water, light and movement are roughly handled", lo:"basics neglected", hi:"basics covered", s:{steadiness:.9, body:.7} },
+      { id:"f_verdict",label:"I can hold off on life-verdicts while the fog is here", lo:"the fog becomes the truth", hi:"the fog stays weather", s:{story:1.1, defusion:.5} },
+      { id:"f_restart",label:"I can do one small thing to move the body", lo:"stuck in place", hi:"one clear step", s:{agency:.9, steadiness:.5} }
+    ]},
+  { n:"03", title:"Someone lands on you", tag:"criticism · rejection · silence",
+    scene:"Someone criticises, misreads, ignores, or gives you a look. The mind starts turning one moment into a verdict about you, them, the relationship, or your worth.",
+    items:[
+      { id:"h_event", label:"I can keep this as one event, not a verdict on who I am", lo:"it becomes my identity", hi:"it stays one event", s:{story:1.1, defusion:.6} },
+      { id:"h_name",  label:"I can name what I'm feeling before I react to it", lo:"the feeling reacts for me", hi:"feeling named first", s:{feeling:1.1, body:.5} },
+      { id:"h_alt",   label:"I can hold more than one explanation for what happened", lo:"only one story fits", hi:"several are possible", s:{story:.9, defusion:.5} },
+      { id:"h_send",  label:"I can wait before sending anything or deciding anything", lo:"respond right now", hi:"sit with it first", s:{impulse:.7, feeling:.6} }
+    ]},
+  { n:"04", title:"The body alarm", tag:"stress · fear · pressure",
+    scene:"Heart, gut, jaw, chest, breath or shoulders shift. The mind rushes to explain the alarm before you've actually checked what the body is reporting.",
+    items:[
+      { id:"a_locate",label:"I can find where the feeling sits in my body", lo:"it's a vague cloud", hi:"I can locate it", s:{body:1.3, steadiness:.3} },
+      { id:"a_sort",  label:"I can tell danger from discomfort from desire from tiredness", lo:"it's all one alarm", hi:"the signals separate", s:{body:.9, feeling:.6} },
+      { id:"a_lever", label:"A slow exhale, posture, water or a walk can shift the state", lo:"no lever to pull", hi:"I have a lever", s:{steadiness:1.0, agency:.5} },
+      { id:"a_world", label:"I can stop the alarm from painting the whole world unsafe", lo:"alarm = the world", hi:"alarm = a body signal", s:{story:.9, feeling:.5} }
+    ]},
+  { n:"05", title:"The thought loop", tag:"rumination · worry",
+    scene:"The same thought keeps circling. It feels like one more lap will solve it, but each lap makes it heavier. You need to know whether thinking is working or just spinning.",
+    items:[
+      { id:"l_event", label:"I can watch the thought pass through rather than be inside it", lo:"the thought is a fact", hi:"the thought is an event", s:{defusion:1.3, attention:.5} },
+      { id:"l_exit",  label:"I can break the loop with a real-world action", lo:"I keep looping", hi:"I can step out", s:{attention:.9, agency:.6} },
+      { id:"l_split", label:"I can separate the facts from the story I'm adding", lo:"fused together", hi:"cleanly separated", s:{defusion:.9, story:.6} },
+      { id:"l_return",label:"I can bring my attention back without attacking myself", lo:"harsh self-talk", hi:"a clean return", s:{attention:1.0, feeling:.5} }
+    ]},
+  { n:"06", title:"Entering hard work", tag:"focus · learning · making",
+    scene:"Something that matters needs doing — study, training, writing, planning, cleaning, exercise. The question is whether you can enter it without forcing, fleeing, or drowning in self-judgement.",
+    items:[
+      { id:"w_level", label:"The task feels hard but possible — not crushing, not boring", lo:"too much or too dull", hi:"the right edge", s:{attention:.7, agency:.6} },
+      { id:"w_start", label:"I know the first small step", lo:"the start is a fog", hi:"first step is clear", s:{agency:1.0, attention:.5} },
+      { id:"w_fb",    label:"I can use a mistake or feedback without collapsing", lo:"mistakes wound me", hi:"mistakes inform me", s:{feeling:.9, agency:.6} },
+      { id:"w_stay",  label:"I can stay with it for one short focused block", lo:"I escape fast", hi:"I can stay", s:{attention:1.1, impulse:.5} }
+    ]},
+  { n:"07", title:"A decision is due", tag:"choice · timing · judgement",
+    scene:"You have to decide something. Your state may be useful information — or it may be inflating urgency, confidence, fear, attraction, resentment, or hopelessness.",
+    items:[
+      { id:"d_value", label:"I know what actually matters most in this decision", lo:"it's murky", hi:"it's clear", s:{agency:.9, story:.6} },
+      { id:"d_audit", label:"I can ask what this state is making bigger or smaller than it is", lo:"the state is invisible to me", hi:"I can see its tilt", s:{defusion:1.0, story:.6} },
+      { id:"d_small", label:"I can choose a small, reversible step instead of all-or-nothing", lo:"all or nothing", hi:"a safe next step", s:{agency:1.1, impulse:.5} },
+      { id:"d_sleep", label:"If it's big, I can wait until tomorrow unless safety needs me now", lo:"must decide now", hi:"it can wait", s:{impulse:.8, defusion:.6, story:.4} }
+    ]}
+];
+
+const defaults = {};
+SCENARIOS.forEach(s=>s.items.forEach(i=>defaults[i.id]=50));
+let A = Object.assign({}, defaults);
+let arousal = 50, valence = 50, certainty = 50;
+let emotions = [];
+let timeFlex = 50;                         /* high = "this will pass / not everything is urgent" */
+let task = "general", consequence = "medium", canWait = "unsure";
+let identityVal = 30;                      /* how much it is becoming an "I am" verdict (high = captured) */
+let projCertainty = 50, projEvidence = 50; /* other-person projection check */
+let envCue = 50, envRoom = 50, envEasy = 50; /* environment support (higher = more supportive) */
+let stateSplit = { rawEvent:"", addedMeaning:"", usefulSignal:"", exaggeratedStory:"" };
+let shiftSession = { before:null, after:null, delta:null, plasticity:null };
+let dimsCache = null;
+let history = [];
+
+const $ = id => document.getElementById(id);
+const dialCv = $("dial"), circCv = $("circumplex"), radarCv = $("radar");
+
+function buildNow(){
+  return ''
+  + '<article class="plate card now-card">'
+  + '  <div class="card-head"><span class="num">00 · the level</span><span class="tag">right now · in the body</span></div>'
+  + '  <h2>Before the scenarios — read the body</h2>'
+  + '  <div class="scene">Two dials set everything else in context. Be honest about the body as it is this minute, not as you wish it were. There is no good or bad score here — only where you are.</div>'
+  + '  <div class="sliders">'
+  + '    <div class="slider"><div class="top"><label for="arousal">Activation — how charged or shut-down is the body?</label><span class="val" id="v_arousal">'+arousal+'</span></div>'
+  + '      <input type="range" class="bipolar" id="arousal" min="0" max="100" value="'+arousal+'" />'
+  + '      <div class="ends"><span>Foggy · numb · shut-down</span><span class="mid">Calm · alert</span><span>Wired · racing · flooded</span></div></div>'
+  + '    <div class="slider"><div class="top"><label for="valence">Tone — the overall colour of how you feel</label><span class="val" id="v_valence">'+valence+'</span></div>'
+  + '      <input type="range" class="bipolar" id="valence" min="0" max="100" value="'+valence+'" />'
+  + '      <div class="ends"><span>Very unpleasant</span><span class="mid">Neutral</span><span>Very pleasant</span></div></div>'
+  + '    <div class="slider"><div class="top"><label for="certainty">Certainty — how sure do you feel that your current read on things is correct?</label><span class="val" id="v_certainty">'+certainty+'</span></div>'
+  + '      <input type="range" id="certainty" min="0" max="100" value="'+certainty+'" />'
+  + '      <div class="ends"><span>Not sure at all</span><span></span><span>Completely certain</span></div></div>'
+  + '    <div class="slider"><div class="top"><label for="timeflex">Time &amp; permanence — how this moment sits in time</label><span class="val" id="v_timeflex">'+timeFlex+'</span></div>'
+  + '      <input type="range" id="timeflex" min="0" max="100" value="'+timeFlex+'" />'
+  + '      <div class="ends"><span>Permanent · all urgent</span><span></span><span>This will pass · there&rsquo;s time</span></div></div>'
+  + '  </div>'
+  + '  <div class="emo-wrap"><div class="emo-q">What are you feeling right now? Tap any that fit.</div><div class="emo-chips" id="emoChips"></div></div>'
+  + '</article>';
+}
+
+let mode = "full";
+const QUICK_IDS = ["u_pause","l_event","h_event","h_name","a_locate","w_stay","w_start","a_lever"];
+function sliderHTML(i){
+  const v = (i.id in A) ? A[i.id] : 50;
+  return '<div class="slider"><div class="top"><label for="'+i.id+'">'+i.label+'</label>'
+    + '<span class="val" id="v_'+i.id+'">'+v+'</span></div>'
+    + '<input type="range" id="'+i.id+'" min="0" max="100" value="'+v+'" data-id="'+i.id+'" />'
+    + '<div class="ends"><span>'+i.lo+'</span><span>'+i.hi+'</span></div></div>';
+}
+function buildScenarios(){
+  let html = decisionCardHTML() + buildNow();
+  if(mode==="quick"){
+    const map={}; SCENARIOS.forEach(function(s){ s.items.forEach(function(i){ map[i.id]=i; }); });
+    html += '<article class="plate card"><div class="card-head"><span class="num">Q · quick read</span>'
+      + '<span class="tag">one question per reading</span></div>'
+      + '<h2>Eight quick reads</h2>'
+      + '<div class="scene">One question for each of the eight readings. Go with your first honest instinct — speed is fine here.</div>'
+      + '<div class="sliders">';
+    QUICK_IDS.forEach(function(id){ if(map[id]) html += sliderHTML(map[id]); });
+    html += '</div></article>';
+  } else {
+    SCENARIOS.forEach(function(s){
+      html += '<article class="plate card">'
+        + '<div class="card-head"><span class="num">'+s.n+'</span><span class="tag">'+s.tag+'</span></div>'
+        + '<h2>'+s.title+'</h2>'
+        + '<div class="scene">'+s.scene+'</div>'
+        + '<div class="sliders">';
+      s.items.forEach(function(i){ html += sliderHTML(i); });
+      html += '</div></article>';
+    });
+  }
+  $("scenarios").innerHTML = html;
+  renderEmoChips();
+
+  Array.prototype.forEach.call(document.querySelectorAll('#scenarios input[type=range][data-id]'), function(el){
+    el.addEventListener("input", function(e){
+      const id=e.target.dataset.id; A[id]=+e.target.value;
+      const o=$("v_"+id); if(o) o.textContent=A[id]; update();
+    });
+  });
+  ["arousal","valence","certainty","timeflex"].forEach(function(key){
+    const el=$(key); if(!el) return;
+    el.addEventListener("input", function(e){
+      const val=+e.target.value;
+      if(key==="arousal") arousal=val; else if(key==="valence") valence=val; else if(key==="certainty") certainty=val; else timeFlex=val;
+      const o=$("v_"+key); if(o) o.textContent=val; update();
+    });
+  });
+  var taskSel=$("taskSel"); if(taskSel) taskSel.addEventListener("change", function(e){ task=e.target.value; update(); });
+  var consSel=$("consSel"); if(consSel) consSel.addEventListener("change", function(e){ consequence=e.target.value; update(); });
+  var waitSel=$("waitSel"); if(waitSel) waitSel.addEventListener("change", function(e){ canWait=e.target.value; update(); });
+}
+function initModeBar(){
+  Array.prototype.forEach.call(document.querySelectorAll(".mb-tab"), function(btn){
+    btn.addEventListener("click", function(){
+      mode = btn.dataset.mode;
+      Array.prototype.forEach.call(document.querySelectorAll(".mb-tab"), function(b){ b.classList.toggle("active", b===btn); });
+      buildScenarios(); update();
+    });
+  });
+}
+
+/* ---------------- SCORING ---------------- */
+function dimScores(){
+  const tot={}, wt={};
+  DIM_KEYS.forEach(k=>{tot[k]=0;wt[k]=0;});
+  const quick = (mode==="quick");
+  SCENARIOS.forEach(s=>s.items.forEach(i=>{
+    if(quick && QUICK_IDS.indexOf(i.id)<0) return;   /* in quick mode, score only the shown questions */
+    const v = (i.id in A) ? A[i.id] : 50;
+    for(const k in i.s){ tot[k]+=v*i.s[k]; wt[k]+=i.s[k]; }
+  }));
+  const out={};
+  DIM_KEYS.forEach(k=> out[k] = wt[k] ? Math.round(tot[k]/wt[k]) : 50);
+  return out;
+}
+function windowFactor(a){
+  const lo=38, hi=64;
+  const d = a<lo ? lo-a : a>hi ? a-hi : 0;
+  return 1 - Math.min(d,40)/40 * 0.42;
+}
+function trustCoefficient(dims){
+  let s=0,w=0;
+  DIM_KEYS.forEach(k=>{ s+=dims[k]*DIMS[k].weight; w+=DIMS[k].weight; });
+  return Math.round((s/w) * windowFactor(arousal));
+}
+function bandFor(t){
+  if(t<25) return {name:"Do not negotiate meaning here", note:"This state is in no condition to decide what anything means. Handle safety, the body, and contact with a steady person first — make zero verdicts about yourself, others, or the future."};
+  if(t<45) return {name:"High distortion", note:"The state is actively bending reality. Delay every non-urgent call, down-regulate the body, and lean on outside structure rather than your own read."};
+  if(t<60) return {name:"Usable, unstable", note:"There's some clarity, but it won't hold weight on its own. Check the big calls, delay where you can, and borrow one outside view."};
+  if(t<75) return {name:"Workable", note:"You can act. Still name what the state is inflating or shrinking before you commit to it."};
+  if(t<90) return {name:"Clear", note:"A genuinely good window for decisions, repair, and hard work — and the best time to build rules that will protect your lower states."};
+  return {name:"Very clear", note:"Use it to build systems and supports, not to mistake a good mood for permanent wisdom. Clear states pass too."};
+}
+function biasRead(){
+  const vx=valence-50, ay=arousal-50;
+  const dist=Math.hypot(vx,ay);
+  const intensity=Math.min(dist/52,1);
+  let q;
+  if(dist<14) q="center";
+  else if(vx<0) q = (ay>0) ? "threat" : "collapse";   /* unpleasant: split at the midline */
+  else q = (arousal>62) ? "charged" : "settled";       /* pleasant: "charged" only when clearly activated, so calm-alert reads settled */
+  return {q,intensity,dist};
+}
+
+const BIAS = {
+  threat: {
+    title:"A bias toward threat",
+    lead:'Charged body, unpleasant tone. In this corner the nervous system is leaning the whole world toward <b>danger and hostility</b>. People look like adversaries, ambiguity reads as attack, and everything feels like it must be handled <b>now</b>.',
+    signal:"Something real may need attention or a boundary. The activation itself is true information — the body has registered a stake.",
+    story:"That a particular person is against you · that it's urgent · that attacking or fleeing is the only move · that the threat is as total as it feels.",
+    philo:"Lived in chronically, this corner hardens into defensiveness, suspicion, and contempt — a worldview where safety only comes from dominating or pre-empting others."
+  },
+  collapse: {
+    title:"A bias toward collapse",
+    lead:'Low, shut-down body with an unpleasant tone. Here the system manufactures <b>hopelessness and isolation</b> — and worst of all, <b>permanence</b>: it whispers that this is simply who you are and it will not change.',
+    signal:"You may be genuinely depleted, under-rested, or grieving. Rest, food, and gentleness are likely real needs, not weakness.",
+    story:"That nothing matters · that you are worthless · that no one is there · that this flat state is the permanent truth about your life rather than today's weather.",
+    philo:"Lived in chronically, this corner hardens into nihilism and defeat — a quiet philosophy that effort is pointless and withdrawal is wisdom."
+  },
+  charged: {
+    title:"A bias toward charged-up certainty",
+    lead:'High activation, pleasant tone. This corner feels wonderful and is quietly risky: it manufactures <b>over-confidence and urgency</b>. Plans look guaranteed, risks look small, and the body says <b>do it now.</b>',
+    signal:"Real energy and genuine possibility are present. The drive to move and create is usable fuel.",
+    story:"That the plan can't fail · that the risk doesn't apply to you · that it must happen this instant · that this certainty is insight rather than chemistry.",
+    philo:"Lived in chronically, this corner hardens into grandiosity and recklessness — a worldview that rules are for other people and consequences won't arrive."
+  },
+  settled: {
+    title:"The settled, open field",
+    lead:'Low-to-moderate activation, pleasant tone. This is the most trustworthy corner for making meaning: the body is calm enough to see, warm enough to stay open. Meaning made here tends toward <b>trust, patience, and possibility.</b>',
+    signal:"Your read is comparatively clean right now. This is the corner to make real decisions from — and to write rules for your harder states.",
+    story:"The one thing to watch is complacency — assuming a good state guarantees a good judgement, or that this ease is permanent.",
+    philo:"Lived in, this corner builds the constructive philosophies — hope, trust, and meaning that can actually be built on rather than merely defended."
+  },
+  center: {
+    title:"A near-neutral field",
+    lead:'Activation and tone both sit near the middle. No single emotional current is strongly bending your meaning right now, which makes this a relatively even surface for reflection.',
+    signal:"Without a strong tilt, your read is less likely to be hijacked by one feeling. Use the even ground.",
+    story:"Neutral isn't the same as clear — a flat or numb middle can also mean you're not fully registering what's there. Check the body readings.",
+    philo:"Sustained, an even baseline supports flexible, situation-by-situation meaning rather than one fixed emotional lens over everything."
+  }
+};
+
+const GOOD = {
+  body:["Body is readable","You can use the body as early information instead of waiting for stress to become a crisis."],
+  feeling:["Feeling without being run","You can feel something strongly and still keep your hands on the wheel."],
+  impulse:["Distance from the urge","You can notice a pull without obeying it — the best possible moment to set rules for weaker ones."],
+  defusion:["Thoughts held as thoughts","You can watch a thought pass instead of mistaking it for a fact. Use this clarity on the loudest one."],
+  story:["The story stays flexible","You can hold more than one meaning, which protects you from turning a mood into a verdict."],
+  attention:["Attention is here","You can hold the present. Point it at one useful thing before the state scatters it."],
+  agency:["You're the author","You can turn a reading into a real next step. Choose the smallest clean one now."],
+  steadiness:["Inside the window","The body is regulated enough to think. Bank this — use it to prepare for the next storm."]
+};
+const RISK = {
+  body:["The body is a blur","The mind may be guessing ahead of the body. Locate the sensation before believing the story it spawns."],
+  feeling:["Feeling is steering hard","Name the feeling before reacting. Feeling something intensely doesn't make its story true."],
+  impulse:["The urge feels meaningful","This is the danger zone for acting too fast. Treat the urge as body-pressure, not wisdom — delay and add friction."],
+  defusion:["Thoughts feel like facts","The state may be presenting one thought as final reality. Write it as a sentence and watch it from outside."],
+  story:["One story is too heavy","A temporary mood is being handed too much meaning. Build three explanations before you act on any one."],
+  attention:["Attention is scattered","Inputs will win. Strip distractions and make the next task small and visible."],
+  agency:["Low sense of agency","Helplessness is part of the state, not the whole truth. Find one small thing genuinely in your control."],
+  steadiness:["Outside the window","The body is flooded or shut down. Regulate first — no conclusion made here is safe to keep."]
+};
+const ACT = {
+  steadiness_high:["Down-regulate the body first","Try the physiological sigh: two short inhales through the nose, then a long, slow exhale through the mouth — repeat for a minute or two. A longer exhale is the fastest lever for taking activation down."],
+  steadiness_low:["Bring the body up gently","If foggy or shut down: move, get light, splash cold water, or do sixty seconds of effort. If it's sleep-loss, rest is the intervention — and make no verdicts until the body is back."],
+  impulse:["Lower the urge's authority","For the next ten minutes, treat the urge as a wave, not a truth. Name it — &ldquo;I'm having the urge to…&rdquo; — step away from the cue, and let it crest without acting. It will fall."],
+  body:["Map the body before the story","Name where the feeling is, how strong it is (0–10), and whether it's tight, hot, heavy, hollow, fast, or numb — sensation first, meaning later."],
+  feeling:["Name it to tame it","Put one accurate word on the feeling, then write one sentence for the feeling and one for the facts. Don't send anything until both exist."],
+  defusion:["Unstick from the thought","Say &ldquo;I'm having the thought that…&rdquo; in front of the sentence. Then split two lists: what actually happened, and what your mind is adding. Act only from the first."],
+  story:["Make three explanations","Write one body explanation, one social explanation, one practical explanation. The first story is no longer allowed to be the only story."],
+  attention:["One task, one timer","Pick one small task for five to fifteen minutes and close everything else. Bring attention back gently each time it drifts — no self-attack."],
+  agency:["Change the room, not the willpower","Don't rely on motivation. Move the phone, leave the space, open the document, set a timer, or message a reliable person — let the environment carry the action."]
+};
+
+/* ---- graded readings: score -> capacity / limitation / adaptation, per band ---- */
+const READOUT = {
+  steadiness:{
+    low:{cap:"The body is outside its window — flooded or shut down — and not in a state to think clearly.",
+         lim:"No conclusion reached here is safe to keep; the state itself is bending the maths.",
+         act:"Regulate first. If flooded: long, slow exhales (the physiological sigh). If foggy: move, light, water, or rest. Decide nothing big until you are back."},
+    mid:{cap:"You are near the edge of your window — workable, but not rock-steady.",
+         lim:"A nudge could tip you out, and stress will land harder than usual.",
+         act:"Do one regulating thing — a slow breath, a short walk, some water — before anything demanding."},
+    high:{cap:"You are inside your window — settled enough to think and choose.",
+          lim:"Calm is not the same as correct; do not over-trust the steadiness itself.",
+          act:"Bank it: use this state to build the rules and supports that will carry your harder ones."}
+  },
+  impulse:{
+    low:{cap:"Your ability to stop a pull before it becomes action is low — the gap between feeling it and doing it is thin.",
+         lim:"Any urge right now will feel more meaningful and more urgent than it actually is.",
+         act:"Assign far less meaning to the impulse: name it (&ldquo;I&rsquo;m having the urge to…&rdquo;), step away from the cue, delay ten minutes, and let the wave crest. It falls on its own."},
+    mid:{cap:"You can sometimes pause, but a strong enough pull may still win.",
+         lim:"Do not assume willpower alone will hold — the urge still carries more weight than it deserves.",
+         act:"Add friction before you need it: remove the cue, pre-commit, and put a timer between you and the action."},
+    high:{cap:"You can feel an urge fully and still choose not to act on it.",
+          lim:"Even now an urge is not a recommendation — strong distance can tip into ignoring a real signal.",
+          act:"Best moment to set rules for weaker states: decide now what you will do next time the pull is strong."}
+  },
+  defusion:{
+    low:{cap:"Thoughts are landing as literal facts — you are inside them rather than watching them.",
+         lim:"Whatever your mind asserts right now will feel like the truth. It is not, necessarily.",
+         act:"Put &ldquo;I&rsquo;m having the thought that…&rdquo; in front of the sentence, then split two lists: what actually happened, and what your mind is adding. Act only from the first."},
+    mid:{cap:"You can sometimes step back from a thought, but the sticky ones still pull you in.",
+         lim:"A repeated thought masquerades as important simply by repeating.",
+         act:"Write the loudest thought down and read it back as a sentence — distance shrinks its authority."},
+    high:{cap:"You can hold a thought as a passing mental event, not an order.",
+          lim:"Clear defusion can drift into dismissing useful thoughts — keep the ones worth keeping.",
+          act:"Use this clarity on your single heaviest belief right now and test it gently."}
+  },
+  story:{
+    low:{cap:"One explanation has locked in — a single mood is hardening into a verdict about you, someone, or your life.",
+         lim:"The first story is not allowed to be the only story, though right now it will feel like the whole truth.",
+         act:"Write three explanations — one about the body, one social, one practical — before acting on any. Keep the event from becoming your identity."},
+    mid:{cap:"You can find other explanations, but the first one still feels heaviest.",
+         lim:"A leading story will quietly crowd out the alternatives.",
+         act:"Name one rival explanation out loud and hold both for now."},
+    high:{cap:"You can hold several meanings at once and keep an event as just an event.",
+          lim:"Flexibility can slide into never landing — at some point, choose.",
+          act:"Pick the most workable interpretation and act from it, lightly."}
+  },
+  feeling:{
+    low:{cap:"Feeling is steering — the emotion is making the decision before you do.",
+         lim:"A strong feeling is information, not a verdict; its story is not automatically true.",
+         act:"Name it to tame it: put one accurate word on the feeling, then write one sentence for the feeling and one for the facts. Do not send anything yet."},
+    mid:{cap:"You can feel and still function, but the feeling keeps tugging the wheel.",
+         lim:"Intensity will bias what looks reasonable.",
+         act:"Label the feeling and rate it 0–10 before you respond."},
+    high:{cap:"You can feel something strongly and keep your hands on the wheel.",
+          lim:"Composure can tip into suppressing what the feeling is trying to tell you.",
+          act:"Let the feeling inform the choice without making it — then proceed."}
+  },
+  body:{
+    low:{cap:"The body is a vague cloud — you cannot easily tell what it is reporting.",
+         lim:"The mind is probably guessing ahead of the body and may invent a reason for the alarm.",
+         act:"Map it first: where is it, how strong (0–10), is it tight, hot, heavy, hollow, fast, or numb? Sensation before meaning."},
+    mid:{cap:"You can read some body signals, but they blur together.",
+         lim:"Mixed signals get filed under one label too quickly.",
+         act:"Separate the strands: is this danger, discomfort, desire, or tiredness?"},
+    high:{cap:"You can locate and read body signals as early information.",
+          lim:"Close body-reading can tip into anxious over-monitoring.",
+          act:"Trust the signal, then widen attention back out so it does not loop."}
+  },
+  attention:{
+    low:{cap:"You are on autopilot or scattered — attention is not landing where you put it.",
+         lim:"A wandering mind magnifies worry and misses what is actually in front of you.",
+         act:"Anchor: five slow breaths, name five things you can see, then one small single task with everything else closed."},
+    mid:{cap:"You can focus in bursts, but distraction keeps winning.",
+         lim:"Inputs will fragment any sustained thinking.",
+         act:"One task, one timer, fifteen minutes — return gently each time you drift."},
+    high:{cap:"You can hold the present and stay with one thing.",
+          lim:"Deep focus can make you miss a genuine interruption that matters.",
+          act:"Point this attention at the single most useful task now."}
+  },
+  agency:{
+    low:{cap:"You feel driven or stuck — as if things are happening to you rather than being chosen.",
+         lim:"Helplessness is part of the state, not the whole truth; options exist that you cannot see right now.",
+         act:"Find one small, reversible step genuinely in your control and do only that. Change the room, not the willpower."},
+    mid:{cap:"You feel partly in the driver&rsquo;s seat.",
+         lim:"Under pressure you may default to all-or-nothing.",
+         act:"Pick the smallest next step and make it concrete."},
+    high:{cap:"You feel like the author of your next move.",
+          lim:"High agency can tip into forcing — not everything needs controlling now.",
+          act:"Choose the smallest clean action that matters and start."}
+  }
+};
+function bandOf(v){ return v<45 ? "low" : v<70 ? "mid" : "high"; }
+function readingFor(dim,dims){
+  const v=dims[dim], band=bandOf(v), r=READOUT[dim][band];
+  return { key:dim, label:DIMS[dim].label, score:v, band:band, cap:r.cap, lim:r.lim, act:r.act };
+}
+
+/* ---- the state archetype: weather, not the person ---- */
+function archetype(dims){
+  const zone = arousal<28 ? "foggy" : arousal>72 ? "flooded" : "window";
+  const val  = valence<42 ? "neg" : valence>58 ? "pos" : "neu";
+  let adj;
+  if(zone==="flooded") adj = val==="neg" ? "Storm-Tossed" : val==="pos" ? "Charged" : "Wired";
+  else if(zone==="foggy") adj = val==="neg" ? "Fogbound" : val==="pos" ? "Becalmed" : "Dimmed";
+  else adj = val==="neg" ? "Braced" : val==="pos" ? "Settled" : "Level";
+  const t=trustCoefficient(dims);
+  let noun;
+  if(t>=72){ noun = "Builder"; }
+  else {
+    const low = DIM_KEYS.map(k=>[k,dims[k]]).sort((a,b)=>a[1]-b[1])[0][0];
+    const map={impulse:"Reactor",defusion:"Believer",story:"Judge",feeling:"Lightning Rod",body:"Stranger",attention:"Drifter",agency:"Passenger",steadiness:"Live Wire"};
+    noun = map[low] || "Wanderer";
+  }
+  return { name:"The "+adj+" "+noun, line:"A passing weather pattern in the body — not who you are. Read it; do not become it." };
+}
+
+/* ---- action-readiness gate ---- */
+function vp(label,level,reason){ return {label:label,level:level,reason:reason}; }
+function gateVerdicts(dims,t){
+  const flooded=arousal>72, foggy=arousal<28, neg=valence<42, charged=arousal>72&&valence>58;
+  const out=[];
+  out.push(vp("Send a message or reply right now",
+    (dims.impulse<45||flooded||t<45) ? "hold" : (dims.impulse<70||dims.feeling<60||t<60) ? "caution" : "go",
+    (dims.impulse<45||flooded||t<45) ? "Your reactivity is high — wait until the charge drops before you hit send."
+      : (dims.impulse<70||dims.feeling<60||t<60) ? "Draft it, do not send it — re-read in twenty minutes."
+      : "Clear enough to communicate — still read it once more before sending."));
+  out.push(vp("Make an important or irreversible decision",
+    (t<55||dims.defusion<45||flooded||foggy) ? "hold" : (t<72||dims.story<60) ? "caution" : "go",
+    (t<55||dims.defusion<45||flooded||foggy) ? "The state cannot carry a big call right now — sleep on it unless safety demands action."
+      : (t<72||dims.story<60) ? "Make it small and reversible, or get one outside view first."
+      : "Good window — name what you might be inflating, then decide."));
+  out.push(vp("Have a hard conversation or confront someone",
+    (flooded||dims.feeling<45||t<50) ? "hold" : (dims.feeling<65||t<65) ? "caution" : "go",
+    (flooded||dims.feeling<45||t<50) ? "Too activated — you will fight the state, not the problem. Regulate first."
+      : (dims.feeling<65||t<65) ? "Possible, but lead with one slow exhale and a single clear point."
+      : "Steady enough — say the one true thing, kindly."));
+  out.push(vp("Quit or end something big",
+    ((neg&&t<60)||foggy||flooded||t<55) ? "hold" : (t<75||dims.story<65) ? "caution" : "go",
+    ((neg&&t<60)||foggy||flooded||t<55) ? "Never end something from collapse or storm — it will look different once you are back in your window."
+      : (t<75||dims.story<65) ? "If it is still right tomorrow, and the next clear day, then it is real."
+      : "Clear enough to choose — make sure it is a value, not a mood."));
+  out.push(vp("Spend money or commit resources",
+    (dims.impulse<45||t<50||charged) ? "hold" : (dims.impulse<70||t<65) ? "caution" : "go",
+    (dims.impulse<45||t<50||charged) ? "Urge or excitement is steering — a charged yes is rarely a free one."
+      : (dims.impulse<70||t<65) ? "Sleep on anything you cannot easily undo."
+      : "Reasoned enough — confirm it still fits the plan."));
+  out.push(vp("Form a verdict about yourself or your future",
+    (neg||t<50||dims.story<45) ? "hold" : (t<70) ? "caution" : "go",
+    (neg||t<50||dims.story<45) ? "A low or charged state writes cruel, false verdicts — do not sign anything about who you are right now."
+      : (t<70) ? "Hold it as a hypothesis, not a conclusion."
+      : "Even clear, keep self-judgements provisional."));
+  out.push(vp("Act on the urge you are feeling",
+    (dims.impulse<55||t<55) ? "hold" : (dims.impulse<75) ? "caution" : "go",
+    (dims.impulse<55||t<55) ? "This is the one to let pass — name it, delay, and watch it fall."
+      : (dims.impulse<75) ? "If it still makes sense in ten minutes, fine."
+      : "If it genuinely aligns with what you want, proceed."));
+  out.push(vp("Start a small piece of the hard task",
+    (foggy&&dims.agency<40) ? "caution" : "go",
+    (foggy&&dims.agency<40) ? "Tiny first — two minutes only; motion will do more than mood."
+      : "Almost always yes — starting small often regulates the rest."));
+  return out;
+}
+
+
+function adaptations(dims){
+  const good=[], risk=[], act=[];
+  const ranked = DIM_KEYS.map(k=>[k,dims[k]]).sort((a,b)=>a[1]-b[1]);
+  ranked.filter(p=>p[1]>=72).sort((a,b)=>b[1]-a[1]).slice(0,3).forEach(p=>good.push(GOOD[p[0]]));
+  ranked.filter(p=>p[1]<60).slice(0,4).forEach(p=>risk.push(RISK[p[0]]));
+  if(arousal>70) act.push(ACT.steadiness_high);
+  else if(arousal<34) act.push(ACT.steadiness_low);
+  ["impulse","defusion","story","feeling","body","attention","agency"].forEach(k=>{ if(dims[k]<60 && ACT[k]) act.push(ACT[k]); });
+  if(!act.length){
+    act.push(["Use the clear state on purpose","Do the important thing now, while you can. Then spend two minutes writing one rule that will protect you when you're next tired, charged, or tempted."]);
+    act.push(["Don't over-trust a good mood","A clear state is useful, not magical. Turn it into a system or a small commitment, not a sweeping new belief."]);
+  }
+  return { good:good, risk: risk.length?risk:[["Nothing strongly bending","No reading is in the danger zone. Still sanity-check one alternative before any big move."]], act: act.slice(0,5) };
+}
+
+function certaintyRead(t){
+  if(certainty>=65 && t<=45) return {cls:"",title:"The trap: sure, but not to be trusted",
+    body:"You feel <b>certain</b> ("+certainty+"/100) while your state scores low on trust ("+t+"/100). This is the exact moment Project Meaning warns about: conditioned story wearing the mask of clarity. Feeling sure is a sensation, not evidence. <b>Lower the authority you give this certainty</b>, delay any irreversible move, and run your loudest conclusion through the chain below before you believe it."};
+  if(certainty>=65 && t>=70) return {cls:"ok",title:"Aligned: your certainty has earned its state",
+    body:"You feel certain ("+certainty+"/100) and your state supports it ("+t+"/100). That&rsquo;s a fair match — you can act. The only discipline left is humility: sanity-check a single alternative so confidence doesn&rsquo;t quietly become blindness."};
+  if(certainty<=40 && t>=70) return {cls:"ok",title:"Trustworthy, and honest about it",
+    body:"Your certainty is low ("+certainty+"/100) but your state is clear ("+t+"/100). Useful humility on solid ground — you can move forward and let evidence, not bravado, lead. Don&rsquo;t mistake calm uncertainty for incapacity."};
+  if(certainty<=40 && t<=45) return {cls:"mid",title:"Unsure, and rightly so",
+    body:"Both your certainty ("+certainty+"/100) and your state ("+t+"/100) are low. That&rsquo;s actually well-calibrated: the unsureness is appropriate. Don&rsquo;t try to force a conclusion out of a state that can&rsquo;t support one — regulate first, decide later."};
+  return {cls:"mid",title:"Certainty vs. state",
+    body:"Your felt certainty is "+certainty+"/100 and your state&rsquo;s trustworthiness is "+t+"/100. Keep them separate in your mind. Certainty is a feeling produced by the same state you&rsquo;re assessing — let the dial, not the feeling, set how much weight your conclusions carry."};
+}
+
+function calibration(dims,t){
+  const lowest = DIM_KEYS.map(k=>[k,dims[k]]).sort((a,b)=>a[1]-b[1])[0];
+  const out=[
+    "<b>It&rsquo;s self-report.</b> You&rsquo;re rating yourself with the very mind being assessed. When the state is distorted, the ratings can be distorted too — usually tilting optimistic, occasionally harshly negative in a low mood.",
+    "<b>It&rsquo;s a snapshot, not a self.</b> This reading is <em>this hour</em>, not who you are. Re-read in twenty minutes after a walk or a meal and the dial can move a long way."
+  ];
+  if(arousal>70) out.push("<b>High activation narrows the view.</b> A flooded body shrinks attention to threat and urgency, so anything here may read more extreme than it is. Trust the low numbers more than the high ones right now.");
+  else if(arousal<34) out.push("<b>The fog flattens everything.</b> A shut-down body tends to under-report energy, hope, and options — the readings may be gloomier than the underlying reality.");
+  out.push("<b>Your thinnest reading is &ldquo;"+DIMS[lowest[0]].label+".&rdquo;</b> Expect that to be where your self-assessment is least reliable — and where the state&rsquo;s story is most likely slipping through unexamined.");
+  if(t>=75) out.push("<b>A clear state has its own blind spot:</b> over-confidence in the reading itself. Even now, treat one important conclusion as a hypothesis, not a verdict.");
+  return out;
+}
+
+/* ---------------- CANVAS ---------------- */
+function fitCanvas(cv,cssW,cssH){
+  const r=window.devicePixelRatio||1;
+  cv.width=Math.round(cssW*r); cv.height=Math.round(cssH*r);
+  cv.style.height=cssH+"px";
+  const ctx=cv.getContext("2d"); ctx.setTransform(r,0,0,r,0,0);
+  return ctx;
+}
+function trustColor(t){ if(t<45) return "#a8302b"; if(t<60) return "#9b6a1d"; if(t<75) return "#7a7a36"; return "#5d7a55"; }
+
+function drawDial(t){
+  const w=200,h=200, ctx=fitCanvas(dialCv,w,h);
+  const cx=w/2, cy=h/2, R=82;
+  ctx.clearRect(0,0,w,h);
+  for(let i=0;i<=100;i+=5){
+    const ang=(-Math.PI/2)+(i/100)*Math.PI*2;
+    const r1=R+6, r2=(i%25===0)?R+14:R+10;
+    ctx.beginPath();
+    ctx.moveTo(cx+Math.cos(ang)*r1,cy+Math.sin(ang)*r1);
+    ctx.lineTo(cx+Math.cos(ang)*r2,cy+Math.sin(ang)*r2);
+    ctx.strokeStyle="rgba(22,19,13,"+((i%25===0)?0.5:0.2)+")"; ctx.lineWidth=(i%25===0)?1.4:0.8; ctx.stroke();
+  }
+  ctx.beginPath(); ctx.arc(cx,cy,R,0,Math.PI*2);
+  ctx.strokeStyle="rgba(22,19,13,.12)"; ctx.lineWidth=9; ctx.stroke();
+  ctx.beginPath(); ctx.arc(cx,cy,R,-Math.PI/2,-Math.PI/2 + (t/100)*Math.PI*2);
+  ctx.strokeStyle=trustColor(t); ctx.lineWidth=9; ctx.lineCap="round"; ctx.stroke();
+}
+
+function drawCircumplex(){
+  const w=circCv.clientWidth||380, h=w, ctx=fitCanvas(circCv,w,h);
+  const cx=w/2, cy=h/2, R=w*0.36;
+  ctx.clearRect(0,0,w,h);
+  for(let i=1;i<=3;i++){ ctx.beginPath(); ctx.arc(cx,cy,R*i/3,0,Math.PI*2);
+    ctx.strokeStyle="rgba(22,19,13,.08)"; ctx.lineWidth=1; ctx.stroke(); }
+  ctx.beginPath(); ctx.arc(cx,cy,R*0.26,0,Math.PI*2);
+  ctx.fillStyle="rgba(93,122,85,.10)"; ctx.fill();
+  ctx.setLineDash([3,4]); ctx.strokeStyle="rgba(93,122,85,.5)"; ctx.lineWidth=1; ctx.stroke(); ctx.setLineDash([]);
+  ctx.beginPath(); ctx.moveTo(cx-R,cy); ctx.lineTo(cx+R,cy); ctx.moveTo(cx,cy-R); ctx.lineTo(cx,cy+R);
+  ctx.strokeStyle="rgba(22,19,13,.32)"; ctx.lineWidth=1.1; ctx.stroke();
+  ctx.fillStyle="rgba(22,19,13,.5)"; ctx.font="500 10px 'JetBrains Mono',monospace"; ctx.textAlign="center";
+  ctx.fillText("HIGH AROUSAL", cx, cy-R-9);
+  ctx.fillText("LOW AROUSAL", cx, cy+R+16);
+  ctx.save(); ctx.translate(cx-R-12,cy); ctx.rotate(-Math.PI/2); ctx.fillText("UNPLEASANT",0,0); ctx.restore();
+  ctx.save(); ctx.translate(cx+R+12,cy); ctx.rotate(Math.PI/2); ctx.fillText("PLEASANT",0,0); ctx.restore();
+  ctx.font="600 11px 'Cinzel',serif";
+  ctx.fillStyle="rgba(168,48,43,.55)"; ctx.fillText("THREAT", cx-R*0.55, cy-R*0.62);
+  ctx.fillStyle="rgba(120,90,58,.6)"; ctx.fillText("COLLAPSE", cx-R*0.55, cy+R*0.66);
+  ctx.fillStyle="rgba(155,106,29,.6)"; ctx.fillText("CHARGED", cx+R*0.55, cy-R*0.62);
+  ctx.fillStyle="rgba(93,122,85,.7)"; ctx.fillText("SETTLED", cx+R*0.55, cy+R*0.66);
+  const px=cx + ((valence-50)/50)*R, py=cy - ((arousal-50)/50)*R;
+  ctx.beginPath(); ctx.arc(px,py,16,0,Math.PI*2); ctx.fillStyle="rgba(168,48,43,.14)"; ctx.fill();
+  ctx.beginPath(); ctx.arc(px,py,6.5,0,Math.PI*2); ctx.fillStyle="#a8302b"; ctx.fill();
+  ctx.strokeStyle="#fff"; ctx.lineWidth=1.5; ctx.stroke();
+}
+
+function drawRadar(dims){
+  const w=radarCv.clientWidth||380, h=w*0.92, ctx=fitCanvas(radarCv,w,h);
+  const cx=w/2, cy=h/2, R=Math.min(w,h)*0.33, keys=DIM_KEYS, N=keys.length;
+  ctx.clearRect(0,0,w,h);
+  for(let r=1;r<=4;r++){
+    ctx.beginPath();
+    keys.forEach(function(k,i){ const a=-Math.PI/2+i*2*Math.PI/N, rr=R*r/4;
+      const x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr; if(i) ctx.lineTo(x,y); else ctx.moveTo(x,y); });
+    ctx.closePath(); ctx.strokeStyle="rgba(22,19,13,.08)"; ctx.lineWidth=1; ctx.stroke();
+  }
+  keys.forEach(function(k,i){
+    const a=-Math.PI/2+i*2*Math.PI/N;
+    const x=cx+Math.cos(a)*R,y=cy+Math.sin(a)*R;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(x,y);
+    ctx.strokeStyle="rgba(22,19,13,.1)"; ctx.lineWidth=1; ctx.stroke();
+    const lx=cx+Math.cos(a)*(R+20), ly=cy+Math.sin(a)*(R+20);
+    ctx.fillStyle="rgba(22,19,13,.62)"; ctx.font="500 9.5px 'JetBrains Mono',monospace";
+    ctx.textAlign= lx<cx-6?"right":lx>cx+6?"left":"center";
+    ctx.textBaseline= ly<cy-6?"bottom":ly>cy+6?"top":"middle";
+    ctx.fillText(DIMS[k].label.toUpperCase(), lx, ly);
+  });
+  ctx.beginPath();
+  keys.forEach(function(k,i){ const a=-Math.PI/2+i*2*Math.PI/N, rr=R*dims[k]/100;
+    const x=cx+Math.cos(a)*rr,y=cy+Math.sin(a)*rr; if(i) ctx.lineTo(x,y); else ctx.moveTo(x,y); });
+  ctx.closePath(); ctx.fillStyle="rgba(168,48,43,.12)"; ctx.fill();
+  ctx.strokeStyle="rgba(168,48,43,.8)"; ctx.lineWidth=1.6; ctx.stroke();
+  keys.forEach(function(k,i){ const a=-Math.PI/2+i*2*Math.PI/N, rr=R*dims[k]/100;
+    ctx.beginPath(); ctx.arc(cx+Math.cos(a)*rr,cy+Math.sin(a)*rr,3.4,0,Math.PI*2);
+    ctx.fillStyle=DIMS[k].color; ctx.fill(); });
+}
+
+/* ---------------- RENDER ---------------- */
+function blocks(target,items){
+  $(target).innerHTML = items.length
+    ? items.map(function(it){ return '<div class="item"><b>'+it[0]+'</b><span>'+it[1]+'</span></div>'; }).join("")
+    : '<div class="empty">—</div>';
+}
+function renderBars(dims){
+  $("bars").innerHTML = DIM_KEYS.map(function(k){
+    const v=dims[k];
+    const c = v<45?"var(--red)":v<60?"var(--amber)":v<75?"#7a7a36":"var(--sage)";
+    return '<div class="bar"><div class="bi"><span>'+DIMS[k].label+'</span><span class="n">'+v+'</span></div>'
+      + '<div class="tr"><div class="fl" style="width:'+v+'%;background:'+c+'"></div></div></div>';
+  }).join("");
+}
+
+/* ---- the feelings → meaning engine (Project Meaning core) ---- */
+const EMOTIONS = [
+  {id:"anger",     label:"Anger",      side:"shadow", whisper:"the world is hostile — something must be opposed", signal:"a value or boundary may truly have been crossed", story:"that they are an enemy, and force is the only answer"},
+  {id:"fear",      label:"Fear",       side:"shadow", whisper:"the world is dangerous — brace or run", signal:"a real risk may be present", story:"that the threat is as total and certain as it feels"},
+  {id:"anxiety",   label:"Anxiety",    side:"shadow", whisper:"something bad is coming — scan, worry, control", signal:"uncertainty is genuinely high", story:"that worrying is the same as preventing"},
+  {id:"shame",     label:"Shame",      side:"shadow", whisper:"I am defective — hide", signal:"you may have acted against a value", story:"that you ARE bad, rather than did something"},
+  {id:"guilt",     label:"Guilt",      side:"shadow", whisper:"I did wrong — repair or be punished", signal:"an amends may genuinely be owed", story:"that you are beyond forgiveness"},
+  {id:"disgust",   label:"Disgust",    side:"shadow", whisper:"this is contaminated — reject it", signal:"something may truly not be right for you", story:"that the person or thing is wholly repugnant"},
+  {id:"sadness",   label:"Sadness",    side:"shadow", whisper:"something is lost — slow and withdraw", signal:"something mattered to you", story:"that it will never be okay"},
+  {id:"apathy",    label:"Apathy",     side:"shadow", whisper:"nothing matters — don&rsquo;t bother", signal:"you may be depleted or numbed", story:"that effort itself is pointless"},
+  {id:"defeat",    label:"Defeat",     side:"shadow", whisper:"I have lost — give up", signal:"this particular attempt failed", story:"that you always lose, and it is hopeless"},
+  {id:"loneliness",label:"Loneliness", side:"shadow", whisper:"I am unseen — no one is there", signal:"connection is a real, unmet need", story:"that you are unlovable, or always alone"},
+  {id:"longing",   label:"Longing",    side:"shadow", whisper:"the missing thing is everything", signal:"a genuine desire or need is live", story:"that you cannot be whole without it"},
+  {id:"comparison",label:"Comparison", side:"shadow", whisper:"others are ahead — I am behind", signal:"information about a real gap", story:"that your worth is a league table"},
+  {id:"pride",     label:"Brittle pride",side:"shadow", whisper:"I must stay above — defend my standing", signal:"dignity and respect do matter", story:"that you must beat others to be safe"},
+  {id:"calm",      label:"Calm",       side:"light",  whisper:"things can be integrated — it is safe to rest", signal:"the body is genuinely settling", story:"complacency: that calm guarantees a correct call"},
+  {id:"confidence",label:"Confidence", side:"light",  whisper:"I can act — I am the author here", signal:"real capability is present", story:"that nothing can go wrong; over-reach"},
+  {id:"care",      label:"Care",       side:"light",  whisper:"connection and kindness matter", signal:"real relational warmth", story:"over-responsibility: that everyone is yours to fix"},
+  {id:"joy",       label:"Joy",        side:"light",  whisper:"the world is good — move toward it", signal:"a real positive is present", story:"that the high will last, and risk doesn&rsquo;t apply"},
+  {id:"love",      label:"Love",       side:"light",  whisper:"we are linked — move closer", signal:"a real bond", story:"idealising: that they can do no wrong"},
+  {id:"openness",  label:"Openness",   side:"light",  whisper:"more is possible than I assumed", signal:"genuine flexibility", story:"ungroundedness: saying yes to everything"},
+  {id:"safety",    label:"Safety",     side:"light",  whisper:"it is okay to soften", signal:"the environment is secure enough", story:"little trap here — enjoy it, stay awake"}
+];
+const PHIL = [
+  {side:"shadow", label:"nihilism",   need:["apathy","sadness","anger"],          line:"Nothing means anything, so nothing is worth doing."},
+  {side:"shadow", label:"submission", need:["fear","shame","defeat"],             line:"I am small and at fault, so I must comply."},
+  {side:"shadow", label:"prejudice",  need:["disgust","fear","pride"],            line:"They are lesser and dangerous, so rejecting them is right."},
+  {side:"shadow", label:"obsession",  need:["longing","sadness","love"],          line:"I cannot be okay until I have it, or them."},
+  {side:"shadow", label:"domination", need:["pride","anxiety","comparison"],      line:"I am only safe if I am on top."},
+  {side:"light",  label:"hope",       need:["care","joy","calm"],                 line:"Things can get better, and I can help them."},
+  {side:"light",  label:"possibility",need:["confidence","care","openness"],      line:"There are more good moves here than I assumed."},
+  {side:"light",  label:"trust",      need:["safety","calm","love"],              line:"It is safe to lean on this, and on them."},
+  {side:"light",  label:"meaning that can build", need:["confidence","calm","love"], line:"I can build something that lasts, with dignity."}
+];
+const STAGE_HINT = {
+  steadiness:"Prerequisite — Stage One · Heart Coherence: slow, even breathing (about six breaths a minute) until the body settles, then return here.",
+  body:"Deepen with Stage Two · the Seven Questions — map one sensation in plain physical words before you interpret it.",
+  defusion:"This is Meaning Differentiation itself — keep prising the signal apart from the story.",
+  impulse:"Pair this with the chain interceptor below: name the urge, rate it, then surf it."
+};
+
+/* ---- task + consequence: a state is not equally reliable for every action ---- */
+const TASKS = [
+  {id:"general",      label:"Just checking in — no specific action", w:{}},
+  {id:"message",      label:"Send a message or reply", w:{impulse:1.4,feeling:1.3,story:1.2,defusion:1.2,steadiness:1.1}},
+  {id:"decision",     label:"Make an important / irreversible decision", w:{defusion:1.5,story:1.4,steadiness:1.3,attention:1.2,agency:1.1}},
+  {id:"conversation", label:"Have a hard conversation / confront someone", w:{feeling:1.4,impulse:1.3,story:1.2,steadiness:1.1,body:1.0}},
+  {id:"work",         label:"Focus on work or study", w:{attention:1.5,agency:1.3,steadiness:1.1}},
+  {id:"urge",         label:"Resist a strong urge", w:{impulse:1.8,defusion:1.3,agency:1.2,body:1.0}},
+  {id:"money",        label:"Spend money / commit resources", w:{impulse:1.5,defusion:1.2,story:1.1,steadiness:1.1}},
+  {id:"relationship", label:"Make a relationship decision", w:{story:1.5,feeling:1.3,defusion:1.3,steadiness:1.2}},
+  {id:"quit",         label:"Quit or end something", w:{story:1.5,steadiness:1.3,defusion:1.2,feeling:1.1}},
+  {id:"create",       label:"Make or create something", w:{attention:1.3,agency:1.2,feeling:0.9}},
+  {id:"help",         label:"Ask for help", w:{agency:1.2,feeling:1.1,story:1.1}},
+  {id:"rest",         label:"Rest or recover", w:{body:1.3,steadiness:1.2,story:1.0}},
+  {id:"plan",         label:"Plan tomorrow", w:{attention:1.2,story:1.2,defusion:1.1,steadiness:1.0}}
+];
+const CONSEQUENCE = {
+  low:        {label:"Low — easily undone",   th:45},
+  medium:     {label:"Medium",                th:60},
+  high:       {label:"High",                  th:72},
+  veryHigh:   {label:"Very high",             th:82},
+  irreversible:{label:"Irreversible",         th:90}
+};
+const CLEAN_ACTION = {
+  anger:"name the boundary out loud, without attacking",
+  fear:"check the real risk, then take one small safe step",
+  anxiety:"write the worry down, then do one thing you can control",
+  shame:"repair one specific thing, without turning it into &lsquo;I am bad&rsquo;",
+  guilt:"make one concrete amends, then stop punishing yourself",
+  disgust:"state the line that was crossed, calmly",
+  sadness:"let it be felt, and ask for comfort or rest",
+  apathy:"do one tiny action despite not caring — motion before mood",
+  defeat:"treat it as this attempt failing, rest, then retry",
+  loneliness:"reach out to one safe person, even briefly",
+  longing:"name the real need under it, and meet a small honest piece of it",
+  comparison:"turn the gap into one specific, doable next step",
+  pride:"protect your dignity without needing them to lose",
+  calm:"use the clarity to make a real decision or set a rule",
+  confidence:"act — and still check one risk before you commit",
+  care:"offer help with a boundary, not self-erasure",
+  joy:"enjoy it fully, and delay any big commitment it tempts",
+  love:"move closer, and keep seeing them clearly",
+  openness:"explore, then pick one thing to actually finish",
+  safety:"let your guard down a little, and rest"
+};
+const RELATIONAL = ["anger","fear","shame","loneliness","longing","love","anxiety","guilt","comparison"];
+const FUSION = ["always","never","everyone","no one","nobody","nothing","everything","ruined","worthless","doomed","hopeless","impossible","completely","totally","forever","i am a","i'm a","such a failure","unlovable","broken"];
+function relationalActive(){ return emotions.some(function(e){ return RELATIONAL.indexOf(e)>=0; }); }
+
+function optionList(arr, current){
+  return arr.map(function(o){ return '<option value="'+o.id+'"'+(o.id===current?' selected':'')+'>'+o.label+'</option>'; }).join("");
+}
+function decisionCardHTML(){
+  const consequenceOpts = Object.keys(CONSEQUENCE).map(function(k){ return '<option value="'+k+'"'+(k===consequence?' selected':'')+'>'+CONSEQUENCE[k].label+'</option>'; }).join("");
+  const waitOpts = [["unsure","Not sure"],["yes","Yes, it can wait"],["partly","Partly"],["no","No, it can&rsquo;t"]].map(function(o){ return '<option value="'+o[0]+'"'+(o[0]===canWait?' selected':'')+'>'+o[1]+'</option>'; }).join("");
+  return '<article class="plate card now-card">'
+    + '  <div class="card-head"><span class="num">0 · the task</span><span class="tag">what is this state for?</span></div>'
+    + '  <h2>What are you about to do?</h2>'
+    + '  <div class="scene">A state is not good or bad on its own — only good or bad <em>for a particular thing</em>. You can be clear enough to tidy a room and nowhere near clear enough to send a hard message. Name the action first; the reading is then scored for it.</div>'
+    + '  <div class="ctx-grid">'
+    + '    <label class="ctx"><span>I&rsquo;m about to…</span><select id="taskSel">'+optionList(TASKS, task)+'</select></label>'
+    + '    <label class="ctx"><span>If I get it wrong, the cost is…</span><select id="consSel">'+consequenceOpts+'</select></label>'
+    + '    <label class="ctx"><span>Can it wait?</span><select id="waitSel">'+waitOpts+'</select></label>'
+    + '  </div>'
+    + '</article>';
+}
+
+function renderEmoChips(){
+  const el=$("emoChips"); if(!el) return;
+  el.innerHTML = EMOTIONS.map(function(e){
+    const on = emotions.indexOf(e.id)>=0;
+    return '<button type="button" class="emo-chip '+e.side+(on?" on":"")+'" data-emo="'+e.id+'">'+e.label+'</button>';
+  }).join("");
+  Array.prototype.forEach.call(el.querySelectorAll(".emo-chip"), function(b){
+    b.addEventListener("click", function(){
+      const id=b.dataset.emo, i=emotions.indexOf(id);
+      if(i>=0) emotions.splice(i,1); else emotions.push(id);
+      b.classList.toggle("on"); update();
+    });
+  });
+}
+function renderWhispers(){
+  const host=$("whispers"); if(!host) return;
+  if(!emotions.length){
+    host.innerHTML='<p class="emo-empty">Tap the feelings present right now (in the first panel) and this will show the specific meaning each one is biasing you toward — and, underneath, the worldview the combination can harden into.</p>';
+    return;
+  }
+  const map={}; EMOTIONS.forEach(function(e){ map[e.id]=e; });
+  host.innerHTML = emotions.map(function(id){ const e=map[id]; if(!e) return "";
+    return '<div class="whisper '+e.side+'"><div class="w-emo">'+e.label+'<span> is to…</span></div>'
+      + '<div class="w-mean">'+e.whisper+'</div>'
+      + '<div class="w-split"><span class="w-sig">Signal</span>'+e.signal+'</div>'
+      + '<div class="w-split"><span class="w-sto">Story</span>'+e.story+'</div>'
+      + '<div class="w-split"><span class="w-act">Clean move</span>'+(CLEAN_ACTION[id]||"act on the signal, not the story")+'</div></div>';
+  }).join("");
+}
+function detectPhil(){
+  const has=function(p){ return p.need.filter(function(x){ return emotions.indexOf(x)>=0; }).length; };
+  const shadow=PHIL.filter(function(p){return p.side==="shadow";}).map(function(p){return [p,has(p)];}).filter(function(x){return x[1]>=2;}).sort(function(a,b){return b[1]-a[1];});
+  const light=PHIL.filter(function(p){return p.side==="light";}).map(function(p){return [p,has(p)];}).filter(function(x){return x[1]>=2;}).sort(function(a,b){return b[1]-a[1];});
+  return { shadow: shadow[0]?shadow[0][0]:null, light: light[0]?light[0][0]:null };
+}
+function renderPhilosophy(){
+  const host=$("philosophy"); if(!host) return;
+  if(!emotions.length){ host.innerHTML=""; return; }
+  const d=detectPhil(); let html="";
+  if(d.shadow){
+    html += '<div class="phil shadow"><div class="phil-tag">The worldview this combination can harden into</div>'
+      + '<div class="phil-name">'+d.shadow.label+'</div>'
+      + '<div class="phil-line">&ldquo;'+d.shadow.line+'&rdquo;</div>'
+      + '<p>Felt long enough, this blend of feelings does not just colour a mood — it becomes a lived philosophy you then defend with reasons. People rarely think their way into a worldview; they feel their way in, then rationalise. Naming it is how you take authorship back — and inverting even one of the feelings begins to change the whole conclusion.</p></div>';
+  }
+  if(d.light){
+    html += '<div class="phil light"><div class="phil-tag">The worldview this combination can build</div>'
+      + '<div class="phil-name">'+d.light.label+'</div>'
+      + '<div class="phil-line">&ldquo;'+d.light.line+'&rdquo;</div>'
+      + '<p>This is the constructive direction — meaning that can be built on rather than merely defended. When a state is steady enough to make real decisions, this is the kind it tends to produce.</p></div>';
+  }
+  if(!html) html='<p class="emo-empty">No strong combination yet — add or adjust the feelings above to see which worldview they tilt toward.</p>';
+  host.innerHTML=html;
+}
+function weatherClimate(){
+  const host=$("climate"); if(!host) return;
+  if(history.length<3){
+    host.className="climate";
+    host.innerHTML="Take a few snapshots over different moments and this will tell you whether a pattern is passing <b>weather</b> or a recurring <b>climate</b> — the deeper layer worth working on.";
+    return;
+  }
+  const recent=history.slice(0,6);
+  const ts=recent.map(function(h){return h.trustCoefficient;});
+  const mean=ts.reduce(function(a,b){return a+b;},0)/ts.length;
+  const sd=Math.sqrt(ts.reduce(function(a,b){return a+(b-mean)*(b-mean);},0)/ts.length);
+  const field=BIAS[biasRead().q].title;
+  const fieldCount=recent.filter(function(h){return h.level && h.level.meaningField===field;}).length;
+  if(sd<10 && fieldCount>=Math.ceil(recent.length*0.6)){
+    host.className="climate climate-on";
+    host.innerHTML="Your last "+recent.length+" readings keep returning to the same place. That looks less like passing weather and more like <b>climate</b> — a deeper, well-practised pattern. Climate is the layer worth training over time, and the one where steady support (a trusted person, a regular practice, or a professional) tends to help most.";
+  } else {
+    host.className="climate";
+    host.innerHTML="Your readings vary across snapshots — this looks like passing <b>weather</b>, not a fixed climate. Today&rsquo;s state is not a verdict on your life. Ride it out, do a shift, and re-read.";
+  }
+}
+
+/* ---- guided shift: change the weather on purpose, then re-read ---- */
+let shiftStop=true;
+function zoneNow(){ return arousal<28 ? "low" : arousal>72 ? "high" : "mid"; }
+function startShift(){
+  stopShift(); shiftStop=false;
+  const z=zoneNow();
+  const inMs = z==="low" ? 2000 : 4000;
+  const outMs = z==="high" ? 8000 : z==="low" ? 2000 : 6000;
+  const cycles = z==="low" ? 10 : 6;
+  $("shiftIntro").innerHTML = z==="high"
+    ? "Flooded — we are bringing it down. Follow the circle: in through the nose, then a long, slow out through the mouth. Let the exhale lead; that is the brake."
+    : z==="low"
+    ? "Foggy — we are waking it up. Sit tall, eyes up, brisk easy breaths with the circle. Straight after this: stand, get into light, drink some water."
+    : "In the window — steadying and unhooking. Easy, even breaths. On each out-breath, label the loudest thought: &lsquo;just a thought&rsquo;.";
+  $("shiftBtn").style.display="none"; $("shiftStopBtn").style.display="inline-block";
+  const circle=$("breath"); let c=0;
+  function phase(inhale){
+    if(shiftStop) return;
+    const ms = inhale ? inMs : outMs;
+    circle.style.transitionDuration=(ms/1000)+"s";
+    circle.style.transform = inhale ? "scale(1)" : "scale(0.42)";
+    $("breathLabel").textContent = inhale ? "Breathe in" : (z==="high" ? "Slow out" : "Out");
+    setTimeout(function(){
+      if(shiftStop) return;
+      if(inhale) phase(false);
+      else { c++; if(c>=cycles) finishShift(); else phase(true); }
+    }, ms);
+  }
+  circle.style.transitionDuration="0.3s"; circle.style.transform="scale(0.42)";
+  setTimeout(function(){ phase(true); }, 300);
+}
+function finishShift(){
+  shiftStop=true;
+  $("breathLabel").textContent="Done";
+  $("shiftIntro").innerHTML="Now re-read your state and take a snapshot — watch the dial move. That before-and-after is the body learning it can shift on purpose. This is the training, not just the test.";
+  $("shiftStopBtn").style.display="none";
+  $("shiftBtn").style.display="inline-block"; $("shiftBtn").textContent="Run another shift";
+}
+function stopShift(){
+  shiftStop=true;
+  const stopB=$("shiftStopBtn"); if(stopB) stopB.style.display="none";
+  const startB=$("shiftBtn"); if(startB) startB.style.display="inline-block";
+  const lab=$("breathLabel"); if(lab && lab.textContent!=="Done") lab.textContent="Ready";
+  const circle=$("breath"); if(circle){ circle.style.transitionDuration="0.6s"; circle.style.transform="scale(0.42)"; }
+}
+function initShift(){
+  const b=$("shiftBtn"); if(b) b.addEventListener("click", startShift);
+  const s=$("shiftStopBtn"); if(s) s.addEventListener("click", function(){ stopShift(); $("shiftIntro").textContent=""; });
+}
+
+/* ---- reading confidence: how much to trust the self-report itself ---- */
+function readingConfidence(dims,t){
+  let score=100;
+  if(arousal>78||arousal<22) score-=20;
+  if(certainty>75 && t<50) score-=25;
+  if(dims.body<45) score-=10;
+  if(dims.defusion<45) score-=15;
+  if(dims.story<45) score-=10;
+  if(timeFlex<35) score-=8;
+  const vals=Object.keys(A).map(function(k){return A[k];});
+  if(vals.length){
+    const hi=vals.filter(function(v){return v>92;}).length/vals.length;
+    const lo=vals.filter(function(v){return v<8;}).length/vals.length;
+    if(hi>0.6) score-=15;
+    if(lo>0.6) score-=15;
+  }
+  return Math.max(0,Math.min(100,Math.round(score)));
+}
+
+/* ---- the worksheet + identity capture ---- */
+function fusionHits(text){
+  if(!text) return [];
+  const lc=" "+text.toLowerCase()+" ";
+  return FUSION.filter(function(w){ return lc.indexOf(w)>=0; });
+}
+function identityCapture(){
+  let cap=identityVal;
+  const hits=fusionHits((stateSplit.addedMeaning||"")+" "+(stateSplit.exaggeratedStory||""));
+  cap=Math.max(cap, Math.min(100, hits.length*22));
+  return Math.round(cap);
+}
+
+/* ---- other-person projection ---- */
+function projectionRisk(dims){
+  if(!relationalActive()) return null;
+  let risk = 50 + (projCertainty - projEvidence)/2;
+  if(arousal>70) risk+=10;
+  if(dims.feeling<50) risk+=8;
+  if(dims.story<50) risk+=8;
+  return Math.max(0,Math.min(100,Math.round(risk)));
+}
+
+/* ---- environment support ---- */
+function environmentSupport(){ return Math.round((envCue+envRoom+envEasy)/3); }
+
+/* ---- task readiness: state scored for the specific action ---- */
+function taskReadiness(taskId,dims,t){
+  const task=TASKS.filter(function(x){return x.id===taskId;})[0]||TASKS[0];
+  const w=task.w; let s=0,sw=0;
+  DIM_KEYS.forEach(function(k){ const wt=(w[k]!=null)?w[k]:0.6; s+=dims[k]*wt; sw+=wt; });
+  let r= sw? s/sw : t;
+  r=r*windowFactor(arousal);
+  if(certainty>=65 && t<=45) r-=12;
+  if(timeFlex<45 && ["decision","quit","money","relationship","message","plan"].indexOf(taskId)>=0) r-=10;
+  if(identityCapture()>=60 && ["quit","relationship","decision","message"].indexOf(taskId)>=0) r-=8;
+  if(environmentSupport()<40 && ["urge","message","work","money"].indexOf(taskId)>=0) r-=10;
+  const pr=projectionRisk(dims);
+  if(pr!=null && pr>=65 && ["message","conversation","relationship"].indexOf(taskId)>=0) r-=10;
+  if(taskId==="urge" && dims.impulse<45) r=Math.min(r,35);
+  return Math.max(0,Math.min(100,Math.round(r)));
+}
+function taskVerdict(readiness,consequenceKey){
+  const c=CONSEQUENCE[consequenceKey]||CONSEQUENCE.medium;
+  let level, line;
+  if(readiness>=c.th){ level="go"; line="You clear the bar for a "+c.label.split(" —")[0].toLowerCase()+"-stakes action. Sanity-check one thing, then go."; }
+  else if(readiness>=c.th-14){ level="caution"; line="Just under the bar for this stake. Make it smaller, reversible, or get one outside view"+(canWait==="yes"?" — and since it can wait, waiting is the cheaper bet.":"."); }
+  else { level="hold"; line=(canWait==="no")?"Well under the clean-enough bar. If you truly must act, do the smallest reversible version and lean on someone you trust.":"Well under the clean-enough bar for this stake. Hold: shift the state, sleep on it, and re-read."; }
+  return {level:level, line:line, threshold:c.th};
+}
+
+/* ---- shift test: before vs after ---- */
+function compareReadings(before,after){
+  const out=[];
+  if(!before||!after) return out;
+  Object.keys(after.readings).forEach(function(k){
+    if(before.readings[k]!=null) out.push({label:k, delta: after.readings[k]-before.readings[k]});
+  });
+  return out;
+}
+function plasticityScore(before,after){
+  if(!before||!after) return null;
+  const trustGain=after.trustCoefficient-before.trustCoefficient;
+  const arousalBetter=Math.abs(after.level.arousal-50)<Math.abs(before.level.arousal-50);
+  let score=50+trustGain;
+  if(arousalBetter) score+=10;
+  return Math.max(0,Math.min(100,Math.round(score)));
+}
+
+/* ---- baseline (light): compare today with the user's usual ---- */
+function mean(a){ return a.reduce(function(x,y){return x+y;},0)/a.length; }
+function sd(a,m){ return Math.sqrt(a.reduce(function(x,y){return x+(y-m)*(y-m);},0)/a.length); }
+function baselineDeviation(history,trust){
+  if(history.length<5) return null;
+  const ts=history.map(function(h){return h.trustCoefficient;});
+  const m=mean(ts), s=sd(ts,m);
+  if(s<1) return null;
+  return { mean:Math.round(m), z:(trust-m)/s, diff:Math.round(trust-m) };
+}
+
+/* ---- recurring patterns (light) ---- */
+function detectRecurringPatterns(history){
+  if(history.length<3) return [];
+  const h=history.slice(0,8), out=[];
+  const cnt=function(fn){ return h.filter(fn).length; };
+  if(cnt(function(x){ return x.level && x.level.certainty>=65 && x.trustCoefficient<=45; })>=2)
+    out.push({pn:"Sure-but-not-trustworthy", text:"You repeatedly feel certain in states that are not clear enough to be trusted. That is conditioned story wearing the mask of clarity.", rule:"Rule: when certainty is high and trust is low, decide nothing until the state shifts."});
+  if(cnt(function(x){ return x.level && (""+x.level.meaningField).indexOf("threat")>=0; })>=2)
+    out.push({pn:"Body-alarm to world-alarm", text:"Your body enters alarm and the whole world starts to read as hostile and urgent.", rule:"Rule: treat &lsquo;urgent&rsquo; as a symptom first; down-regulate before you respond."});
+  if(cnt(function(x){ return x.level && x.level.arousal<30 && x.trustCoefficient<45; })>=2)
+    out.push({pn:"Fog to hopelessness", text:"Low-energy states keep hardening into &lsquo;nothing will change.&rsquo; That is the fog talking, not your life.", rule:"Rule: no life-verdicts while foggy; eat, move, rest, re-read."});
+  if(cnt(function(x){ return x.feelings && (x.feelings.indexOf("shame")>=0||x.feelings.indexOf("defeat")>=0); })>=2)
+    out.push({pn:"Event to identity", text:"Hard moments keep turning into &lsquo;I am&rsquo; verdicts about who you are.", rule:"Rule: keep it local — one event, one state, not a self."});
+  if(cnt(function(x){ return x.readings && x.readings["Impulse distance"]!=null && x.readings["Impulse distance"]<45; })>=2)
+    out.push({pn:"Urge to meaning", text:"Strong urges keep being read as deep truths about what you really want.", rule:"Rule: name the urge, delay, surf it — decide once it has passed."});
+  return out.slice(0,2);
+}
+function memoryBiasNote(t){
+  if(t<50 && certainty>=60) return "Your state is also <b>selecting the evidence</b>: the memories arriving now (proof it&rsquo;s hopeless, proof they&rsquo;re against you, proof you always fail) are real but partial. Do not use memory as courtroom evidence while this state is choosing the witnesses.";
+  return "";
+}
+
+function renderReadingCards(dims){
+  const order=["steadiness","impulse","defusion","story","feeling","body","attention","agency"];
+  $("readingCards").innerHTML = order.map(function(k){
+    const r=readingFor(k,dims);
+    const word = r.band==="low" ? "Low" : r.band==="mid" ? "Mixed" : "Strong";
+    return '<div class="rcard '+r.band+'">'
+      + '<div class="rc-head"><span class="rc-name">'+r.label+'</span>'
+      + '<span class="rc-score">'+r.score+'<i>/100 · '+word+'</i></span></div>'
+      + '<div class="rc-mini"><div class="rc-fl" style="width:'+r.score+'%"></div></div>'
+      + '<div class="rc-row"><span class="rc-tag">Right now you can</span><p>'+r.cap+'</p></div>'
+      + '<div class="rc-row"><span class="rc-tag warn">The limit to respect</span><p>'+r.lim+'</p></div>'
+      + '<div class="rc-row"><span class="rc-tag act">The adaptation</span><p>'+r.act+'</p></div>'
+      + ((r.band!=="high" && STAGE_HINT[k]) ? '<div class="rc-stage">'+STAGE_HINT[k]+'</div>' : '')
+      + '</div>';
+  }).join("");
+}
+function renderGate(dims,t){
+  $("gate").innerHTML = gateVerdicts(dims,t).map(function(a){
+    const word = a.level==="go" ? "Go" : a.level==="caution" ? "Caution" : "Hold";
+    return '<div class="gate-row '+a.level+'"><span class="verdict">'+word+'</span>'
+      + '<span class="g-label">'+a.label+'</span><span class="g-reason">'+a.reason+'</span></div>';
+  }).join("");
+}
+
+/* cross-session memory — works in a saved file; silently no-ops where storage is blocked */
+const STORE="pm_stage3_state";
+function save(){
+  try{ localStorage.setItem(STORE, JSON.stringify({
+    A:A, arousal:arousal, valence:valence, certainty:certainty, emotions:emotions,
+    timeFlex:timeFlex, task:task, consequence:consequence, canWait:canWait,
+    identityVal:identityVal, projCertainty:projCertainty, projEvidence:projEvidence,
+    envCue:envCue, envRoom:envRoom, envEasy:envEasy, stateSplit:stateSplit,
+    notes: $("notes") ? $("notes").value : "", history:history, mode:mode
+  })); }catch(e){}
+}
+function load(){
+  try{
+    const s=JSON.parse(localStorage.getItem(STORE)); if(!s) return;
+    if(s.A) A=Object.assign({}, defaults, s.A);
+    if(typeof s.arousal==="number") arousal=s.arousal;
+    if(typeof s.valence==="number") valence=s.valence;
+    if(typeof s.certainty==="number") certainty=s.certainty;
+    if(Array.isArray(s.history)) history=s.history;
+    if(s.mode==="quick"||s.mode==="full") mode=s.mode;
+    if(Array.isArray(s.emotions)) emotions=s.emotions;
+    if(typeof s.timeFlex==="number") timeFlex=s.timeFlex;
+    if(typeof s.task==="string") task=s.task;
+    if(typeof s.consequence==="string") consequence=s.consequence;
+    if(typeof s.canWait==="string") canWait=s.canWait;
+    if(typeof s.identityVal==="number") identityVal=s.identityVal;
+    if(typeof s.projCertainty==="number") projCertainty=s.projCertainty;
+    if(typeof s.projEvidence==="number") projEvidence=s.projEvidence;
+    if(typeof s.envCue==="number") envCue=s.envCue;
+    if(typeof s.envRoom==="number") envRoom=s.envRoom;
+    if(typeof s.envEasy==="number") envEasy=s.envEasy;
+    if(s.stateSplit && typeof s.stateSplit==="object") stateSplit=Object.assign(stateSplit, s.stateSplit);
+    window.__savedNotes = s.notes || "";
+  }catch(e){}
+}
+
+function renderTaskReadiness(dims,t){
+  if(!$("readyPct")) return;
+  const r=taskReadiness(task,dims,t);
+  const v=taskVerdict(r,consequence);
+  const tObj=(TASKS.filter(function(x){return x.id===task;})[0]||TASKS[0]);
+  const color = v.level==="go"?"var(--sage)":v.level==="caution"?"var(--amber)":"var(--red)";
+  $("readyPct").textContent=r; $("readyPct").style.color=color;
+  $("readyFor").innerHTML = task==="general" ? "ready, in general" : "ready to: "+tObj.label;
+  const fl=$("readyFl"); fl.style.width=r+"%"; fl.style.background=color;
+  $("readyTh").style.left=v.threshold+"%";
+  const vc=$("readyVerdict"); vc.className="ready-verdict "+v.level;
+  vc.textContent = v.level==="go"?"Go":v.level==="caution"?"Caution":"Hold";
+  $("readyLine").innerHTML=v.line;
+  const rc=readingConfidence(dims,t);
+  $("confVal").textContent=rc;
+  $("confVal").style.color = rc>=70?"var(--sage)":rc>=45?"var(--amber)":"var(--red)";
+  $("confLine").innerHTML = rc>=70 ? "These answers are probably a fair reflection of your state."
+    : rc>=45 ? "Your state may be skewing how you answer — treat this reading as useful, not final."
+    : "A moment to recheck after a shift, or get an outside view — the reading itself may be distorted.";
+  const tn=$("timeNote");
+  if(timeFlex<45){ tn.style.display="block"; tn.innerHTML="<b>Time distortion is high.</b> This state is bending time — treat &lsquo;permanent&rsquo;, &lsquo;always&rsquo;, &lsquo;never&rsquo;, &lsquo;now&rsquo;, &lsquo;doomed&rsquo; and &lsquo;guaranteed&rsquo; as unreliable words right now."; }
+  else tn.style.display="none";
+}
+function renderProjection(dims){
+  const card=$("projCard"); if(!card) return;
+  if(!relationalActive()){ card.style.display="none"; return; }
+  card.style.display="block";
+  const pr=projectionRisk(dims), out=$("projReadout");
+  if(pr>=65){ out.className="mini-readout warn"; out.innerHTML="<b>High projection risk.</b> You feel sure what they meant, but the certainty is running ahead of the evidence — you may be reacting to a version of them your state has built. Before acting, write what they actually did, and one other thing it could mean."; }
+  else if(pr>=45){ out.className="mini-readout"; out.innerHTML="Some projection risk. Separate what you actually saw or heard from what you are imagining about their intent."; }
+  else { out.className="mini-readout ok"; out.innerHTML="Low projection risk — your read seems grounded in evidence, not simulation. Still worth checking one alternative."; }
+}
+function renderWorksheet(){
+  const host=$("idReadout"); if(!host) return;
+  const cap=identityCapture();
+  const hits=fusionHits((stateSplit.addedMeaning||"")+" "+(stateSplit.exaggeratedStory||""));
+  if(cap>=60){ host.className="id-readout captured";
+    host.innerHTML='<div class="idt">Identity capture is high</div><p>One event or feeling is trying to become your whole self. Keep it local: this is one state, one moment, one event — not who you are. Say &lsquo;I feel&rsquo; or &lsquo;this happened&rsquo;, never &lsquo;I am&rsquo;.</p>'+(hits.length?'<div class="hits">Absolutist words spotted: '+hits.join(", ")+'</div>':''); }
+  else if(cap>=35){ host.className="id-readout"; host.innerHTML='<div class="idt">Some identity pull</div><p>A little of this is reaching for an &lsquo;I am&rsquo; verdict. Keep describing what happened and what you feel, not what you supposedly are.</p>'; }
+  else { host.className="id-readout"; host.innerHTML='<div class="idt">Identity separation is holding</div><p>You are keeping this as a state and an event, not a verdict on your whole self. That is exactly the move.</p>'; }
+}
+function renderEnvironment(dims){
+  const host=$("envReadout"); if(!host) return;
+  const env=environmentSupport();
+  if(env<40){ host.className="mini-readout warn"; host.innerHTML="<b>Your environment is carrying the wrong action.</b> Don&rsquo;t fight an urge in the same room as the trigger. Move the cue out of sight, move the phone, or put the good option within reach first — then decide. In low states, environment beats willpower."; }
+  else if(env<65){ host.className="mini-readout"; host.innerHTML="Environment is mixed. One quick change — cue out of sight, or the good action made easier in thirty seconds — would tip the odds."; }
+  else { host.className="mini-readout ok"; host.innerHTML="Environment is supporting the next good action. Let the setup carry you rather than leaning on willpower."; }
+}
+function renderPatterns(){
+  const host=$("patterns"); if(!host) return;
+  const pats=detectRecurringPatterns(history);
+  if(!pats.length){ host.innerHTML=""; return; }
+  host.innerHTML='<div style="font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);margin-top:4px">Recurring patterns across your snapshots</div>'
+    + pats.map(function(p){ return '<div class="pattern"><div class="pn">'+p.pn+'</div><p>'+p.text+'</p><div class="rule">'+p.rule+'</div></div>'; }).join("");
+}
+function renderBaseline(t){
+  const host=$("baseline"); if(!host) return;
+  const b=baselineDeviation(history,t);
+  if(!b){ host.innerHTML=""; return; }
+  const word = b.z>1.2?"much higher than usual": b.z>0.5?"higher than usual": b.z<-1.2?"much lower than usual": b.z<-0.5?"lower than usual":"about normal for you";
+  const dir = b.diff>=0?("+"+b.diff):(""+b.diff);
+  host.innerHTML='<b>Compared with your usual self:</b> today&rsquo;s trust is '+word+' ('+dir+' vs your average of '+b.mean+'). '+(b.z<-0.5?"Take extra care with anything that feels urgent or final.":b.z>0.5?"A good window — use it to act, and to set rules for harder days.":"A typical day for you.");
+}
+
+function update(){
+  const dims=dimScores();
+  const t=trustCoefficient(dims);
+  const band=bandFor(t);
+
+  $("trust").textContent=t;
+  $("band").textContent=band.name;
+  $("bandNote").textContent=band.note;
+  $("multiply").innerHTML="Treat your strongest current conclusion as about <b>"+t+"%</b> reliable. Multiply your certainty by the dial before you act on it.";
+
+  $("needle").style.left=arousal+"%";
+  let z, zc;
+  if(arousal<28){ z="— under-activated · foggy —"; zc="var(--red)"; }
+  else if(arousal>72){ z="— over-activated · flooded —"; zc="var(--red)"; }
+  else if(arousal>=44 && arousal<=60){ z="— window · settled-alert —"; zc="var(--sage)"; }
+  else { z="— edge of the window —"; zc="var(--amber)"; }
+  $("gaugeZone").textContent=z; $("gaugeZone").style.color=zc;
+
+  drawDial(t); drawCircumplex(); drawRadar(dims); renderBars(dims);
+
+  const b=biasRead(), cfg=BIAS[b.q];
+  $("biasTitle").textContent=cfg.title;
+  $("biasLead").innerHTML=cfg.lead;
+  const lvl = b.q==="center" ? "neutral field" : b.intensity>0.66?"strong tilt":b.intensity>0.33?"moderate tilt":"mild tilt";
+  $("biasIntensity").textContent="· "+lvl;
+  $("ssSignal").innerHTML=cfg.signal;
+  $("ssStory").innerHTML=cfg.story;
+  $("ssPhilo").innerHTML=cfg.philo;
+
+  const c=certaintyRead(t);
+  $("trapBox").className="plate trap reveal "+c.cls;
+  $("trapTitle").textContent=c.title;
+  $("trapBody").innerHTML=c.body;
+
+  renderReadingCards(dims);
+  renderGate(dims,t);
+  const ar=archetype(dims);
+  $("archetype").innerHTML = '<span class="arch-name">'+ar.name+'</span><span class="arch-line">'+ar.line+'</span>';
+  renderWhispers();
+  renderPhilosophy();
+  weatherClimate();
+  dimsCache=dims;
+  renderTaskReadiness(dims,t);
+  renderProjection(dims);
+  renderWorksheet();
+  renderEnvironment(dims);
+  renderPatterns();
+  renderBaseline(t);
+
+  $("chainSub").innerHTML = (dims.impulse<58 || dims.defusion<58 || arousal>70)
+    ? "Your state is in a corner where urges and thoughts will try to pass themselves off as orders. Walk the four links deliberately — you can step out at any one of them."
+    : "When an urge or a thought feels like an order, slow the four links that turn a body-signal into an action. You can step out at any link.";
+
+  const calibItems = calibration(dims,t);
+  const mb = memoryBiasNote(t);
+  if(mb) calibItems.push(mb);
+  $("calib").innerHTML = calibItems.map(function(x){ return "<li>"+x+"</li>"; }).join("");
+  save();
+}
+
+/* ---------------- SNAPSHOT · EXPORT (in-memory, no localStorage) ---------------- */
+function snapshotData(){
+  const dims=dimScores(), t=trustCoefficient(dims), band=bandFor(t), b=biasRead();
+  const readings={}; DIM_KEYS.forEach(function(k){ readings[DIMS[k].label]=dims[k]; });
+  return {
+    instrument:"Project Meaning · Stage Three · State Instrument",
+    timestamp:new Date().toISOString(),
+    trustCoefficient:t,
+    band:band.name,
+    level:{ arousal:arousal, valence:valence, certainty:certainty,
+      zone: arousal<28?"under-activated/foggy":arousal>72?"over-activated/flooded":"window",
+      meaningField: BIAS[b.q].title },
+    readings:readings,
+    feelings: emotions.slice(),
+    philosophyTilt: (function(){ const d=detectPhil(); return { shadow: d.shadow?d.shadow.label:null, constructive: d.light?d.light.label:null }; })(),
+    task: task,
+    consequenceWeight: consequence,
+    canWait: canWait,
+    taskReadiness: taskReadiness(task,dims,t),
+    readingConfidence: readingConfidence(dims,t),
+    identitySeparation: 100-identityCapture(),
+    timeFlexibility: timeFlex,
+    environmentSupport: environmentSupport(),
+    projectionRisk: projectionRisk(dims),
+    statePlasticity: shiftSession.plasticity,
+    facts: { rawEvent:stateSplit.rawEvent, addedMeaning:stateSplit.addedMeaning, usefulSignal:stateSplit.usefulSignal, exaggeratedStory:stateSplit.exaggeratedStory },
+    recurringPatterns: detectRecurringPatterns(history).map(function(p){ return p.pn; }),
+    baselineDeviation: (function(){ const bd=baselineDeviation(history,t); return bd?{ diffFromUsual:bd.diff, average:bd.mean }:null; })(),
+    note: $("notes").value.trim(),
+    reminder:"Self-report · this moment only · not a medical or psychiatric assessment."
+  };
+}
+function renderLog(){
+  if(!history.length){ $("log").innerHTML=""; return; }
+  $("log").innerHTML = history.map(function(h){
+    const d=new Date(h.timestamp);
+    const time=d.toLocaleString([], {month:"short",day:"numeric",hour:"2-digit",minute:"2-digit"});
+    let noteBit="";
+    if(h.note){ const short=h.note.length>60?h.note.slice(0,60)+"…":h.note; noteBit=" · &ldquo;"+short+"&rdquo;"; }
+    return '<div class="row"><div class="tc">'+h.trustCoefficient+'</div>'
+      + '<div class="meta"><b>'+h.band+'</b> · '+h.level.meaningField+'<br>arousal '+h.level.arousal+' · tone '+h.level.valence+' · sure '+h.level.certainty+noteBit+'</div>'
+      + '<div class="when">'+time+'</div></div>';
+  }).join("");
+}
+
+$("snap").addEventListener("click", function(){
+  const snap=snapshotData();
+  const prev=history[0];
+  history.unshift(snap); history=history.slice(0,12); renderLog(); save();
+  let msg="Snapshot saved below.";
+  if(prev){ const d=snap.trustCoefficient-prev.trustCoefficient; const sign=d>0?"+":""; msg="Snapshot saved. Trust moved <b>"+sign+d+"</b> since your last reading."; }
+  $("delta").innerHTML = msg+" Now do <b>one</b> adaptation above, wait a few minutes, and snapshot again to watch the dial move. That loop — read, adapt, re-read — is the whole practice.";
+});
+$("export").addEventListener("click", function(){
+  const txt=JSON.stringify(snapshotData(),null,2);
+  const o=$("out"); o.style.display="block"; o.textContent=txt;
+  try{
+    const blob=new Blob([txt],{type:"application/json"});
+    const url=URL.createObjectURL(blob), a=document.createElement("a");
+    a.href=url; a.download="state-reading-"+new Date().toISOString().slice(0,16).replace(/[:T]/g,"-")+".json";
+    document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(url); a.remove(); },120);
+  }catch(e){}
+});
+$("copy").addEventListener("click", function(){
+  const txt=JSON.stringify(snapshotData(),null,2);
+  const o=$("out"); o.style.display="block"; o.textContent=txt;
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(function(){ o.textContent=txt+"\n\n— copied to clipboard —"; }).catch(function(){});
+  } else {
+    const r=document.createRange(); r.selectNode(o); const s=getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+});
+$("reset").addEventListener("click", function(){
+  A=Object.assign({}, defaults); arousal=50; valence=50; certainty=50; emotions=[];
+  timeFlex=50; task="general"; consequence="medium"; canWait="unsure";
+  identityVal=30; projCertainty=50; projEvidence=50; envCue=50; envRoom=50; envEasy=50;
+  stateSplit={ rawEvent:"", addedMeaning:"", usefulSignal:"", exaggeratedStory:"" };
+  shiftSession={ before:null, after:null, delta:null, plasticity:null };
+  if($("notes")) $("notes").value="";
+  ["wsRaw","wsAdd","wsSig","wsExa"].forEach(function(id){ if($(id)) $(id).value=""; });
+  if($("stestRes")) $("stestRes").innerHTML="";
+  if($("baseline")) $("baseline").innerHTML=""; if($("patterns")) $("patterns").innerHTML="";
+  $("out").style.display="none"; $("delta").innerHTML=""; if($("climate")) $("climate").innerHTML=""; history=[]; renderLog();
+  try{ localStorage.removeItem(STORE); }catch(e){}
+  buildScenarios(); initContext(); update();
+});
+
+let rt;
+window.addEventListener("resize", function(){ clearTimeout(rt); rt=setTimeout(function(){
+  const d=dimScores(); drawDial(trustCoefficient(d)); drawCircumplex(); drawRadar(d);
+},120); });
+
+function setRange(id,val){ const el=$(id); if(el){ el.value=val; const o=$("v_"+id); if(o) o.textContent=val; } }
+function syncVal(id,setter){
+  const el=$(id); if(!el) return;
+  el.addEventListener("input", function(e){ setter(+e.target.value); const o=$("v_"+id); if(o) o.textContent=e.target.value; update(); });
+}
+function syncText(id,key){
+  const el=$(id); if(!el) return;
+  el.addEventListener("input", function(e){ stateSplit[key]=e.target.value; update(); });
+}
+function startShiftTest(){
+  shiftSession.before=snapshotData();
+  $("stestStart").textContent="Restart test";
+  $("stestAfter").style.display="inline-block";
+  $("stestRes").innerHTML='<div class="plast"><b>Before saved.</b> Now run the breathing shift above, then update your sliders to how you feel now, and press &ldquo;Take After reading&rdquo;.</div>';
+  startShift();
+}
+function takeAfter(){
+  if(!shiftSession.before) return;
+  shiftSession.after=snapshotData();
+  const deltas=compareReadings(shiftSession.before, shiftSession.after);
+  const trustD=shiftSession.after.trustCoefficient - shiftSession.before.trustCoefficient;
+  shiftSession.plasticity=plasticityScore(shiftSession.before, shiftSession.after);
+  const sign=function(d){ return d>0?("+"+d):(""+d); };
+  let rows='<div class="stest-row"><span>Trust Coefficient</span><span class="d '+(trustD>0?"up":trustD<0?"down":"flat")+'">'+sign(trustD)+'</span></div>';
+  deltas.forEach(function(x){ if(x.delta!==0) rows+='<div class="stest-row"><span>'+x.label+'</span><span class="d '+(x.delta>0?"up":"down")+'">'+sign(x.delta)+'</span></div>'; });
+  const stuck=deltas.filter(function(x){ return x.delta===0; }).map(function(x){ return x.label; });
+  const p=shiftSession.plasticity;
+  const plastLine = p>=66 ? "<b>High changeability.</b> This state moves quickly when you change the body. Use short resets before important choices."
+    : p>=45 ? "<b>Moderate changeability.</b> It shifts somewhat — a longer or repeated reset may move it further."
+    : "<b>Low changeability.</b> This state is sticky. Don&rsquo;t force insight — use sleep, food, a change of place, or another person. A stuck state is information too.";
+  $("stestRes").innerHTML='<div class="stest-res">'+rows+'</div>'
+    + (stuck.length?'<div class="plast">Did not move: '+stuck.join(", ")+'. What will not shift with breathing may need writing, sleep, or an outside perspective.</div>':'')
+    + '<div class="plast">'+plastLine+'</div>';
+  $("stestStart").textContent="Run another test";
+  $("stestAfter").style.display="none";
+  save();
+}
+function initContext(){
+  syncVal("projCertainty", function(v){ projCertainty=v; });
+  syncVal("projEvidence", function(v){ projEvidence=v; });
+  syncVal("envCue", function(v){ envCue=v; });
+  syncVal("envRoom", function(v){ envRoom=v; });
+  syncVal("envEasy", function(v){ envEasy=v; });
+  syncVal("identitySl", function(v){ identityVal=v; });
+  syncText("wsRaw","rawEvent"); syncText("wsAdd","addedMeaning"); syncText("wsSig","usefulSignal"); syncText("wsExa","exaggeratedStory");
+  setRange("projCertainty",projCertainty); setRange("projEvidence",projEvidence);
+  setRange("envCue",envCue); setRange("envRoom",envRoom); setRange("envEasy",envEasy); setRange("identitySl",identityVal);
+  if($("wsRaw")) $("wsRaw").value=stateSplit.rawEvent||"";
+  if($("wsAdd")) $("wsAdd").value=stateSplit.addedMeaning||"";
+  if($("wsSig")) $("wsSig").value=stateSplit.usefulSignal||"";
+  if($("wsExa")) $("wsExa").value=stateSplit.exaggeratedStory||"";
+  var ss=$("stestStart"); if(ss) ss.addEventListener("click", startShiftTest);
+  var sa=$("stestAfter"); if(sa) sa.addEventListener("click", takeAfter);
+}
+
+/* ---------------- BOOT ---------------- */
+load();
+initModeBar();
+initShift();
+initContext();
+Array.prototype.forEach.call(document.querySelectorAll(".mb-tab"), function(b){ b.classList.toggle("active", b.dataset.mode===mode); });
+buildScenarios();
+if(window.__savedNotes && $("notes")) $("notes").value = window.__savedNotes;
+renderLog();
+update();
+</script>
+</body>
+</html>
