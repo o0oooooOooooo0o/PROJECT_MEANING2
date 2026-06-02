@@ -2325,9 +2325,18 @@ function update(){
 
   const b=biasRead(), cfg=BIAS[b.q];
   $("biasTitle").textContent=cfg.title;
-  $("biasLead").innerHTML=cfg.lead;
-  const lvl = b.q==="center" ? "neutral field" : b.intensity>0.66?"strong tilt":b.intensity>0.33?"moderate tilt":"mild tilt";
-  $("biasIntensity").textContent="· "+lvl;
+  /* the field is driven ONLY by arousal + tone (the two state sliders below).
+     If those haven't been moved off their defaults, say so plainly instead of
+     asserting a finding — otherwise this card looks "stuck" while other meters move. */
+  const fieldUntouched = (arousal===50 && valence===50);
+  if(b.q==="center" && fieldUntouched){
+    $("biasLead").innerHTML='This card reads the emotional <em>field</em> you&rsquo;re in — and it&rsquo;s driven by just two sliders further down: <b>body activation</b> (how charged or shut-down you are) and <b>tone</b> (pleasant vs unpleasant). They&rsquo;re both still at the midpoint, so nothing is tilting your meaning yet. Set those two to how you actually feel and this will name the field — threat, collapse, charged-up, settled, or genuinely neutral. <em>(It doesn&rsquo;t move with the readings or altitude sliders — only with those two.)</em>';
+    $("biasIntensity").textContent="· awaiting arousal & tone";
+  } else {
+    $("biasLead").innerHTML=cfg.lead;
+    const lvl = b.q==="center" ? "neutral field" : b.intensity>0.66?"strong tilt":b.intensity>0.33?"moderate tilt":"mild tilt";
+    $("biasIntensity").textContent="· "+lvl;
+  }
   $("ssSignal").innerHTML=cfg.signal;
   $("ssStory").innerHTML=cfg.story;
   $("ssPhilo").innerHTML=cfg.philo;
