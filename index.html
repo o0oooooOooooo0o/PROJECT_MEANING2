@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Project Meaning — The State Instrument</title>
+<title>Project Meaning — Your Level of Consciousness</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=JetBrains+Mono:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   :root{
@@ -13,6 +13,7 @@
     --red:#a8302b; --red-2:#c0413a; --red-soft:rgba(168,48,43,.09);
     --sage:#5d7a55; --sage-soft:rgba(93,122,85,.12);
     --amber:#9b6a1d; --amber-soft:rgba(155,106,29,.12); --gold:#8a7320;
+    --violet:#5b4a78; --violet-soft:rgba(91,74,120,.12); --teal:#2f6f6a; --teal-soft:rgba(47,111,106,.12);
     --shadow:0 24px 60px rgba(40,33,20,.14);
     --serif:'Cormorant Garamond',Georgia,serif;
     --display:'Cinzel',serif;
@@ -359,6 +360,131 @@
   .pattern .pn{font-family:var(--display);font-weight:600;font-size:1.16rem;color:var(--ink)}
   .pattern p{font-size:1.0rem;color:var(--ink-soft);line-height:1.5;margin-top:4px}
   .pattern .rule{font-family:var(--mono);font-size:9px;letter-spacing:.05em;text-transform:uppercase;color:var(--red);margin-top:8px}
+  /* ============ THE LEVEL CENTER ============ */
+  .levelwrap{padding:46px 48px 40px;overflow:hidden;margin-top:30px;border-top:3px double var(--rule)}
+  .lv-kicker{font-family:var(--mono);font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:var(--red);margin-bottom:14px}
+  .levelwrap h1{margin:0 0 4px;max-width:20ch}
+  .lv-lede{font-size:1.16rem;color:var(--ink-soft);max-width:78ch;line-height:1.62;margin-top:8px}
+  .lv-lede b{color:var(--ink);font-weight:600}
+  .lv-twin{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:24px;border:1px solid var(--rule-soft)}
+  .lv-twin>div{padding:22px 26px}
+  .lv-twin>div:first-child{border-right:1px solid var(--rule-soft)}
+  .lv-twin .mini{font-family:var(--mono);font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:7px}
+  .lv-twin h3{font-family:var(--display);font-weight:600;font-size:1.26rem;margin-bottom:7px;letter-spacing:-.01em}
+  .lv-twin p{font-size:1.04rem;color:var(--ink-soft);line-height:1.55}
+  .lv-twin em{color:var(--ink);font-style:italic}
+
+  .level-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:18px;margin-top:18px}
+  @media(max-width:900px){.level-grid{grid-template-columns:1fr}.lv-twin{grid-template-columns:1fr}.lv-twin>div:first-child{border-right:0;border-bottom:1px solid var(--rule-soft)}}
+
+  /* altitude readout */
+  .alt-card{padding:30px 32px}
+  .alt-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px}
+  .alt-head h2{font-family:var(--display);font-weight:600;font-size:1.5rem}
+  .alt-head .lbl{font-family:var(--mono);font-size:9px;letter-spacing:.24em;text-transform:uppercase;color:var(--ink-faint)}
+  .alt-meter{position:relative;height:340px;margin:8px 0 4px}
+  .alt-meter canvas{width:100%;height:100%;display:block}
+  .alt-band-name{font-family:var(--display);font-weight:700;font-size:1.7rem;letter-spacing:-.01em;margin-top:6px;line-height:1.05}
+  .alt-status{display:inline-block;font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;padding:3px 9px;border-radius:2px;margin:8px 0;vertical-align:middle}
+  .alt-status.solid{background:var(--sage-soft);color:var(--sage);border:1px solid rgba(93,122,85,.4)}
+  .alt-status.thin{background:var(--amber-soft);color:var(--amber);border:1px solid rgba(155,106,29,.4)}
+  .alt-status.frontier{background:var(--violet-soft);color:var(--violet);border:1px solid rgba(91,74,120,.45)}
+  .alt-desc{font-size:1.06rem;color:var(--ink-soft);line-height:1.55;margin-top:2px}
+  .alt-care{font-style:italic;color:var(--ink);font-size:1.05rem;margin-top:10px;padding-left:12px;border-left:2px solid var(--rule)}
+  .reach-box{margin-top:18px;padding:16px 18px;border:1px solid var(--rule);background:rgba(255,255,255,.26)}
+  .reach-row{display:flex;justify-content:space-between;gap:12px;font-size:1.02rem;padding:5px 0}
+  .reach-row .k{color:var(--ink-soft)} .reach-row .v{font-family:var(--display);font-weight:700;font-variant-numeric:tabular-nums}
+  .reach-line{font-size:1.0rem;color:var(--ink-soft);line-height:1.5;margin-top:8px}
+  .reach-line b{color:var(--ink)}
+  .inflation{margin-top:14px;padding:14px 16px;border:1px solid var(--rule);border-left:3px solid var(--violet);background:var(--violet-soft);font-size:1.0rem;line-height:1.5;color:var(--ink-soft)}
+  .inflation b{color:var(--ink)}
+  .alt-caveat{margin-top:12px;font-family:var(--mono);font-size:9px;letter-spacing:.04em;line-height:1.7;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* growing-up probes */
+  .probe-card{padding:28px 30px}
+  .probe-card h2{font-family:var(--display);font-weight:600;font-size:1.5rem;margin-bottom:3px}
+  .probe-card .sub{font-style:italic;color:var(--ink-soft);font-size:1.06rem;margin-bottom:18px;max-width:80ch}
+  .probe{margin-bottom:18px}
+  .probe>label{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:9px}
+  .opts{display:flex;flex-direction:column;gap:6px}
+  .opt{font-family:var(--serif);font-size:1.04rem;text-align:left;padding:10px 14px;border:1px solid var(--rule);background:rgba(255,255,255,.3);color:var(--ink-soft);cursor:pointer;border-radius:2px;transition:all .14s;line-height:1.35}
+  .opt:hover{border-color:var(--ink);color:var(--ink)}
+  .opt.on{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+  .opt .on-tag{font-family:var(--mono);font-size:8px;letter-spacing:.1em}
+  .probe .ends{display:flex;justify-content:space-between;font-family:var(--mono);font-size:8.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:5px}
+
+  /* four-axis psychograph */
+  .axes-card{padding:30px 32px}
+  .axes-card h2{font-family:var(--display);font-weight:600;font-size:1.5rem;margin-bottom:3px}
+  .axes-card .sub{font-style:italic;color:var(--ink-soft);font-size:1.06rem;margin-bottom:20px;max-width:84ch}
+  .axis{margin-bottom:20px}
+  .axis-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
+  .axis-name{font-family:var(--display);font-weight:600;font-size:1.16rem;color:var(--ink)}
+  .axis-name span{font-family:var(--serif);font-style:italic;font-weight:400;font-size:.96rem;color:var(--ink-faint)}
+  .axis-val{font-family:var(--mono);font-size:1.05rem;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+  .axis-bar{height:9px;background:rgba(22,19,13,.1);border-radius:99px;overflow:hidden}
+  .axis-fl{height:100%;border-radius:99px;transition:width .35s ease,background .35s ease}
+  .axis-edge{margin-top:16px;padding:15px 17px;border:1px solid var(--rule);border-left:3px solid var(--sage);background:var(--sage-soft);font-size:1.02rem;line-height:1.55;color:var(--ink-soft)}
+  .axis-edge b{color:var(--ink)}
+  .axis-note{font-family:var(--mono);font-size:9px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-faint);margin-top:12px;line-height:1.6}
+
+  /* the ladder map */
+  .ladder-card{padding:30px 32px;margin-top:18px}
+  .ladder-card h2{font-family:var(--display);font-weight:600;font-size:1.6rem;margin-bottom:3px}
+  .ladder-card .sub{font-style:italic;color:var(--ink-soft);font-size:1.08rem;margin-bottom:20px;max-width:90ch}
+  .rung{display:grid;grid-template-columns:84px 1fr;gap:0;border:1px solid var(--rule-soft);border-bottom:0;transition:background .2s}
+  .rung:last-of-type{border-bottom:1px solid var(--rule-soft)}
+  .rung.here{background:rgba(255,255,255,.4)}
+  .rung-swatch{position:relative;border-right:1px solid var(--rule-soft);display:flex;align-items:center;justify-content:center}
+  .rung-swatch .dot{width:18px;height:18px;border-radius:50%}
+  .rung-here-tag{position:absolute;bottom:5px;left:0;right:0;text-align:center;font-family:var(--mono);font-size:7px;letter-spacing:.1em;text-transform:uppercase;color:var(--red)}
+  .rung-body{padding:14px 18px}
+  .rung-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+  .rung-name{font-family:var(--display);font-weight:600;font-size:1.12rem;color:var(--ink)}
+  .rung-name b{font-weight:700}
+  .rung-aka{font-family:var(--mono);font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint)}
+  .rung-status{font-family:var(--mono);font-size:7.5px;letter-spacing:.12em;text-transform:uppercase;padding:2px 7px;border-radius:2px}
+  .rung-status.solid{background:var(--sage-soft);color:var(--sage)} .rung-status.thin{background:var(--amber-soft);color:var(--amber)} .rung-status.frontier{background:var(--violet-soft);color:var(--violet)}
+  .rung-desc{font-size:1.0rem;color:var(--ink-soft);line-height:1.5;margin-top:5px}
+  .rung-care{font-style:italic;color:var(--ink-faint);font-size:.96rem;margin-top:4px}
+
+  /* the lattice bridge */
+  .lattice-card{padding:30px 32px;margin-top:18px}
+  .lattice-card h2{font-family:var(--display);font-weight:600;font-size:1.6rem;margin-bottom:3px}
+  .lattice-card .sub{font-style:italic;color:var(--ink-soft);font-size:1.08rem;margin-bottom:18px;max-width:92ch}
+  .lattice-wrap{position:relative;width:100%;max-width:640px;margin:0 auto}
+  .lattice-wrap canvas{width:100%;height:auto;display:block}
+  .lattice-read{margin-top:16px;padding:16px 18px;border:1px solid var(--rule);border-left:3px solid var(--amber);background:var(--amber-soft);font-size:1.04rem;line-height:1.55;color:var(--ink-soft)}
+  .lattice-read b{color:var(--ink)}
+
+  /* level adaptations */
+  .climb-card{padding:30px 32px;margin-top:18px}
+  .climb-card h2{font-family:var(--display);font-weight:600;font-size:1.6rem;margin-bottom:3px}
+  .climb-card .sub{font-style:italic;color:var(--ink-soft);font-size:1.08rem;margin-bottom:20px;max-width:92ch}
+  .climb-focus{padding:18px 20px;border:1px solid var(--rule);border-left:3px solid var(--red);background:var(--red-soft);margin-bottom:20px}
+  .climb-focus .ft{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
+  .climb-focus h4{font-family:var(--display);font-weight:600;font-size:1.2rem;margin-bottom:6px}
+  .climb-focus p{font-size:1.04rem;color:var(--ink-soft);line-height:1.55}
+  .climb-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:760px){.climb-grid{grid-template-columns:1fr}}
+  .climb{border:1px solid var(--rule);padding:16px 18px;background:rgba(255,255,255,.26)}
+  .climb .ax{font-family:var(--mono);font-size:8.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:6px}
+  .climb h4{font-family:var(--display);font-weight:600;font-size:1.1rem;margin-bottom:5px;color:var(--ink)}
+  .climb p{font-size:1.0rem;color:var(--ink-soft);line-height:1.5}
+  .climb-safety{margin-top:18px;padding:14px 16px;border:1px dashed var(--rule);font-size:.98rem;color:var(--ink-soft);line-height:1.5}
+  .climb-safety b{color:var(--ink)}
+  .alt-reading{margin-top:14px;border-top:1px solid var(--rule-soft);padding-top:14px;display:grid;gap:9px}
+  .ar-row p{display:inline;font-size:1.02rem;color:var(--ink-soft);line-height:1.5}
+  .ar-tag{display:inline-block;font-family:var(--mono);font-size:8px;letter-spacing:.16em;text-transform:uppercase;padding:2px 7px;border-radius:2px;margin-right:8px;vertical-align:baseline}
+  .ar-tag.gift{color:var(--sage);border:1px solid rgba(93,122,85,.45)}
+  .ar-tag.blind{color:var(--amber);border:1px solid rgba(155,106,29,.45)}
+  .ar-tag.trap{color:var(--red);border:1px solid rgba(168,48,43,.45)}
+  .ar-tag.adapt{color:var(--ink);border:1px solid var(--rule)}
+  .ar-row.adapt-row{margin-top:3px;padding:11px 13px;background:rgba(255,255,255,.32);border-left:2px solid var(--ink)}
+  .alt-neighbours{margin-top:14px;padding:13px 16px;border:1px dashed var(--rule);font-size:1.0rem;color:var(--ink-soft);line-height:1.55;background:rgba(255,255,255,.2)}
+  .alt-neighbours b{color:var(--ink)}
+  .alt-range{margin-top:12px;font-size:1.0rem;color:var(--ink-soft);line-height:1.5}
+  .alt-range b{color:var(--ink)}
 </style>
 </head>
 <body>
@@ -367,32 +493,177 @@
   <header class="plate masthead reveal">
     <div class="crest-row">
       <div class="crest">Project · Meaning</div>
-      <div class="stage-tag">Stage <b>Three</b><br>State Recognition<br>Meaning Differentiation</div>
+      <div class="stage-tag">The Vertical<br>Consciousness <b>Level</b><br>& the state that reaches it</div>
     </div>
-    <h1>How much should you trust the meaning you're making right now?</h1>
-    <div class="subtitle">Reading the eyes before the eyes.</div>
-    <p class="lede">Before you act, react, decide, send the message, chase the urge, quit the thing, or turn a passing mood into a verdict about yourself — this instrument estimates the <b>condition of the machine that is currently producing your sense of what's true.</b> It does not tell you what to think. It tells you how much weight your thinking can safely carry today.</p>
+    <h1>What is your level of consciousness?</h1>
+    <div class="subtitle">Not how you feel today — how high you&rsquo;re standing, and how much of reality you can hold at once.</div>
+    <p class="lede">This is the centre of gravity of everything here. Picture altitude: low down you see only your own feet; a little higher, your street; higher still, the whole city; higher again, the curve of the Earth. <b>Your level of consciousness is how wide and deep a world you can take in and hold</b> — how far your genuine care reaches, how many points of view you can keep in mind at once, how far ahead you think, and whether you can look <em>at</em> your own reactions or are simply run by them. Your mood, your urges, how much to trust the meaning you&rsquo;re making <em>today</em> — all of it orbits this one question.</p>
 
     <div class="doctrine">
+      <p>&ldquo;You do not see the world as it is; you see it from where you stand. Raise the place you are seeing from and the meanings available to you change — fear becomes information, enemies become people, the unbearable becomes one small part of a far larger view. Most suffering is not a flaw inside the picture. It is the smallness of the frame.&rdquo;</p>
+      <div class="src">— Project Meaning, founding text</div>
+    </div>
+
+    <div class="primer">
+      <div>
+        <div class="mini">The centre · how you rise</div>
+        <h3>The four climbs</h3>
+        <p>&lsquo;Higher&rsquo; isn&rsquo;t one thing. <em>Growing up</em> — how wide and deep you see — is the spine, and it sets the altitude. Around it: <em>waking up</em> (stepping outside the everyday self), <em>cleaning up</em> (owning your shadow), and <em>showing up</em> (actually living it). They move on their own clocks — you can grow wise and stay full of shadow, or awaken deeply and still see in a narrow way — so this measures each on its own.</p>
+      </div>
+      <div>
+        <div class="mini">In orbit · why your state matters</div>
+        <h3>Altitude is the ceiling; state is the floor</h3>
+        <p>Your altitude grows slowly, over years. But how much of it you can <em>actually reach today</em> rises and falls with your state. Flooded or foggy, no one gets to their own height — a rough state drops anyone down the ladder. So the original instrument lives on below — your arousal, the eight readings, the Trust Coefficient — now in service of the level above: read your state, steady it, and climb back up to yourself.</p>
+      </div>
+    </div>
+
+    <div class="limits"><b>What this is not.</b> Not a medical, neurological, or psychiatric test — and not a real developmental measure either (those take trained scorers and hours of interview). No one can see clearly above their own altitude, so a self-rating like this gently flatters almost everyone and under-reads the genuinely high: treat every number here as a <b>mirror and a direction, never a grade or a diagnosis</b>. It is built for ordinary waking life, not for coma, brain injury, psychosis, mania, seizure risk, intoxication, or crisis. If your safety or someone else&rsquo;s is at risk, set this down and reach a real person or emergency support.</div>
+  </header>
+
+  <section class="plate levelwrap reveal">
+    <div class="lv-kicker">The centre of gravity · measure it</div>
+    <h1>Reading your altitude</h1>
+    <div class="subtitle">Five of the least foolable signs of how high you&rsquo;re seeing from.</div>
+    <p class="lv-lede">These don&rsquo;t ask what you believe — they ask <b>how</b> you make sense of things: how wide your care reaches, how many clashing views you can hold as partly true at once, whether you can look <em>at</em> your reactions or only <em>from</em> inside them. Answer for how you actually are lately, not how you&rsquo;d like to be. You&rsquo;ll get an altitude band — your ceiling — and, once you&rsquo;ve read your state further down, how much of it you can actually reach today.</p>
+
+    <div class="lv-twin">
+      <div>
+        <div class="mini">Your altitude · the ceiling</div>
+        <h3>The height you can reach</h3>
+        <p>Where your clearest, widest meaning-making lands. It moves slowly, over years — this is a <em>snapshot and a direction</em>, never a grade. (A different, deeper sense of &lsquo;level&rsquo; than the arousal level on the dial further down.)</p>
+      </div>
+      <div>
+        <div class="mini">Today&rsquo;s reach · the floor</div>
+        <h3>The height you can actually use now</h3>
+        <p>Your altitude, multiplied by how clear your state is. <em>When you&rsquo;re flooded or foggy, you cannot get to your own height</em> — a rough state pulls everyone down the ladder. Steady the state, and your full altitude comes back within reach.</p>
+      </div>
+    </div>
+
+    <div class="level-grid">
+      <article class="plate probe-card reveal">
+        <h2>Five honest questions</h2>
+        <div class="sub">Answer for how you actually are lately — not how you&rsquo;d like to be. These five are the least foolable signs of altitude.</div>
+
+        <div class="probe">
+          <label>How far does your genuine care reach right now?</label>
+          <div class="opts" id="probeCare"></div>
+        </div>
+
+        <div class="probe">
+          <div class="top" style="display:flex;justify-content:space-between"><label style="margin-bottom:0">When people clash, how many of their views can you hold as partly true at once?</label><span class="val" id="v_perspectives">50</span></div>
+          <input type="range" id="perspectives" min="0" max="100" value="50" />
+          <div class="ends"><span>One right answer — usually mine</span><span>Several at once, even clashing</span></div>
+        </div>
+
+        <div class="probe">
+          <div class="top" style="display:flex;justify-content:space-between"><label style="margin-bottom:0">Can you look <em>at</em> your own reactions and beliefs — or are you usually inside them, looking out?</label><span class="val" id="v_subjectObject">50</span></div>
+          <input type="range" id="subjectObject" min="0" max="100" value="50" />
+          <div class="ends"><span>I am my reactions</span><span>I can watch them like weather</span></div>
+        </div>
+
+        <div class="probe">
+          <label>When two true things contradict each other, you tend to…</label>
+          <div class="opts" id="probeParadox"></div>
+        </div>
+
+        <div class="probe">
+          <label>When something matters, how far ahead do its consequences figure for you?</label>
+          <div class="opts" id="probeHorizon"></div>
+        </div>
+      </article>
+
+      <article class="plate alt-card reveal">
+        <div class="alt-head"><h2>Your altitude</h2><span class="lbl">a hypothesis, not a grade</span></div>
+        <div class="alt-meter"><canvas id="altMeter" width="300" height="340"></canvas></div>
+        <div class="alt-band-name" id="altBandName">Fairness &amp; many views</div>
+        <span class="alt-status solid" id="altStatus">solid</span> <span class="rung-aka" id="altAka">Green</span>
+        <div class="alt-desc" id="altDesc"></div>
+        <div class="alt-care" id="altCare"></div>
+        <div class="alt-reading" id="altReading"></div>
+        <div class="alt-neighbours" id="altNeighbours"></div>
+        <div class="alt-range" id="altRange"></div>
+
+        <div class="reach-box">
+          <div class="reach-row"><span class="k">Your altitude (ceiling)</span><span class="v" id="ceilNum">50</span></div>
+          <div class="reach-row"><span class="k">Today&rsquo;s reach (state-adjusted)</span><span class="v" id="reachNum">50</span></div>
+          <div class="reach-line" id="reachLine"></div>
+        </div>
+        <div class="inflation" id="inflation" style="display:none"></div>
+        <div class="alt-caveat">No one sees clearly above their own altitude · this tool under-reads the higher you actually are · it cannot replace the trained, hours-long interviews real developmental measures require · read it as a mirror and a direction, never a diagnosis.</div>
+      </article>
+    </div>
+
+    <article class="plate axes-card reveal">
+      <h2>The four climbs — they move on their own clocks</h2>
+      <div class="sub">&lsquo;Higher&rsquo; isn&rsquo;t one thing. You can grow wise and stay full of shadow; awaken in meditation and still make meaning in a narrow way. An honest tool keeps them separate. <b>Growing up</b> sets the altitude above; rate the other three for yourself.</div>
+
+      <div class="axis"><div class="axis-top"><span class="axis-name">Growing up <span>— how wide you see</span></span><span class="axis-val"><span id="axGrowV">50</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axGrow"></div></div></div>
+      <div class="axis"><div class="axis-top"><span class="axis-name">Waking up <span>— stepping outside the everyday self</span></span><span class="axis-val"><span id="axWakeV">30</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axWake"></div></div></div>
+      <div class="axis"><div class="axis-top"><span class="axis-name">Cleaning up <span>— owning your shadow</span></span><span class="axis-val"><span id="axCleanV">45</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axClean"></div></div></div>
+      <div class="axis"><div class="axis-top"><span class="axis-name">Showing up <span>— actually living it</span></span><span class="axis-val"><span id="axShowV">45</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axShow"></div></div></div>
+      <div class="axis-edge" id="axEdge"></div>
+
+      <div class="axis-note">Rate the other three axes — honestly, for how you&rsquo;ve been lately:</div>
+      <div class="sliders" style="margin-top:12px">
+        <div class="slider"><div class="top"><label for="wakeUnity">Moments of feeling deeply connected — part of something larger than you</label><span class="val" id="v_wakeUnity">30</span></div><input type="range" id="wakeUnity" min="0" max="100" value="30" /><div class="ends"><span>Never lately</span><span>Often</span></div></div>
+        <div class="slider"><div class="top"><label for="wakeWitness">Moments of just <em>witnessing</em> your thoughts and feelings, rather than being swept by them</label><span class="val" id="v_wakeWitness">30</span></div><input type="range" id="wakeWitness" min="0" max="100" value="30" /><div class="ends"><span>Never</span><span>Often</span></div></div>
+        <div class="slider"><div class="top"><label for="wakeQuiet">Moments when the busy &lsquo;me&rsquo; goes quiet and there&rsquo;s just clear, still awareness</label><span class="val" id="v_wakeQuiet">30</span></div><input type="range" id="wakeQuiet" min="0" max="100" value="30" /><div class="ends"><span>Never</span><span>Often</span></div></div>
+        <div class="slider"><div class="top"><label for="wakeVast">A felt sense of awe, sacredness, or vastness — life as more than its parts</label><span class="val" id="v_wakeVast">30</span></div><input type="range" id="wakeVast" min="0" max="100" value="30" /><div class="ends"><span>Never</span><span>Often</span></div></div>
+        <div class="slider" style="margin-top:14px"><div class="top"><label for="shadowOwn">When something goes wrong between you and someone, how easily can you own your part?</label><span class="val" id="v_shadowOwn">45</span></div><input type="range" id="shadowOwn" min="0" max="100" value="45" /><div class="ends"><span>It&rsquo;s usually them</span><span>I see my part clearly</span></div></div>
+        <div class="slider"><div class="top"><label for="shadowFace">Can you look at the things about yourself you&rsquo;d rather not see?</label><span class="val" id="v_shadowFace">45</span></div><input type="range" id="shadowFace" min="0" max="100" value="45" /><div class="ends"><span>I look away</span><span>I can face them</span></div></div>
+        <div class="slider"><div class="top"><label for="shadowCalm">When someone pushes your buttons, how non-reactive can you stay?</label><span class="val" id="v_shadowCalm">45</span></div><input type="range" id="shadowCalm" min="0" max="100" value="45" /><div class="ends"><span>I&rsquo;m hooked instantly</span><span>I stay steady</span></div></div>
+        <div class="slider" style="margin-top:14px"><div class="top"><label for="liveInner">Do you actually tend your inner life — not just think about it?</label><span class="val" id="v_liveInner">45</span></div><input type="range" id="liveInner" min="0" max="100" value="45" /><div class="ends"><span>Rarely</span><span>Daily</span></div></div>
+        <div class="slider"><div class="top"><label for="liveAct">Do your actions match the values you hold?</label><span class="val" id="v_liveAct">45</span></div><input type="range" id="liveAct" min="0" max="100" value="45" /><div class="ends"><span>Often a gap</span><span>They line up</span></div></div>
+        <div class="slider"><div class="top"><label for="liveRel">Do you show up honestly and fully in your close relationships?</label><span class="val" id="v_liveRel">45</span></div><input type="range" id="liveRel" min="0" max="100" value="45" /><div class="ends"><span>I hold back</span><span>I show up</span></div></div>
+        <div class="slider"><div class="top"><label for="liveWorld">Do you contribute to something beyond yourself?</label><span class="val" id="v_liveWorld">45</span></div><input type="range" id="liveWorld" min="0" max="100" value="45" /><div class="ends"><span>Not really</span><span>Regularly</span></div></div>
+      </div>
+    </article>
+
+    <article class="plate ladder-card reveal">
+      <h2>The ladder of meaning</h2>
+      <div class="sub">Each rung is a whole way of making sense of the world — not better people, just wider and deeper ways of seeing, each including the ones below it. The colours echo well-known maps (Spiral Dynamics, Integral). Lower rungs are solid science; higher rungs grow speculative, and the top two are honest guesses about where the maps run out. Your reading is marked.</div>
+      <div id="ladder"></div>
+    </article>
+
+    <article class="plate lattice-card reveal">
+      <h2>Where your state meets your altitude</h2>
+      <div class="sub">This is the law that ties the two halves of this instrument together. Across the bottom: your altitude. Up the side: your state right now. The same altitude reads completely differently depending on the weather — and a rough state drops the dot toward the narrow, reactive corner no matter how high your ceiling. This is why steadying your state isn&rsquo;t separate from rising; it&rsquo;s how you reach the height you already have.</div>
+      <div class="lattice-wrap"><canvas id="lattice" width="560" height="300"></canvas></div>
+      <div class="lattice-read" id="latticeRead"></div>
+    </article>
+
+    <article class="plate climb-card reveal">
+      <h2>How to test and raise your altitude</h2>
+      <div class="sub">Altitude rises slowly, and not by force. What moves it is real: meeting genuinely different views, letting hard experiences teach instead of harden you, owning your shadow, and living what you know. Aim one rung up — never leap for the top. Start with your lowest axis.</div>
+      <div class="climb-focus" id="climbFocus"></div>
+      <div class="climb-grid" id="climbGrid"></div>
+      <div class="climb-safety"><b>Honestly, two cautions.</b> Going &lsquo;higher&rsquo; can be used to avoid real life — chasing peak states or a flattering self-image while ducking ordinary repair, grief, and responsibility. That&rsquo;s a sideways move, not an upward one. And intensive practice (long silent retreats, deep shadow work, psychedelics) can genuinely destabilise some people — meditation has well-documented adverse effects for a meaningful minority. If you&rsquo;ve felt unusually detached, frightened, or unmoored, treat that as a signal to slow down and get a real person alongside you (a teacher, therapist, or a resource like Cheetah House), not to push deeper.</div>
+    </article>
+  </section>
+
+  <section class="plate levelwrap reveal" style="margin-top:30px;padding-bottom:30px">
+    <div class="lv-kicker">In orbit · your state</div>
+    <h1 style="font-size:clamp(1.8rem,4vw,3rem)">Now — today&rsquo;s weather</h1>
+    <p class="lv-lede">Your altitude is the ceiling. This next part is the floor that moves: <b>how clear you are right now, and therefore how much of your altitude you can actually use today.</b> It&rsquo;s the original instrument — the Trust Coefficient, the eight readings, the action gate — and everything it finds feeds the one law above: a steady state lets you reach your height; a rough one drops you down the ladder. Read your state, steady it, and climb back up to yourself.</p>
+
+    <div class="doctrine" style="margin-top:22px">
       <p>&ldquo;Meaning sticks to state. State becomes the eyes before the eyes — the atmosphere through which perception is filtered before thought finishes forming itself. If you do not understand the machinery producing meaning, you will mistake its outputs for truth. You will call dysregulation reality.&rdquo;</p>
       <div class="src">— Project Meaning, founding text</div>
     </div>
 
     <div class="primer">
       <div>
-        <div class="mini">Tier One · The Level</div>
+        <div class="mini">Tier One · the level beneath</div>
         <h3>How activated is the body?</h3>
-        <p>Borrowed from clinical neuroscience: <em>arousal</em> (how charged or shut-down you are) is separate from the <em>content</em> of your mind. Too high and too low both distort. The trustworthy zone is settled-but-alert — your window. This is measured on its own dial, because a flooded mind and a foggy mind lie in opposite directions.</p>
+        <p>Borrowed from clinical neuroscience: <em>arousal</em> (how charged or shut-down you are) is separate from the <em>content</em> of your mind. Too high and too low both distort. The trustworthy zone is settled-but-alert — your window. Measured on its own dial, because a flooded mind and a foggy mind lie in opposite directions.</p>
       </div>
       <div>
-        <div class="mini">Tier Two · The Content</div>
+        <div class="mini">Tier Two · the content</div>
         <h3>How clear is the meaning-making?</h3>
-        <p>Eight readings of the same moment: can you read your body, feel without being run, notice an urge without obeying it, see a thought as a thought, hold more than one story, stay present, and act as the author of your next step. Together they set the <em>Trust Coefficient</em> — your dial of authority.</p>
+        <p>Eight readings of the same moment: can you read your body, feel without being run, notice an urge without obeying it, see a thought as a thought, hold more than one story, stay present, and act as the author of your next step. Together they set the <em>Trust Coefficient</em> — and cap how much of your altitude is reachable now.</p>
       </div>
     </div>
-
-    <div class="limits"><b>What this is not.</b> Not a medical, neurological, or psychiatric test. Not for coma, brain injury, psychosis, mania, seizure risk, intoxication, or crisis. It is a mirror for ordinary waking life — a snapshot rated by the very mind it is assessing. If your safety or someone else's is at risk, set this down and reach a real person or emergency support.</div>
-  </header>
+  </section>
 
   <div class="modebar plate reveal">
     <span class="mb-label">Reading depth</span>
@@ -613,17 +884,18 @@
   </section>
 
   <footer class="plate closing reveal">
-    <p>A state can hand you real information without being handed the authority to run your life. Read it. Discount it by what it costs you. Then choose.</p>
-    <div class="fine">Project Meaning · Stage Three · State Recognition &amp; Meaning Differentiation<br>A reflective instrument, not a diagnosis · Self-report · This moment only</div>
+    <p>Your level is not a verdict and not a ladder to climb for status. It is how wide a world you can hold — and on a hard day, even a high view narrows. Read where you&rsquo;re seeing from. Steady the state that reaches it. Then choose from as much of the whole as you can hold.</p>
+    <div class="fine">Project Meaning · Your Level of Consciousness · the four climbs &amp; the state that reaches them<br>A reflective mirror, not a diagnosis · Self-report · No one sees clearly above their own altitude</div>
   </footer>
 
 </main>
 <script>
 /* ============================================================
-   PROJECT MEANING — STAGE THREE · THE STATE INSTRUMENT
-   Level (arousal) is measured apart from Content (8 qualities).
-   The Trust Coefficient = content quality, discounted by how far
-   the body sits from its window.
+   PROJECT MEANING — YOUR LEVEL OF CONSCIOUSNESS
+   The centre of gravity is altitude (the four climbs, growing-up the spine).
+   The state instrument orbits it: Level (arousal) is measured apart from
+   Content (8 qualities); the Trust Coefficient = content quality discounted
+   by distance from the window, and it caps how much altitude is reachable now.
    ============================================================ */
 
 const DIMS = {
@@ -711,6 +983,16 @@ let stateSplit = { rawEvent:"", addedMeaning:"", usefulSignal:"", exaggeratedSto
 let shiftSession = { before:null, after:null, delta:null, plasticity:null };
 let dimsCache = null;
 let history = [];
+
+/* ===== THE LEVEL CENTER — vertical altitude + four axes ===== */
+let careRing = 3;          /* 1..6 widest ring of genuine care right now */
+let perspectives = 50;     /* hold multiple conflicting views as partly true */
+let subjectObject = 50;    /* look AT reactions/beliefs vs being inside them */
+let paradox = 1;           /* 0 one-wrong · 1 pick-side · 2 hold-both · 3 larger-truth */
+let horizon = 1;           /* 0 immediate · 1 weeks · 2 years · 3 lifetimes · 4 beyond */
+let wakeUnity = 30, wakeWitness = 30, wakeQuiet = 30, wakeVast = 30;   /* waking up */
+let shadowOwn = 45, shadowFace = 45, shadowCalm = 45;                  /* cleaning up */
+let liveInner = 45, liveAct = 45, liveRel = 45, liveWorld = 45;        /* showing up */
 
 const $ = id => document.getElementById(id);
 const dialCv = $("dial"), circCv = $("circumplex"), radarCv = $("radar");
@@ -1607,6 +1889,10 @@ function save(){
     timeFlex:timeFlex, task:task, consequence:consequence, canWait:canWait,
     identityVal:identityVal, projCertainty:projCertainty, projEvidence:projEvidence,
     envCue:envCue, envRoom:envRoom, envEasy:envEasy, stateSplit:stateSplit,
+    careRing:careRing, perspectives:perspectives, subjectObject:subjectObject, paradox:paradox, horizon:horizon,
+    wakeUnity:wakeUnity, wakeWitness:wakeWitness, wakeQuiet:wakeQuiet, wakeVast:wakeVast,
+    shadowOwn:shadowOwn, shadowFace:shadowFace, shadowCalm:shadowCalm,
+    liveInner:liveInner, liveAct:liveAct, liveRel:liveRel, liveWorld:liveWorld,
     notes: $("notes") ? $("notes").value : "", history:history, mode:mode
   })); }catch(e){}
 }
@@ -1631,6 +1917,22 @@ function load(){
     if(typeof s.envRoom==="number") envRoom=s.envRoom;
     if(typeof s.envEasy==="number") envEasy=s.envEasy;
     if(s.stateSplit && typeof s.stateSplit==="object") stateSplit=Object.assign(stateSplit, s.stateSplit);
+    if(typeof s.careRing==="number") careRing=s.careRing;
+    if(typeof s.perspectives==="number") perspectives=s.perspectives;
+    if(typeof s.subjectObject==="number") subjectObject=s.subjectObject;
+    if(typeof s.paradox==="number") paradox=s.paradox;
+    if(typeof s.horizon==="number") horizon=s.horizon;
+    if(typeof s.wakeUnity==="number") wakeUnity=s.wakeUnity;
+    if(typeof s.wakeWitness==="number") wakeWitness=s.wakeWitness;
+    if(typeof s.wakeQuiet==="number") wakeQuiet=s.wakeQuiet;
+    if(typeof s.wakeVast==="number") wakeVast=s.wakeVast;
+    if(typeof s.shadowOwn==="number") shadowOwn=s.shadowOwn;
+    if(typeof s.shadowFace==="number") shadowFace=s.shadowFace;
+    if(typeof s.shadowCalm==="number") shadowCalm=s.shadowCalm;
+    if(typeof s.liveInner==="number") liveInner=s.liveInner;
+    if(typeof s.liveAct==="number") liveAct=s.liveAct;
+    if(typeof s.liveRel==="number") liveRel=s.liveRel;
+    if(typeof s.liveWorld==="number") liveWorld=s.liveWorld;
     window.__savedNotes = s.notes || "";
   }catch(e){}
 }
@@ -1699,6 +2001,309 @@ function renderBaseline(t){
   host.innerHTML='<b>Compared with your usual self:</b> today&rsquo;s trust is '+word+' ('+dir+' vs your average of '+b.mean+'). '+(b.z<-0.5?"Take extra care with anything that feels urgent or final.":b.z>0.5?"A good window — use it to act, and to set rules for harder days.":"A typical day for you.");
 }
 
+/* ===== THE LEVEL ENGINE — altitude, four axes, lattice, climb ===== */
+const ALTITUDES = [
+  {min:0,  name:"Survival &amp; reaction",   aka:"Beige · Red",         status:"solid",    cls:"solid",    color:"#a8302b",
+   care:"Mostly yourself, and the next moment.",
+   gift:"Fast, honest, and fully alive to what matters most — safety, freedom, the raw truth of the moment. In a real emergency this is exactly the level you want running.",
+   blind:"Other people as full centres of their own lives; the future past the next move; that the threat may not be as total as it feels.",
+   trap:"Mistaking every strong impulse for the truth, and every obstacle for an enemy.",
+   adapt:"When the charge is this high, assign far less meaning to the impulse — it is the level talking, not the whole of you. Get safe, delay, and make no big decision until the heat drops.",
+   desc:"Meaning is getting through right now — safety, relief, what you want, who&rsquo;s a threat. Immediate and powerful, but the circle of care is small and the time-horizon is short."},
+  {min:17, name:"Belonging &amp; order",     aka:"Purple · Amber",      status:"solid",    cls:"solid",    color:"#9b6a1d",
+   care:"Your people, and the rules that hold the group together.",
+   gift:"Loyalty, stability, and the strength to keep promises and hold a group together. You can sacrifice for something larger than yourself.",
+   blind:"That your group&rsquo;s rules are one valid map among many; that outsiders are as fully human as insiders.",
+   trap:"&lsquo;Us&rsquo; quietly hardening into &lsquo;against them&rsquo; — and treating your way as the only right way.",
+   adapt:"Before you judge by the rule, ask: would this still feel wrong if someone I loved did it? Hold the rule as a servant, not a master — and let the circle of &lsquo;us&rsquo; widen by one.",
+   desc:"Meaning comes from belonging and doing right by the group&rsquo;s rules — family, faith, team, tradition. Loyal and stable, but &lsquo;us&rsquo; can quietly become &lsquo;against them&rsquo;."},
+  {min:33, name:"Achievement &amp; strategy",aka:"Orange",              status:"solid",    cls:"solid",    color:"#8a7320",
+   care:"Yourself, and whoever helps you build or win.",
+   gift:"Drive, mastery, and the freedom to step outside the group&rsquo;s rules to test what actually works. You can author your own life.",
+   blind:"What can&rsquo;t be measured or won — rest, meaning, the people quietly treated as means; the cost to the commons.",
+   trap:"Turning everything into a target and everyone into a resource — winning the game while losing the point.",
+   adapt:"Ask of each goal: at what cost, and to whom? Let some things matter that can&rsquo;t be counted. Success reached from here is real — but check it against a wider circle before you bank on it.",
+   desc:"Meaning is results, mastery, getting somewhere. You can step outside the group&rsquo;s rules to test what actually works. Effective and self-authoring — but can turn people into means and the world into resources."},
+  {min:49, name:"Fairness &amp; many views", aka:"Green",               status:"solid",    cls:"solid",    color:"#5d7a55",
+   care:"All people — every voice counts, especially the unheard.",
+   gift:"Empathy, fairness, and the capacity to hold that others see truly differently and are still right for them. You hear the unheard.",
+   blind:"That not all views are equally workable; that endless inclusion can stall a needed decision; that the &lsquo;earlier&rsquo; levels are doing real jobs.",
+   trap:"Judging the achievers and rule-keepers harshly while struggling to act decisively yourself — flatness where some things really are better.",
+   adapt:"When every view feels equally valid and you&rsquo;re stuck, let function break the tie: ask what actually works here, for the widest circle — then act. Fairness includes deciding.",
+   desc:"Meaning is fairness, feeling, and the dignity of every perspective. You can hold that others see the world differently and are still right for them. Warm and inclusive — but can struggle to decide, or judge the &lsquo;earlier&rsquo; levels harshly."},
+  {min:63, name:"Seeing the whole pattern",  aka:"Yellow · Teal · 2nd tier", status:"thinner ice", cls:"thin", color:"#2f6f6a",
+   care:"All people, and the systems that shape them.",
+   gift:"For the first time you can see the whole ladder and value each level for the job it does, without needing everyone to be like you. Flexible, and low on fear.",
+   blind:"How the view actually feels from inside the lower levels you now see so clearly; that &lsquo;I get the system&rsquo; can become its own quiet superiority.",
+   trap:"Watching from above, fascinated by the pattern, while staying aloof from the messy human work of actually helping.",
+   adapt:"Use the map to serve, not to spectate. Pick one level below you and meet someone there in their own language — understanding is only altitude if it lands as kindness.",
+   desc:"For the first time you can see the whole ladder and value each level for the job it does — without needing everyone to be like you. Meaning becomes fit, function, the health of the system. Genuinely rare; this is where the research starts to thin."},
+  {min:76, name:"One living whole",           aka:"Turquoise",           status:"thin",     cls:"thin",     color:"#2f6f6a",
+   care:"All living beings; life as a single system.",
+   gift:"A felt sense of the whole living web; meaning as the health of the system, reasoned and felt at once. The separate self loosens its grip.",
+   blind:"Ordinary detail and the small self&rsquo;s real needs; that grand wholeness can skip right over the particular person in front of you.",
+   trap:"Floating in the cosmic and the global while the dishes, the body, and the nearby relationship go untended — vagueness mistaken for depth.",
+   adapt:"Bring the vast back to the small: let the wholeness show up as how you treat the very next ordinary person and task. Ground every big vision in one concrete act.",
+   desc:"Meaning is the health of the whole living web — felt as much as reasoned. The separate self matters less; the pattern matters more. Very rare, and hard to measure honestly — hold it lightly."},
+  {min:88, name:"The frontier",              aka:"Coral · 3rd tier",    status:"beyond the maps", cls:"frontier", color:"#5b4a78",
+   care:"All beings, across time — and reality itself.",
+   gift:"(Speculative.) Bold, world-shaping agency returning — but imagined now in service of the whole rather than the self.",
+   blind:"By definition unknown — this is past where any measurement reaches.",
+   trap:"The real risk here is you, the reader, believing you live here. Almost no one does, and the claim itself is usually inflation.",
+   adapt:"Hold this as a horizon, not a home. If a tool ever tells you you&rsquo;re here, distrust the tool — and keep doing the ordinary work. The frontier takes care of itself.",
+   desc:"Here the evidence runs out. Thinkers imagine a return of bold, world-shaping agency — but now in service of the whole rather than the self. This is honest speculation: a finger pointing past where measurement reaches."},
+  {min:96, name:"Beyond the maps",           aka:"post-Coral · clear light", status:"beyond the maps", cls:"frontier", color:"#5b4a78",
+   care:"No fixed centre to defend; care without a circle.",
+   gift:"(Pure speculation.) A way of meaning where the separate self is barely the point at all.",
+   blind:"Everything and nothing — no instrument, and no sentence, can touch this.",
+   trap:"Words about this level are almost always further from it than honest silence.",
+   adapt:"Nothing to do here but live well where you actually stand. We name it only because consciousness keeps moving, and an honest map leaves room past its own edge.",
+   desc:"The furthest, most speculative reach — a way of meaning where the separate self is barely the point. No instrument can touch this. We name it only because consciousness keeps moving, and a map honest about its edge should leave room past the edge."}
+];
+const CARE_OPTS = [
+  "Mostly me and what I need right now",
+  "My close people — family, friends",
+  "My group, community, or country — &lsquo;people like me&rsquo;",
+  "All people, everywhere, equally",
+  "All living beings — animals, the living world",
+  "All of reality — and the generations not yet born"
+];
+const PARADOX_OPTS = [
+  "One of them must simply be wrong",
+  "I pick the side that feels right to me",
+  "I can hold both as true at the same time",
+  "I look for the larger truth that contains both"
+];
+const HORIZON_OPTS = ["Right now / today","Weeks to months","Years","Decades, a whole life","Beyond my own lifetime"];
+
+function altitudeIndex(){
+  const care=(careRing-1)/5*100, par=paradox/3*100, hor=horizon/4*100;
+  const parts=[[care,1.4],[subjectObject,1.3],[perspectives,1.1],[par,1.1],[hor,0.9]];
+  let s=0,w=0; parts.forEach(function(p){ s+=p[0]*p[1]; w+=p[1]; });
+  return Math.round(s/w);
+}
+function altitudeBand(idx){ let b=ALTITUDES[0]; for(let i=0;i<ALTITUDES.length;i++){ if(idx>=ALTITUDES[i].min) b=ALTITUDES[i]; } return b; }
+function effectiveAltitude(){ return Math.round(altitudeIndex()*windowFactor(arousal)); }
+function fourAxes(){
+  return {
+    grow: altitudeIndex(),
+    wake: Math.round((wakeUnity+wakeWitness+wakeQuiet+wakeVast)/4),
+    clean: Math.round((shadowOwn+shadowFace+shadowCalm)/3),
+    show: Math.round((liveInner+liveAct+liveRel+liveWorld)/4)
+  };
+}
+function inflationCheck(){
+  const idx=altitudeIndex();
+  const allMax = careRing>=6 && perspectives>=88 && subjectObject>=88 && paradox>=3 && horizon>=4;
+  return idx>=70 && (certainty>=72 || allMax);
+}
+
+/* level adaptations — one step up, by axis */
+const CLIMB = {
+  grow:{ ax:"Growing up · how wide you see", h:"Let two true things collide",
+    p:"Find a view you disagree with, held by someone thoughtful, and steel-man it until you can argue it better than they can — without surrendering your own. Growth happens not by winning but by holding both long enough that a bigger picture appears." },
+  wake:{ ax:"Waking up · stepping outside the self", h:"Ten minutes of open watching",
+    p:"Sit, and instead of focusing on anything, just watch whatever arises — sounds, sensations, thoughts — as if they were weather passing through an open sky. Notice the one watching. That noticing is the doorway; it asks nothing of you but to be repeated." },
+  clean:{ ax:"Cleaning up · owning your shadow", h:"The 3-2-1 on whoever irritates you",
+    p:"Take the person who most annoys you lately. Describe them (it). Then talk to them (you). Then become them and speak as them (I) — &lsquo;I am&hellip;&rsquo; What you cannot stand out there is often a disowned piece of yourself; the charge drops when you take it back." },
+  show:{ ax:"Showing up · living it", h:"Enact one value before tonight",
+    p:"Pick one value you hold and do a single concrete thing that proves it today — one call, one boundary, one act of repair. A level you only think from is not yet yours; you earn altitude by living it, in the most ordinary places." }
+};
+
+/* how the levels just below and above tend to look from a given band */
+const NEIGHBOUR = [
+  { above:"like rules and people getting in the way of what you need right now" },
+  { below:"like chaos and selfishness — people with no respect for what holds us together", above:"like selfish rule-breakers chasing their own success" },
+  { below:"like rigid traditionalists who won&rsquo;t question anything", above:"like idealistic and soft — unable to make the hard call" },
+  { below:"like selfish winners who use people to get ahead", above:"like cold systems-talk that forgets the real feelings of real people" },
+  { below:"like good-hearted people who are stuck, unable to decide", above:"like something vague, mystical, and ungrounded" },
+  { below:"like clever maps that miss the living feel of things", above:"like speculation you can&rsquo;t quite pin down" },
+  { below:"like something beautiful but still a little detached", above:"like silence — there are no words for it" },
+  { below:"like even the frontier still keeping one foothold in the self" }
+];
+function altitudePeak(){
+  const norm=[ (careRing-1)/5*100, subjectObject, perspectives, paradox/3*100, horizon/4*100 ];
+  return Math.round(Math.max.apply(null, norm));
+}
+function renderNeighbours(band){
+  const host=$("altNeighbours"); if(!host) return;
+  const i=ALTITUDES.indexOf(band), n=NEIGHBOUR[i]||{};
+  let h="";
+  if(n.below) h+="From this height, <b>"+ALTITUDES[i-1].name+"</b> below you can look "+n.below+". ";
+  if(n.above) h+="The level just above — <b>"+ALTITUDES[i+1].name+"</b> — can look "+n.above+", and that&rsquo;s the catch: we all tend to dismiss the view one step above our own as naïve or wrong, when sometimes it is simply wider. ";
+  h+="The people who frustrate you most are usually not stupid or broken — just standing at a different altitude, seeing a different slice of the whole.";
+  host.innerHTML=h;
+}
+
+function renderLevel(){
+  if(!$("altMeter")) return;
+  const idx=altitudeIndex(), band=altitudeBand(idx), eff=effectiveAltitude(), effBand=altitudeBand(eff);
+  drawAltMeter(idx, eff);
+  $("altBandName").innerHTML=band.name;
+  const st=$("altStatus"); st.className="alt-status "+band.cls; st.textContent=band.status;
+  $("altAka").textContent=band.aka;
+  $("altDesc").innerHTML=band.desc;
+  $("altCare").innerHTML="Circle of care here: "+band.care;
+  /* read as a range, not a point — centre of gravity + the peak you can glimpse */
+  const peak=Math.max(idx, altitudePeak()), peakBand=altitudeBand(peak);
+  let rng="Read this as a <b>range</b>, not a single point. Your centre of gravity — where you mostly live — sits around <b>"+band.name+"</b>.";
+  if(peak>=idx+8 && peakBand.name!==band.name) rng+=" In your clearest moments you can already reach <b>"+peakBand.name+"</b> — glimpsed, not yet home. That glimpse is the direction of growth, not a place to plant a flag.";
+  else rng+=" Even your highest answers cluster here — solid ground for you right now.";
+  $("altRange").innerHTML=rng;
+  /* the level reading: gift · blind spot · trap · adaptation (the heart of the instrument, applied to altitude) */
+  $("altReading").innerHTML=
+     '<div class="ar-row"><span class="ar-tag gift">The gift</span><p>'+band.gift+'</p></div>'
+    +'<div class="ar-row"><span class="ar-tag blind">The blind spot</span><p>'+band.blind+'</p></div>'
+    +'<div class="ar-row"><span class="ar-tag trap">The trap</span><p>'+band.trap+'</p></div>'
+    +'<div class="ar-row adapt-row"><span class="ar-tag adapt">The adaptation</span><p>'+band.adapt+'</p></div>';
+  renderNeighbours(band);
+  /* ceiling vs reach */
+  $("ceilNum").textContent=idx;
+  $("reachNum").textContent=eff;
+  const gap=idx-eff;
+  let rl;
+  if(gap<=4) rl="Your state is clear enough that today you can <b>actually reach close to your own altitude</b>. This is the moment to make meaning, decide, and act from your full height.";
+  else if(gap<=14) rl="Your state is pulling you down a little: today you&rsquo;re making meaning nearer <b>"+effBand.name+"</b> than your ceiling. A short reset would give you back the difference.";
+  else rl="Your state is dragging you well below your ceiling — today you&rsquo;re operating around <b>"+effBand.name+"</b>, not your true altitude. A rough state pulls everyone down the ladder. Steady the state first (the tools below); insight reached from here won&rsquo;t hold.";
+  $("reachLine").innerHTML=rl;
+  /* inflation honesty */
+  const inf=$("inflation");
+  if(inflationCheck()){
+    inf.style.display="block";
+    inf.innerHTML="<b>A word of honesty.</b> These answers point high — and high answers are exactly where self-assessment goes wrong, because no one sees clearly above their own level. Genuine altitude usually arrives with <b>more</b> doubt, a wider circle, and <b>less</b> need to be above anyone. If this reading feels flattering, treat it as a hypothesis and a direction, not a verdict. Where it&rsquo;s real, it will show up as how you treat people — not as a score.";
+  } else inf.style.display="none";
+  renderPsychograph();
+  renderLadder(idx);
+  drawLattice();
+  renderClimb();
+}
+
+function renderPsychograph(){
+  if(!$("axGrow")) return;
+  const a=fourAxes();
+  const set=function(id, val, color){
+    const fl=$(id); if(fl){ fl.style.width=val+"%"; fl.style.background=color; }
+  };
+  const col=function(v){ return v<34?"var(--red)":v<58?"var(--amber)":v<76?"var(--teal)":"var(--sage)"; };
+  set("axGrow",a.grow,col(a.grow)); $("axGrowV").textContent=a.grow;
+  set("axWake",a.wake,col(a.wake)); $("axWakeV").textContent=a.wake;
+  set("axClean",a.clean,col(a.clean)); $("axCleanV").textContent=a.clean;
+  set("axShow",a.show,col(a.show)); $("axShowV").textContent=a.show;
+  /* lowest axis = the real growing edge */
+  const arr=[["grow",a.grow],["wake",a.wake],["clean",a.clean],["show",a.show]];
+  arr.sort(function(x,y){ return x[1]-y[1]; });
+  const lowKey=arr[0][0], names={grow:"Growing up",wake:"Waking up",clean:"Cleaning up",show:"Showing up"};
+  $("axEdge").innerHTML="<b>Your growing edge right now is "+names[lowKey]+".</b> These four move independently — it&rsquo;s common to be far along one and behind on another, and the honest work is usually the lowest one, not the highest. The practice below starts there.";
+  window.__lowAxis=lowKey;
+}
+
+function renderLadder(idx){
+  const host=$("ladder"); if(!host) return;
+  const cur=altitudeBand(idx);
+  host.innerHTML = ALTITUDES.slice().reverse().map(function(b){
+    const here=(b===cur);
+    return '<div class="rung'+(here?" here":"")+'">'
+      + '<div class="rung-swatch"><span class="dot" style="background:'+b.color+'"></span>'+(here?'<span class="rung-here-tag">you, today</span>':'')+'</div>'
+      + '<div class="rung-body"><div class="rung-top">'
+      + '<span class="rung-name">'+(here?'<b>'+b.name+'</b>':b.name)+' <span class="rung-aka">'+b.aka+'</span></span>'
+      + '<span class="rung-status '+b.cls+'">'+b.status+'</span></div>'
+      + '<div class="rung-desc">'+b.desc+'</div>'
+      + '<div class="rung-care">Cares about: '+b.care+'</div></div></div>';
+  }).join("");
+}
+
+function drawAltMeter(idx, eff){
+  const cv=$("altMeter"); if(!cv) return;
+  const ctx=fitCanvas(cv, cv.clientWidth||300, cv.clientHeight||340);
+  const W=cv.clientWidth||300, H=cv.clientHeight||340;
+  ctx.clearRect(0,0,W,H);
+  const x=W*0.40, barW=W*0.20, top=14, bot=H-14, span=bot-top;
+  const y=function(v){ return bot - (v/100)*span; };
+  /* stacked bands */
+  for(let i=0;i<ALTITUDES.length;i++){
+    const lo=ALTITUDES[i].min, hi=(i+1<ALTITUDES.length)?ALTITUDES[i+1].min:100;
+    ctx.fillStyle=ALTITUDES[i].color;
+    ctx.globalAlpha=0.82;
+    ctx.fillRect(x, y(hi), barW, y(lo)-y(hi));
+  }
+  ctx.globalAlpha=1;
+  ctx.strokeStyle="rgba(22,19,13,.3)"; ctx.lineWidth=1; ctx.strokeRect(x,top,barW,span);
+  /* effective reach — hollow marker */
+  ctx.strokeStyle="#16130d"; ctx.setLineDash([4,3]); ctx.lineWidth=1.5;
+  ctx.beginPath(); ctx.moveTo(x-10,y(eff)); ctx.lineTo(x+barW+44,y(eff)); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle="#574f44"; ctx.font="9px 'JetBrains Mono', monospace"; ctx.textAlign="left";
+  ctx.fillText("today "+eff, x+barW+8, y(eff)-4);
+  /* ceiling — solid marker */
+  ctx.fillStyle="#16130d";
+  ctx.beginPath(); ctx.moveTo(x-12,y(idx)); ctx.lineTo(x+barW+44,y(idx)); 
+  ctx.strokeStyle="#16130d"; ctx.lineWidth=2.5; ctx.stroke();
+  ctx.beginPath(); ctx.arc(x-12,y(idx),4,0,Math.PI*2); ctx.fill();
+  ctx.font="bold 10px 'JetBrains Mono', monospace";
+  ctx.fillText("ceiling "+idx, x+barW+8, y(idx)+12);
+  /* axis caption */
+  ctx.save(); ctx.translate(12,H/2); ctx.rotate(-Math.PI/2);
+  ctx.fillStyle="#8b8275"; ctx.font="8px 'JetBrains Mono', monospace"; ctx.textAlign="center";
+  ctx.fillText("WIDER · DEEPER · MORE INCLUDED  →", 0,0);
+  ctx.restore();
+}
+
+function drawLattice(){
+  const cv=$("lattice"); if(!cv) return;
+  const W=560, H=300;
+  const ctx=fitCanvas(cv, W, H);
+  ctx.clearRect(0,0,W,H);
+  const cols=["Reactive","Order","Achieve","Fairness","Whole+"];
+  const rows=["Flooded","Window","Foggy"];
+  const padL=92, padT=34, padR=20, padB=30;
+  const gw=(W-padL-padR)/cols.length, gh=(H-padT-padB)/rows.length;
+  /* grid */
+  ctx.strokeStyle="rgba(22,19,13,.14)"; ctx.lineWidth=1;
+  for(let c=0;c<=cols.length;c++){ ctx.beginPath(); ctx.moveTo(padL+c*gw,padT); ctx.lineTo(padL+c*gw,padT+rows.length*gh); ctx.stroke(); }
+  for(let r=0;r<=rows.length;r++){ ctx.beginPath(); ctx.moveTo(padL,padT+r*gh); ctx.lineTo(padL+cols.length*gw,padT+r*gh); ctx.stroke(); }
+  /* window row tint */
+  ctx.fillStyle="rgba(93,122,85,.10)"; ctx.fillRect(padL,padT+gh,cols.length*gw,gh);
+  /* labels */
+  ctx.fillStyle="#574f44"; ctx.font="9px 'JetBrains Mono', monospace";
+  ctx.textAlign="center"; ctx.textBaseline="bottom";
+  for(let c=0;c<cols.length;c++){ ctx.fillText(cols[c], padL+c*gw+gw/2, padT-6); }
+  ctx.textAlign="right"; ctx.textBaseline="middle";
+  for(let r=0;r<rows.length;r++){ ctx.fillText(rows[r], padL-8, padT+r*gh+gh/2); }
+  ctx.textAlign="left"; ctx.fillStyle="#8b8275"; ctx.font="8px 'JetBrains Mono', monospace";
+  ctx.save(); ctx.translate(W-6,padT+rows.length*gh/2); ctx.rotate(Math.PI/2);
+  ctx.textAlign="center"; ctx.fillText("YOUR STATE", 0,0); ctx.restore();
+  ctx.textAlign="center"; ctx.fillText("YOUR ALTITUDE  →", padL+cols.length*gw/2, H-8);
+  /* marker */
+  const idx=altitudeIndex();
+  const col = idx<20?0: idx<40?1: idx<58?2: idx<74?3: 4;
+  const row = arousal>72?0 : arousal<28?2 : 1;
+  const cx=padL+col*gw+gw/2, cy=padT+row*gh+gh/2;
+  ctx.beginPath(); ctx.arc(cx,cy,13,0,Math.PI*2);
+  ctx.fillStyle=trustColor(trustCoefficient(dimScores())); ctx.globalAlpha=.9; ctx.fill(); ctx.globalAlpha=1;
+  ctx.strokeStyle="#16130d"; ctx.lineWidth=2; ctx.stroke();
+  ctx.fillStyle="#fff"; ctx.font="bold 9px 'JetBrains Mono', monospace"; ctx.textBaseline="middle"; ctx.textAlign="center";
+  ctx.fillText("you", cx, cy);
+  renderLatticeRead();
+}
+function renderLatticeRead(){
+  const host=$("latticeRead"); if(!host) return;
+  const band=altitudeBand(altitudeIndex());
+  const zone = arousal>72?"flooded" : arousal<28?"foggy" : "in your window";
+  let s="Your altitude lands around <b>"+band.name+"</b>, and your state right now is <b>"+zone+"</b>. ";
+  if(zone==="in your window") s+="The same state at a different altitude would mean something different — and because you&rsquo;re steady, today you can meet life from close to your full height. Make the meaning that matters now.";
+  else s+="The dot sits low not because your ceiling dropped, but because a "+zone+" state collapses everyone toward earlier, narrower ways of making meaning. Don&rsquo;t trust the view from here — steady the state, then the same moment will read very differently.";
+  host.innerHTML=s;
+}
+function renderClimb(){
+  const focus=$("climbFocus"); if(!focus) return;
+  const low=window.__lowAxis||"grow", c=CLIMB[low];
+  focus.innerHTML='<div class="ft">Start here · your lowest axis</div><h4>'+c.h+'</h4><p>'+c.p+'</p>';
+  const grid=$("climbGrid");
+  grid.innerHTML=Object.keys(CLIMB).map(function(k){ const x=CLIMB[k];
+    return '<div class="climb"><div class="ax">'+x.ax+'</div><h4>'+x.h+'</h4><p>'+x.p+'</p></div>';
+  }).join("");
+}
+
 function update(){
   const dims=dimScores();
   const t=trustCoefficient(dims);
@@ -1747,6 +2352,7 @@ function update(){
   renderEnvironment(dims);
   renderPatterns();
   renderBaseline(t);
+  renderLevel();
 
   $("chainSub").innerHTML = (dims.impulse<58 || dims.defusion<58 || arousal>70)
     ? "Your state is in a corner where urges and thoughts will try to pass themselves off as orders. Walk the four links deliberately — you can step out at any one of them."
@@ -1764,13 +2370,24 @@ function snapshotData(){
   const dims=dimScores(), t=trustCoefficient(dims), band=bandFor(t), b=biasRead();
   const readings={}; DIM_KEYS.forEach(function(k){ readings[DIMS[k].label]=dims[k]; });
   return {
-    instrument:"Project Meaning · Stage Three · State Instrument",
+    instrument:"Project Meaning · Your Level of Consciousness (altitude + state)",
     timestamp:new Date().toISOString(),
     trustCoefficient:t,
     band:band.name,
     level:{ arousal:arousal, valence:valence, certainty:certainty,
       zone: arousal<28?"under-activated/foggy":arousal>72?"over-activated/flooded":"window",
       meaningField: BIAS[b.q].title },
+    altitude:{
+      ceiling: altitudeIndex(),
+      peakGlimpsed: Math.max(altitudeIndex(), altitudePeak()),
+      todaysReach: effectiveAltitude(),
+      band: altitudeBand(altitudeIndex()).name.replace(/&amp;/g,"&"),
+      status: altitudeBand(altitudeIndex()).status,
+      careRing: careRing,
+      fourAxes: fourAxes(),
+      growingEdge: window.__lowAxis||null,
+      selfAssessmentCaveat:"Vertical level cannot be reliably self-scored; treat as a hypothesis and direction, not a measurement."
+    },
     readings:readings,
     feelings: emotions.slice(),
     philosophyTilt: (function(){ const d=detectPhil(); return { shadow: d.shadow?d.shadow.label:null, constructive: d.light?d.light.label:null }; })(),
@@ -1837,18 +2454,23 @@ $("reset").addEventListener("click", function(){
   identityVal=30; projCertainty=50; projEvidence=50; envCue=50; envRoom=50; envEasy=50;
   stateSplit={ rawEvent:"", addedMeaning:"", usefulSignal:"", exaggeratedStory:"" };
   shiftSession={ before:null, after:null, delta:null, plasticity:null };
+  careRing=3; perspectives=50; subjectObject=50; paradox=1; horizon=1;
+  wakeUnity=30; wakeWitness=30; wakeQuiet=30; wakeVast=30;
+  shadowOwn=45; shadowFace=45; shadowCalm=45;
+  liveInner=45; liveAct=45; liveRel=45; liveWorld=45;
   if($("notes")) $("notes").value="";
   ["wsRaw","wsAdd","wsSig","wsExa"].forEach(function(id){ if($(id)) $(id).value=""; });
   if($("stestRes")) $("stestRes").innerHTML="";
   if($("baseline")) $("baseline").innerHTML=""; if($("patterns")) $("patterns").innerHTML="";
   $("out").style.display="none"; $("delta").innerHTML=""; if($("climate")) $("climate").innerHTML=""; history=[]; renderLog();
   try{ localStorage.removeItem(STORE); }catch(e){}
-  buildScenarios(); initContext(); update();
+  buildScenarios(); initContext(); initLevel(); update();
 });
 
 let rt;
 window.addEventListener("resize", function(){ clearTimeout(rt); rt=setTimeout(function(){
   const d=dimScores(); drawDial(trustCoefficient(d)); drawCircumplex(); drawRadar(d);
+  drawAltMeter(altitudeIndex(), effectiveAltitude()); drawLattice();
 },120); });
 
 function setRange(id,val){ const el=$(id); if(el){ el.value=val; const o=$("v_"+id); if(o) o.textContent=val; } }
@@ -1888,6 +2510,36 @@ function takeAfter(){
   $("stestAfter").style.display="none";
   save();
 }
+function renderOpts(containerId, opts, currentIdx, onPick){
+  const host=$(containerId); if(!host) return;
+  host.innerHTML=opts.map(function(o,i){ return '<button type="button" class="opt'+(i===currentIdx?" on":"")+'" data-i="'+i+'">'+o+'</button>'; }).join("");
+  Array.prototype.forEach.call(host.querySelectorAll(".opt"), function(b){
+    b.addEventListener("click", function(){
+      Array.prototype.forEach.call(host.querySelectorAll(".opt"), function(x){ x.classList.remove("on"); });
+      b.classList.add("on"); onPick(+b.dataset.i); update();
+    });
+  });
+}
+function initLevel(){
+  renderOpts("probeCare", CARE_OPTS, careRing-1, function(i){ careRing=i+1; });
+  renderOpts("probeParadox", PARADOX_OPTS, paradox, function(i){ paradox=i; });
+  renderOpts("probeHorizon", HORIZON_OPTS, horizon, function(i){ horizon=i; });
+  syncVal("perspectives", function(v){ perspectives=v; });
+  syncVal("subjectObject", function(v){ subjectObject=v; });
+  syncVal("wakeUnity", function(v){ wakeUnity=v; });
+  syncVal("wakeWitness", function(v){ wakeWitness=v; });
+  syncVal("wakeQuiet", function(v){ wakeQuiet=v; });
+  syncVal("wakeVast", function(v){ wakeVast=v; });
+  syncVal("shadowOwn", function(v){ shadowOwn=v; });
+  syncVal("shadowFace", function(v){ shadowFace=v; });
+  syncVal("shadowCalm", function(v){ shadowCalm=v; });
+  syncVal("liveInner", function(v){ liveInner=v; });
+  syncVal("liveAct", function(v){ liveAct=v; });
+  syncVal("liveRel", function(v){ liveRel=v; });
+  syncVal("liveWorld", function(v){ liveWorld=v; });
+  [["perspectives",perspectives],["subjectObject",subjectObject],["wakeUnity",wakeUnity],["wakeWitness",wakeWitness],["wakeQuiet",wakeQuiet],["wakeVast",wakeVast],["shadowOwn",shadowOwn],["shadowFace",shadowFace],["shadowCalm",shadowCalm],["liveInner",liveInner],["liveAct",liveAct],["liveRel",liveRel],["liveWorld",liveWorld]].forEach(function(p){ setRange(p[0],p[1]); });
+}
+
 function initContext(){
   syncVal("projCertainty", function(v){ projCertainty=v; });
   syncVal("projEvidence", function(v){ projEvidence=v; });
@@ -1911,6 +2563,7 @@ load();
 initModeBar();
 initShift();
 initContext();
+initLevel();
 Array.prototype.forEach.call(document.querySelectorAll(".mb-tab"), function(b){ b.classList.toggle("active", b.dataset.mode===mode); });
 buildScenarios();
 if(window.__savedNotes && $("notes")) $("notes").value = window.__savedNotes;
