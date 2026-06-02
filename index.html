@@ -485,6 +485,15 @@
   .alt-neighbours b{color:var(--ink)}
   .alt-range{margin-top:12px;font-size:1.0rem;color:var(--ink-soft);line-height:1.5}
   .alt-range b{color:var(--ink)}
+  .intro-x{margin-top:20px;border:0}
+  .intro-x summary{display:inline-flex;align-items:center;gap:9px;cursor:pointer;list-style:none;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--red);padding:10px 18px;border:1px solid var(--rule);border-radius:99px;background:rgba(255,255,255,.3);transition:all .15s;user-select:none}
+  .intro-x summary::-webkit-details-marker{display:none}
+  .intro-x summary:hover{border-color:var(--red);color:var(--ink)}
+  .intro-x summary .chev{transition:transform .2s;font-size:13px}
+  .intro-x[open] summary .chev{transform:rotate(180deg)}
+  .intro-x[open] summary{margin-bottom:6px}
+  .intro-body{animation:fadein .3s ease}
+  @keyframes fadein{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 </style>
 </head>
 <body>
@@ -496,80 +505,46 @@
       <div class="stage-tag">The Vertical<br>Consciousness <b>Level</b><br>& the state that reaches it</div>
     </div>
     <h1>What is your level of consciousness?</h1>
-    <div class="subtitle">Not how you feel today — how high you&rsquo;re standing, and how much of reality you can hold at once.</div>
-    <p class="lede">This is the centre of gravity of everything here. Picture altitude: low down you see only your own feet; a little higher, your street; higher still, the whole city; higher again, the curve of the Earth. <b>Your level of consciousness is how wide and deep a world you can take in and hold</b> — how far your genuine care reaches, how many points of view you can keep in mind at once, how far ahead you think, and whether you can look <em>at</em> your own reactions or are simply run by them. Your mood, your urges, how much to trust the meaning you&rsquo;re making <em>today</em> — all of it orbits this one question.</p>
+    <div class="subtitle">Not how you feel today — how high you&rsquo;re standing, and how much of the world you can take in at once.</div>
 
-    <div class="doctrine">
-      <p>&ldquo;You do not see the world as it is; you see it from where you stand. Raise the place you are seeing from and the meanings available to you change — fear becomes information, enemies become people, the unbearable becomes one small part of a far larger view. Most suffering is not a flaw inside the picture. It is the smallness of the frame.&rdquo;</p>
-      <div class="src">— Project Meaning, founding text</div>
-    </div>
+    <details class="intro-x">
+      <summary>Read the full introduction <span class="chev">&#9662;</span></summary>
+      <div class="intro-body">
+        <p class="lede" style="margin-top:14px">Think of it as altitude. Down low, you see only your own feet; climb a little and you see your street; higher still, the whole city; higher again, the curve of the Earth. <b>Your level of consciousness is how wide and deep a world you can hold at once</b> — how far your care reaches, how many points of view you can keep in mind together, how far ahead you think, and whether you can watch your own reactions or are simply run by them. Your mood, your urges, how much to trust the meaning you&rsquo;re making today — all of it orbits this one question, which is why it sits at the centre here.</p>
 
-    <div class="primer">
-      <div>
-        <div class="mini">The centre · how you rise</div>
-        <h3>Four kinds of growth</h3>
-        <p>&lsquo;Higher&rsquo; isn&rsquo;t one thing. <em>How wide you see</em> — how much of the picture you can take in — is the spine, and it sets the altitude. Around it: <em>stepping back</em> (quiet, clear awareness beyond the busy self), <em>owning your part</em> (facing what you&rsquo;d rather not see in yourself), and <em>living it</em> (doing it, not just thinking it). They move on their own clocks — you can grow wise and still dodge hard truths, or go deeply still and still see narrowly — so this measures each on its own.</p>
+        <div class="doctrine">
+          <p>&ldquo;You do not see the world as it is; you see it from where you stand. Raise the place you are seeing from, and the meanings change — fear becomes information, enemies become people, the unbearable becomes one small part of a far larger view. Most suffering is not a flaw inside the picture. It is the smallness of the frame.&rdquo;</p>
+          <div class="src">— Project Meaning, founding text</div>
+        </div>
+
+        <div class="primer">
+          <div>
+            <div class="mini">The centre · how you rise</div>
+            <h3>Four kinds of growth</h3>
+            <p>&lsquo;Higher&rsquo; isn&rsquo;t one thing. <em>How wide you see</em> is the spine, and it sets your altitude. Around it sit three more: how often you can step back and watch your own mind, how honestly you face the parts of yourself you&rsquo;d rather not, and how fully you live what you believe. They grow on their own clocks — you can be wise and still dodge hard truths, or calm and still see narrowly — so each is measured on its own.</p>
+          </div>
+          <div>
+            <div class="mini">In orbit · why your state matters</div>
+            <h3>Altitude is the ceiling; your state is the floor</h3>
+            <p>Your altitude grows slowly, over years. How much of it you can actually reach <em>today</em> rises and falls with your state: flooded or foggy, no one gets to their full height. So the state instrument lives on below — your body&rsquo;s arousal, the eight readings, the Trust Coefficient — now serving the level above. Read your state, steady it, and climb back up to yourself.</p>
+          </div>
+        </div>
+
+        <div class="limits"><b>What this is not.</b> Not a medical, neurological, or psychiatric test — and not a clinical developmental measure either (those take trained scorers and hours of interview). No one sees clearly above their own altitude, so a self-rating like this gently flatters almost everyone and under-reads the genuinely high: treat every number as a <b>mirror and a direction, never a grade or a diagnosis</b>. It&rsquo;s built for ordinary waking life — not for coma, brain injury, psychosis, mania, seizure risk, intoxication, or crisis. If your safety or someone else&rsquo;s is at risk, set this down and reach a real person or emergency support.</div>
       </div>
-      <div>
-        <div class="mini">In orbit · why your state matters</div>
-        <h3>Altitude is the ceiling; state is the floor</h3>
-        <p>Your altitude grows slowly, over years. But how much of it you can <em>actually reach today</em> rises and falls with your state. Flooded or foggy, no one gets to their own height — a rough state drops anyone down the ladder. So the original instrument lives on below — your arousal, the eight readings, the Trust Coefficient — now in service of the level above: read your state, steady it, and climb back up to yourself.</p>
-      </div>
-    </div>
-
-    <div class="limits"><b>What this is not.</b> Not a medical, neurological, or psychiatric test — and not a real developmental measure either (those take trained scorers and hours of interview). No one can see clearly above their own altitude, so a self-rating like this gently flatters almost everyone and under-reads the genuinely high: treat every number here as a <b>mirror and a direction, never a grade or a diagnosis</b>. It is built for ordinary waking life, not for coma, brain injury, psychosis, mania, seizure risk, intoxication, or crisis. If your safety or someone else&rsquo;s is at risk, set this down and reach a real person or emergency support.</div>
+    </details>
   </header>
 
   <section class="plate levelwrap reveal">
-    <div class="lv-kicker">The centre of gravity · measure it</div>
+    <div class="lv-kicker">The centre of gravity · measure it now</div>
     <h1>Reading your altitude</h1>
-    <div class="subtitle">Five of the least foolable signs of how high you&rsquo;re seeing from.</div>
-    <p class="lv-lede">These don&rsquo;t ask what you believe — they ask <b>how</b> you make sense of things: how wide your care reaches, how many clashing views you can hold as partly true at once, whether you can look <em>at</em> your reactions or only <em>from</em> inside them. Answer for how you actually are lately, not how you&rsquo;d like to be. You&rsquo;ll get an altitude band — your ceiling — and, once you&rsquo;ve read your state further down, how much of it you can actually reach today.</p>
-
-    <div class="lv-twin">
-      <div>
-        <div class="mini">Your altitude · the ceiling</div>
-        <h3>The height you can reach</h3>
-        <p>Where your clearest, widest meaning-making lands. It moves slowly, over years — this is a <em>snapshot and a direction</em>, never a grade. (A different, deeper sense of &lsquo;level&rsquo; than the arousal level on the dial further down.)</p>
-      </div>
-      <div>
-        <div class="mini">Today&rsquo;s reach · the floor</div>
-        <h3>The height you can actually use now</h3>
-        <p>Your altitude, multiplied by how clear your state is. <em>When you&rsquo;re flooded or foggy, you cannot get to your own height</em> — a rough state pulls everyone down the ladder. Steady the state, and your full altitude comes back within reach.</p>
-      </div>
-    </div>
+    <div class="subtitle">Answer these for how you actually are lately — not how you&rsquo;d like to be.</div>
 
     <div class="level-grid">
       <article class="plate probe-card reveal">
-        <h2>Five honest questions</h2>
-        <div class="sub">Answer for how you actually are lately — not how you&rsquo;d like to be. These five are the least foolable signs of altitude.</div>
-
-        <div class="probe">
-          <label>How far does your genuine care reach right now?</label>
-          <div class="opts" id="probeCare"></div>
-        </div>
-
-        <div class="probe">
-          <div class="top" style="display:flex;justify-content:space-between"><label style="margin-bottom:0">When people clash, how many of their views can you hold as partly true at once?</label><span class="val" id="v_perspectives">50</span></div>
-          <input type="range" id="perspectives" min="0" max="100" value="50" />
-          <div class="ends"><span>One right answer — usually mine</span><span>Several at once, even clashing</span></div>
-        </div>
-
-        <div class="probe">
-          <div class="top" style="display:flex;justify-content:space-between"><label style="margin-bottom:0">Can you look <em>at</em> your own reactions and beliefs — or are you usually inside them, looking out?</label><span class="val" id="v_subjectObject">50</span></div>
-          <input type="range" id="subjectObject" min="0" max="100" value="50" />
-          <div class="ends"><span>I am my reactions</span><span>I can watch them like weather</span></div>
-        </div>
-
-        <div class="probe">
-          <label>When two true things contradict each other, you tend to…</label>
-          <div class="opts" id="probeParadox"></div>
-        </div>
-
-        <div class="probe">
-          <label>When something matters, how far ahead do its consequences figure for you?</label>
-          <div class="opts" id="probeHorizon"></div>
-        </div>
+        <h2>How wide do you see?</h2>
+        <div class="sub">Twelve quick reads of the same thing from different angles — slide each to where you honestly sit <em>lately</em>, not where you&rsquo;d like to. No single one means much; together they sketch your altitude. The first (your circle of care) counts most.</div>
+        <div id="altMeters"></div>
       </article>
 
       <article class="plate alt-card reveal">
@@ -595,12 +570,12 @@
 
     <article class="plate axes-card reveal">
       <h2>Four kinds of growth — each on its own clock</h2>
-      <div class="sub">&lsquo;Higher&rsquo; isn&rsquo;t one thing. You can grow wise and still dodge hard truths about yourself; go quiet and clear in meditation and still see the world in a narrow way. An honest tool keeps them apart. The first one — <b>how wide you see</b> — sets the altitude above; rate the other three for yourself.</div>
+      <div class="sub">&lsquo;Higher&rsquo; isn&rsquo;t one thing. You can be wise and still dodge hard truths about yourself; calm and clear and still see the world in a narrow way. An honest tool keeps them apart. The first — <b>how wide you see</b> — sets the altitude above; rate the other three for yourself.</div>
 
       <div class="axis"><div class="axis-top"><span class="axis-name">How wide you see <span>— how much of the picture you take in</span></span><span class="axis-val"><span id="axGrowV">50</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axGrow"></div></div></div>
-      <div class="axis"><div class="axis-top"><span class="axis-name">Stepping back <span>— quiet, clear awareness beyond the busy self</span></span><span class="axis-val"><span id="axWakeV">30</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axWake"></div></div></div>
-      <div class="axis"><div class="axis-top"><span class="axis-name">Owning your part <span>— facing what you&rsquo;d rather not see in yourself</span></span><span class="axis-val"><span id="axCleanV">45</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axClean"></div></div></div>
-      <div class="axis"><div class="axis-top"><span class="axis-name">Living it <span>— doing it, not just thinking it</span></span><span class="axis-val"><span id="axShowV">45</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axShow"></div></div></div>
+      <div class="axis"><div class="axis-top"><span class="axis-name">How often you step back <span>— catching calm, clear moments instead of being swept along by your own mind</span></span><span class="axis-val"><span id="axWakeV">30</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axWake"></div></div></div>
+      <div class="axis"><div class="axis-top"><span class="axis-name">How honestly you face yourself <span>— owning the parts of yourself you&rsquo;d rather not look at</span></span><span class="axis-val"><span id="axCleanV">45</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axClean"></div></div></div>
+      <div class="axis"><div class="axis-top"><span class="axis-name">How fully you live it <span>— doing what you believe, not just thinking it</span></span><span class="axis-val"><span id="axShowV">45</span>/100</span></div><div class="axis-bar"><div class="axis-fl" id="axShow"></div></div></div>
       <div class="axis-edge" id="axEdge"></div>
 
       <div class="axis-note">Rate the other three axes — honestly, for how you&rsquo;ve been lately:</div>
@@ -985,11 +960,21 @@ let dimsCache = null;
 let history = [];
 
 /* ===== THE LEVEL CENTER — vertical altitude + four axes ===== */
-let careRing = 3;          /* 1..6 widest ring of genuine care right now */
-let perspectives = 50;     /* hold multiple conflicting views as partly true */
-let subjectObject = 50;    /* look AT reactions/beliefs vs being inside them */
-let paradox = 1;           /* 0 one-wrong · 1 pick-side · 2 hold-both · 3 larger-truth */
-let horizon = 1;           /* 0 immediate · 1 weeks · 2 years · 3 lifetimes · 4 beyond */
+/* "How wide you see" — measured across many practical dimensions, all sliders (0..100) */
+let am = {
+  care:50,      /* how far genuine care reaches */
+  views:50,     /* hold several clashing views as partly true at once */
+  watch:50,     /* watch your reactions vs being run by them */
+  contra:50,    /* hold contradiction / find the larger truth */
+  horizon:50,   /* how far ahead consequences reach */
+  wrong:50,     /* admit you were wrong / update */
+  ego:50,       /* freedom from needing to be right or on top */
+  standalone:50,/* hold your own view when the group disagrees */
+  empathy:50,   /* understand people very unlike you */
+  system:50,    /* see how the parts connect into a whole */
+  doubt:50,     /* rest in not-knowing / sit with uncertainty */
+  identity:50   /* hold a fluid vs fixed story of "who I am" */
+};
 let wakeUnity = 30, wakeWitness = 30, wakeQuiet = 30, wakeVast = 30;   /* stepping back */
 let shadowOwn = 45, shadowFace = 45, shadowCalm = 45;                  /* owning your part */
 let liveInner = 45, liveAct = 45, liveRel = 45, liveWorld = 45;        /* living it */
@@ -1889,7 +1874,7 @@ function save(){
     timeFlex:timeFlex, task:task, consequence:consequence, canWait:canWait,
     identityVal:identityVal, projCertainty:projCertainty, projEvidence:projEvidence,
     envCue:envCue, envRoom:envRoom, envEasy:envEasy, stateSplit:stateSplit,
-    careRing:careRing, perspectives:perspectives, subjectObject:subjectObject, paradox:paradox, horizon:horizon,
+    am:am,
     wakeUnity:wakeUnity, wakeWitness:wakeWitness, wakeQuiet:wakeQuiet, wakeVast:wakeVast,
     shadowOwn:shadowOwn, shadowFace:shadowFace, shadowCalm:shadowCalm,
     liveInner:liveInner, liveAct:liveAct, liveRel:liveRel, liveWorld:liveWorld,
@@ -1917,11 +1902,14 @@ function load(){
     if(typeof s.envRoom==="number") envRoom=s.envRoom;
     if(typeof s.envEasy==="number") envEasy=s.envEasy;
     if(s.stateSplit && typeof s.stateSplit==="object") stateSplit=Object.assign(stateSplit, s.stateSplit);
-    if(typeof s.careRing==="number") careRing=s.careRing;
-    if(typeof s.perspectives==="number") perspectives=s.perspectives;
-    if(typeof s.subjectObject==="number") subjectObject=s.subjectObject;
-    if(typeof s.paradox==="number") paradox=s.paradox;
-    if(typeof s.horizon==="number") horizon=s.horizon;
+    if(s.am && typeof s.am==="object"){ Object.keys(am).forEach(function(k){ if(typeof s.am[k]==="number") am[k]=s.am[k]; }); }
+    else { /* back-compat with the old five-probe save */
+      if(typeof s.careRing==="number") am.care=(s.careRing-1)/5*100;
+      if(typeof s.perspectives==="number") am.views=s.perspectives;
+      if(typeof s.subjectObject==="number") am.watch=s.subjectObject;
+      if(typeof s.paradox==="number") am.contra=s.paradox/3*100;
+      if(typeof s.horizon==="number") am.horizon=s.horizon/4*100;
+    }
     if(typeof s.wakeUnity==="number") wakeUnity=s.wakeUnity;
     if(typeof s.wakeWitness==="number") wakeWitness=s.wakeWitness;
     if(typeof s.wakeQuiet==="number") wakeQuiet=s.wakeQuiet;
@@ -2060,26 +2048,37 @@ const ALTITUDES = [
    adapt:"Nothing to do here but live well where you actually stand. We name it only because consciousness keeps moving, and an honest map leaves room past its own edge.",
    desc:"The furthest, most speculative reach — a way of meaning where the separate self is barely the point. No instrument can touch this. We name it only because consciousness keeps moving, and a map honest about its edge should leave room past the edge."}
 ];
-const CARE_OPTS = [
-  "Mostly me and what I need right now",
-  "My close people — family, friends",
-  "My group, community, or country — &lsquo;people like me&rsquo;",
-  "All people, everywhere, equally",
-  "All living beings — animals, the living world",
-  "All of reality — and the generations not yet born"
+/* the multidimensional altitude bank — practical, everyday, all sliders.
+   w = weight in the altitude estimate (circle of care highest, per the research). */
+const ALT_METERS = [
+  { id:"care",       w:1.4, q:"How far does your genuine care actually reach?",
+    lo:"Me and mine", hi:"All people, creatures &amp; the future" },
+  { id:"watch",      w:1.3, q:"Can you watch your own moods and reactions — or are you run by them?",
+    lo:"I <em>am</em> my reactions", hi:"I watch them like weather" },
+  { id:"views",      w:1.1, q:"When people clash, how many of their views can you hold as partly true at once?",
+    lo:"One right answer — usually mine", hi:"Several at once, even clashing" },
+  { id:"contra",     w:1.1, q:"When two true things contradict, what happens?",
+    lo:"One must be wrong", hi:"I find the bigger truth holding both" },
+  { id:"empathy",    w:1.1, q:"Can you understand people very unlike you — even ones you oppose?",
+    lo:"Not really", hi:"Deeply, even opponents" },
+  { id:"standalone", w:1.1, q:"Can you hold your own view when your group disagrees?",
+    lo:"I go with my people", hi:"I can stand alone when needed" },
+  { id:"wrong",      w:1.1, q:"How easily can you admit you were wrong, even when it stings?",
+    lo:"I dig in", hi:"I update gladly" },
+  { id:"ego",        w:1.0, q:"How free are you from needing to be right, or on top?",
+    lo:"I need to win", hi:"I don&rsquo;t need to" },
+  { id:"system",     w:1.0, q:"Do you see how the parts connect into a bigger whole?",
+    lo:"One thing at a time", hi:"I see the whole web" },
+  { id:"doubt",      w:1.0, q:"How well can you sit with not-knowing, before it&rsquo;s resolved?",
+    lo:"I need it settled now", hi:"I can rest in not-knowing" },
+  { id:"identity",   w:1.0, q:"How tightly do you hold a fixed story of &lsquo;who I am&rsquo;?",
+    lo:"Very fixed", hi:"It can grow and change" },
+  { id:"horizon",    w:0.9, q:"When something matters, how far ahead do its effects reach for you?",
+    lo:"Right now / today", hi:"Beyond my own lifetime" }
 ];
-const PARADOX_OPTS = [
-  "One of them must simply be wrong",
-  "I pick the side that feels right to me",
-  "I can hold both as true at the same time",
-  "I look for the larger truth that contains both"
-];
-const HORIZON_OPTS = ["Right now / today","Weeks to months","Years","Decades, a whole life","Beyond my own lifetime"];
 
 function altitudeIndex(){
-  const care=(careRing-1)/5*100, par=paradox/3*100, hor=horizon/4*100;
-  const parts=[[care,1.4],[subjectObject,1.3],[perspectives,1.1],[par,1.1],[hor,0.9]];
-  let s=0,w=0; parts.forEach(function(p){ s+=p[0]*p[1]; w+=p[1]; });
+  let s=0,w=0; ALT_METERS.forEach(function(m){ s+=(am[m.id]||0)*m.w; w+=m.w; });
   return Math.round(s/w);
 }
 function altitudeBand(idx){ let b=ALTITUDES[0]; for(let i=0;i<ALTITUDES.length;i++){ if(idx>=ALTITUDES[i].min) b=ALTITUDES[i]; } return b; }
@@ -2094,19 +2093,20 @@ function fourAxes(){
 }
 function inflationCheck(){
   const idx=altitudeIndex();
-  const allMax = careRing>=6 && perspectives>=88 && subjectObject>=88 && paradox>=3 && horizon>=4;
-  return idx>=70 && (certainty>=72 || allMax);
+  const vals=ALT_METERS.map(function(m){ return am[m.id]||0; });
+  const allHigh = vals.filter(function(v){ return v>=88; }).length >= Math.ceil(vals.length*0.75);
+  return idx>=70 && (certainty>=72 || allHigh);
 }
 
 /* level adaptations — one step up, by axis */
 const CLIMB = {
   grow:{ ax:"How wide you see", h:"Let two true things collide",
     p:"Find a view you disagree with, held by someone thoughtful, and steel-man it until you can argue it better than they can — without surrendering your own. Growth happens not by winning but by holding both long enough that a bigger picture appears." },
-  wake:{ ax:"Stepping back from the busy self", h:"Ten minutes of open watching",
+  wake:{ ax:"How often you step back", h:"Ten minutes of open watching",
     p:"Sit, and instead of focusing on anything, just watch whatever arises — sounds, sensations, thoughts — as if they were weather passing through an open sky. Notice the one watching. That noticing is the doorway; it asks nothing of you but to be repeated." },
-  clean:{ ax:"Owning your part", h:"The 3-2-1 on whoever irritates you",
+  clean:{ ax:"How honestly you face yourself", h:"The 3-2-1 on whoever irritates you",
     p:"Take the person who most annoys you lately. Describe them (it). Then talk to them (you). Then become them and speak as them (I) — &lsquo;I am&hellip;&rsquo; What you cannot stand out there is often a disowned piece of yourself; the charge drops when you take it back." },
-  show:{ ax:"Living it, not just knowing it", h:"Enact one value before tonight",
+  show:{ ax:"How fully you live it", h:"Enact one value before tonight",
     p:"Pick one value you hold and do a single concrete thing that proves it today — one call, one boundary, one act of repair. A level you only think from is not yet yours; you earn altitude by living it, in the most ordinary places." }
 };
 
@@ -2122,8 +2122,7 @@ const NEIGHBOUR = [
   { below:"like even the frontier still keeping one foothold in the self" }
 ];
 function altitudePeak(){
-  const norm=[ (careRing-1)/5*100, subjectObject, perspectives, paradox/3*100, horizon/4*100 ];
-  return Math.round(Math.max.apply(null, norm));
+  return Math.round(Math.max.apply(null, ALT_METERS.map(function(m){ return am[m.id]||0; })));
 }
 function renderNeighbours(band){
   const host=$("altNeighbours"); if(!host) return;
@@ -2192,7 +2191,7 @@ function renderPsychograph(){
   /* lowest axis = the real growing edge */
   const arr=[["grow",a.grow],["wake",a.wake],["clean",a.clean],["show",a.show]];
   arr.sort(function(x,y){ return x[1]-y[1]; });
-  const lowKey=arr[0][0], names={grow:"How wide you see",wake:"Stepping back",clean:"Owning your part",show:"Living it"};
+  const lowKey=arr[0][0], names={grow:"How wide you see",wake:"How often you step back",clean:"How honestly you face yourself",show:"How fully you live it"};
   $("axEdge").innerHTML="<b>Your growing edge right now is "+names[lowKey]+".</b> These four move independently — it&rsquo;s common to be far along one and behind on another, and the honest work is usually the lowest one, not the highest. The practice below starts there.";
   window.__lowAxis=lowKey;
 }
@@ -2383,7 +2382,7 @@ function snapshotData(){
       todaysReach: effectiveAltitude(),
       band: altitudeBand(altitudeIndex()).name.replace(/&amp;/g,"&"),
       status: altitudeBand(altitudeIndex()).status,
-      careRing: careRing,
+      dimensions: Object.assign({}, am),
       fourAxes: fourAxes(),
       growingEdge: window.__lowAxis||null,
       selfAssessmentCaveat:"Vertical level cannot be reliably self-scored; treat as a hypothesis and direction, not a measurement."
@@ -2454,7 +2453,7 @@ $("reset").addEventListener("click", function(){
   identityVal=30; projCertainty=50; projEvidence=50; envCue=50; envRoom=50; envEasy=50;
   stateSplit={ rawEvent:"", addedMeaning:"", usefulSignal:"", exaggeratedStory:"" };
   shiftSession={ before:null, after:null, delta:null, plasticity:null };
-  careRing=3; perspectives=50; subjectObject=50; paradox=1; horizon=1;
+  Object.keys(am).forEach(function(k){ am[k]=50; });
   wakeUnity=30; wakeWitness=30; wakeQuiet=30; wakeVast=30;
   shadowOwn=45; shadowFace=45; shadowCalm=45;
   liveInner=45; liveAct=45; liveRel=45; liveWorld=45;
@@ -2520,12 +2519,21 @@ function renderOpts(containerId, opts, currentIdx, onPick){
     });
   });
 }
+function renderAltMeters(){
+  const host=$("altMeters"); if(!host) return;
+  host.innerHTML = ALT_METERS.map(function(m){
+    return '<div class="probe"><div class="top" style="display:flex;justify-content:space-between;gap:14px">'
+      + '<label style="margin-bottom:0">'+m.q+'</label><span class="val" id="v_am_'+m.id+'">'+(am[m.id]||0)+'</span></div>'
+      + '<input type="range" id="am_'+m.id+'" min="0" max="100" value="'+(am[m.id]||0)+'" />'
+      + '<div class="ends"><span>'+m.lo+'</span><span>'+m.hi+'</span></div></div>';
+  }).join("");
+  ALT_METERS.forEach(function(m){
+    const el=$("am_"+m.id); if(!el) return;
+    el.addEventListener("input", function(e){ am[m.id]=+e.target.value; const o=$("v_am_"+m.id); if(o) o.textContent=e.target.value; update(); });
+  });
+}
 function initLevel(){
-  renderOpts("probeCare", CARE_OPTS, careRing-1, function(i){ careRing=i+1; });
-  renderOpts("probeParadox", PARADOX_OPTS, paradox, function(i){ paradox=i; });
-  renderOpts("probeHorizon", HORIZON_OPTS, horizon, function(i){ horizon=i; });
-  syncVal("perspectives", function(v){ perspectives=v; });
-  syncVal("subjectObject", function(v){ subjectObject=v; });
+  renderAltMeters();
   syncVal("wakeUnity", function(v){ wakeUnity=v; });
   syncVal("wakeWitness", function(v){ wakeWitness=v; });
   syncVal("wakeQuiet", function(v){ wakeQuiet=v; });
@@ -2537,7 +2545,7 @@ function initLevel(){
   syncVal("liveAct", function(v){ liveAct=v; });
   syncVal("liveRel", function(v){ liveRel=v; });
   syncVal("liveWorld", function(v){ liveWorld=v; });
-  [["perspectives",perspectives],["subjectObject",subjectObject],["wakeUnity",wakeUnity],["wakeWitness",wakeWitness],["wakeQuiet",wakeQuiet],["wakeVast",wakeVast],["shadowOwn",shadowOwn],["shadowFace",shadowFace],["shadowCalm",shadowCalm],["liveInner",liveInner],["liveAct",liveAct],["liveRel",liveRel],["liveWorld",liveWorld]].forEach(function(p){ setRange(p[0],p[1]); });
+  [["wakeUnity",wakeUnity],["wakeWitness",wakeWitness],["wakeQuiet",wakeQuiet],["wakeVast",wakeVast],["shadowOwn",shadowOwn],["shadowFace",shadowFace],["shadowCalm",shadowCalm],["liveInner",liveInner],["liveAct",liveAct],["liveRel",liveRel],["liveWorld",liveWorld]].forEach(function(p){ setRange(p[0],p[1]); });
 }
 
 function initContext(){
